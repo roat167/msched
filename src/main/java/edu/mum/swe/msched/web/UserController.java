@@ -6,17 +6,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edu.mum.swe.msched.service.UserService;
+import edu.mum.swe.msched.service.impl.UserServiceImpl;
 
 @Controller
 public class UserController extends GenericController {
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
 	public String welcome(Model model) {
-		return getView(model, "welcome");
-		//return "welcome";
+		return getView(model, "welcome");		
 	}
 
 }
