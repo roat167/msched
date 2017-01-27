@@ -31,20 +31,20 @@
 						<a href="${pageContext.request.contextPath}">Faculty</a>
 					</li>				
 					<li class="${(not empty view and fn:containsIgnoreCase(view, '/schedule') ?'active':'')}">
-                       <a  href="${pageContext.request.contextPath}/reservationsList.do">Schedule</a>
+                       <a  href="${pageContext.request.contextPath}/welcome">Schedule</a>
                     </li>				
 					<li class="${(not empty view and fn:containsIgnoreCase(view, '/block') ?'active':'')}">
-	                        <a href="${pageContext.request.contextPath}/cars.do"> Block</a>
+	                        <a href="${pageContext.request.contextPath}/welcome"> Block</a>
 	                </li>
                 </sec:authorize>
 				<sec:authorize access="hasRole('STUDENT') or hasRole('ADMIN')">
                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/student/schedule') ?'active':'')}">
-                       <a  href="${pageContext.request.contextPath}/reservationsList.do">My Schedule</a>
+                       <a  href="${pageContext.request.contextPath}/welcome">My Schedule</a>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('FACULTY') or hasRole('ADMIN')">
                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/faculty/schedule') ?'active':'')}">
-                       <a  href="${pageContext.request.contextPath}/reservationsList.do">Class Schedule</a>
+                       <a  href="${pageContext.request.contextPath}/welcome">Class Schedule</a>
                     </li>                    
                 </sec:authorize>
                 </ul>
