@@ -49,10 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		auth.jdbcAuthentication().dataSource(dataSource)
-				.usersByUsernameQuery("select username,password, enabled from users where username=?")
-				.authoritiesByUsernameQuery("select username, role from user_roles where username=?");
-
+//		auth.jdbcAuthentication().dataSource(dataSource)
+//			.usersByUsernameQuery("select username,password, enabled from users where username=?")
+//			.authoritiesByUsernameQuery("select u.username, r.name from role r inner join r.users u where username=?");
+		auth.inMemoryAuthentication().withUser("kloem").password("password").roles("ADMIN");
 	}
 
 	@Override
