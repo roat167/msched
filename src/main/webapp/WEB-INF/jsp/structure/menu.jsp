@@ -55,7 +55,7 @@
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
         <sec:authentication var="principal" property="principal" />
-        	<li><a href="${pageContext.request.contextPath}/user/userProfile"><span class="glyphicon glyphicon-user"></span> ${principal.username}</a></li>	
+        	<li><a href="${pageContext.request.contextPath}/welcome"><span class="glyphicon glyphicon-user"></span> ${principal.username}</a></li>	
         	<li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </sec:authorize>
 	</ul>
