@@ -526,7 +526,3 @@ margin:5px;
 		background: linear-gradient(to bottom,  #ffffff 25%,#f2f2f2 100%);
 		background-image: url('images/popupButtonsBar.png'); 
 }
-
-#btnLogin {
-	alignment:center;
-}
