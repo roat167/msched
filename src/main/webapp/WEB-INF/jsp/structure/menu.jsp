@@ -22,25 +22,32 @@
 			<div class="collapse navbar-collapse Menu" id="bs-example-navbar-collapse-1">
 				<!-- left menu -->
                 <ul class="nav navbar-nav">
-                <sec:authorize access="hasAuthority('ADMIN')">
-                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/user') ?'active':'')}">
-                        <a href="${pageContext.request.contextPath}">Students</a>
+                <sec:authorize access="hasRole('ADMIN')">
+                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/userList') ?'active':'')}">
+                        <a href="${pageContext.request.contextPath}">Users</a>
                     </li>				
 					<li
-						class="${(not empty view and fn:containsIgnoreCase(view, '/customer') ?'active':'')}">
+						class="${(not empty view and fn:containsIgnoreCase(view, '/facultyList') ?'active':'')}">
 						<a href="${pageContext.request.contextPath}">Faculty</a>
 					</li>				
-				
-				<li class="${(not empty view and fn:containsIgnoreCase(view, '/carList') ?'active':'')}">
-                        <a href="${pageContext.request.contextPath}/cars.do"> View Cars</a>
-                </li>
+					<li class="${(not empty view and fn:containsIgnoreCase(view, '/schedule') ?'active':'')}">
+                       <a  href="${pageContext.request.contextPath}/welcome">Schedule</a>
+                    </li>				
+					<li class="${(not empty view and fn:containsIgnoreCase(view, '/block') ?'active':'')}">
+	                        <a href="${pageContext.request.contextPath}/welcome"> Block</a>
+	                </li>
                 </sec:authorize>
-				<sec:authorize access="hasAuthority('ADMIN') or hasAuthority('USER')">
-                    <li class="${(not empty view and fn:containsIgnoreCase(view, 'Reservation') ?'active':'')}">
-                       <a  href="${pageContext.request.contextPath}/reservationsList.do">My Schedule</a>
+				<sec:authorize access="hasRole('STUDENT') or hasRole('ADMIN')">
+                    <li class="${(not empty view and fn:containsIgnoreCase(view, '/student/schedule') ?'active':'')}">
+                       <a  href="${pageContext.request.contextPath}/welcome">My Schedule</a>
                     </li>
                 </sec:authorize>
-                   </ul>
+                <sec:authorize access="hasRole('FACULTY') or hasRole('ADMIN')">
+                    <li class="${(not empty view and fn:containsIgnoreCase(view, '/faculty/schedule') ?'active':'')}">
+                       <a  href="${pageContext.request.contextPath}/welcome">Class Schedule</a>
+                    </li>                    
+                </sec:authorize>
+                </ul>
       <!-- right menu  -->     
       <ul class="nav navbar-nav navbar-right">		
 		<sec:authorize access="isAnonymous()">
@@ -48,7 +55,7 @@
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
         <sec:authentication var="principal" property="principal" />
-        	<li><a href="${pageContext.request.contextPath}/user/userProfile"><span class="glyphicon glyphicon-user"></span> ${principal.username}</a></li>	
+        	<li><a href="${pageContext.request.contextPath}/welcome"><span class="glyphicon glyphicon-user"></span> ${principal.username}</a></li>	
         	<li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </sec:authorize>
 	</ul>

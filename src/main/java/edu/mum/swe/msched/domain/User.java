@@ -30,6 +30,7 @@ public class User implements Serializable {
 	private String phone;
 	private String username;
 	private String password;
+	private Boolean enabled;
 
 	@ManyToMany
 	@JoinTable(name = "users_roles", 
@@ -99,6 +100,14 @@ public class User implements Serializable {
 
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	@Transient
