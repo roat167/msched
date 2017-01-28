@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +29,7 @@ public class User implements Serializable {
 	private String lastName;
 	private String email;
 	private String phone;
+	@Column(name="username", unique=true)
 	private String username;
 	private String password;
 	private Boolean enabled;
