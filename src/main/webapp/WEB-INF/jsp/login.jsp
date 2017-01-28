@@ -13,8 +13,14 @@
 	<div style="margin: 0 auto; width: 300px">
 		<br /> <br />
 <br>
+<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">		
+	<div class="alert alert-info">
+		<strong>Your login attempt was not successful due to  
+		<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.</strong> 
+	</div>	      
+</c:if>
 <span class="PageTitle">&nbsp; Login</span>
-		<br /> <br />
+		<br /> <br />	
 		<form action="/login" method="post">
 			<div>
 				<label for="username">UserName</label> <input class="form-control" type="text"
