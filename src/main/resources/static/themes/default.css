@@ -198,7 +198,7 @@ margin: 0 200px 0 230px; /*Margins for content column. Should be "0 RightColumnW
 	background: #ffffff;
  border-left:0px solid #000000;
  border-right:0px solid #000000;
- background-image: url('images/tabHover.png');
+ /*background-image: url('images/tabHover.png');*/
 }
 .Menu li a {
 	margin-left: 10px;
