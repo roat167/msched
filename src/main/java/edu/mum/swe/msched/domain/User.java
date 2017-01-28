@@ -1,17 +1,16 @@
 package edu.mum.swe.msched.domain;
 
 import java.io.Serializable;
-import java.util.Collection;
 
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Transient;
+
+import edu.mum.swe.msched.enumeration.ROLE;
 
 /**
  * 
@@ -25,20 +24,12 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long userId;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private String phone;
-	@Column(name="username", unique=true)
+	@Column(name = "username", unique = true)
 	private String username;
 	private String password;
 	private Boolean enabled;
-
-	@ManyToMany
-	@JoinTable(name = "users_roles", 
-	joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"), 
-	inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "roleId"))
-	private Collection<Role> roles;
+	@Enumerated(EnumType.STRING)
+	private ROLE role;
 
 	public Long getUserId() {
 		return userId;
@@ -46,38 +37,6 @@ public class User implements Serializable {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 
 	public String getUsername() {
@@ -96,14 +55,6 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public Collection<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Collection<Role> roles) {
-		this.roles = roles;
-	}
-
 	public Boolean getEnabled() {
 		return enabled;
 	}
@@ -112,8 +63,11 @@ public class User implements Serializable {
 		this.enabled = enabled;
 	}
 
-	@Transient
-	public String getFullName() {
-		return this.firstName + " " + this.lastName;
+	public ROLE getRole() {
+		return role;
+	}
+
+	public void setRole(ROLE role) {
+		this.role = role;
 	}
 }
