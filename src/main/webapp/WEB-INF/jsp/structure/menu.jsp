@@ -22,7 +22,7 @@
 			<div class="collapse navbar-collapse Menu" id="bs-example-navbar-collapse-1">
 				<!-- left menu -->
                 <ul class="nav navbar-nav">
-                <sec:authorize access="hasRole('ADMIN')">
+                <sec:authorize access="hasAuthority('ADMIN')">
                      <li class="${(not empty view and fn:containsIgnoreCase(view, '/userList') ?'active':'')}">
                         <a href="${pageContext.request.contextPath}">Users</a>
                     </li>				
@@ -37,12 +37,12 @@
 	                        <a href="${pageContext.request.contextPath}/welcome"> Block</a>
 	                </li>
                 </sec:authorize>
-				<sec:authorize access="hasRole('STUDENT') or hasRole('ADMIN')">
+				<sec:authorize access="hasAuthority('STUDENT') or hasAuthority('ADMIN')">
                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/student/schedule') ?'active':'')}">
                        <a  href="${pageContext.request.contextPath}/welcome">My Schedule</a>
                     </li>
                 </sec:authorize>
-                <sec:authorize access="hasRole('FACULTY') or hasRole('ADMIN')">
+                <sec:authorize access="hasAuthority('FACULTY') or hasAuthority('ADMIN')">
                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/faculty/schedule') ?'active':'')}">
                        <a  href="${pageContext.request.contextPath}/welcome">Class Schedule</a>
                     </li>                    
@@ -65,9 +65,5 @@
              <!-- /.navbar-collapse -->
   </div>
         <!-- /.container -->
-</nav><!-- Half Page Image Background Carousel Header 
-<div style="float:right;padding: 4px 0;z-index:1000;width:200px;margin-top:80px;position:box">
- Language : <a href="?lang=en">English</a>|<a href="?lang=np">Nepali</a><br />
-</div>
--->
+</nav>
 <br><br><br><br>
