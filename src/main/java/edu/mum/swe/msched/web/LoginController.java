@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -21,6 +22,7 @@ public class LoginController extends GenericController {
 	@Autowired
 	UserServiceImpl userService;
 
+	//@PreAuthorize(name=""{})
 	@RequestMapping(value="/login", method= RequestMethod.GET)
 	public String loginForm(ModelMap model) {
 		model.addAttribute("view","login");		
