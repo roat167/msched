@@ -123,14 +123,14 @@ img{
 }
 .MainTable{
 		border:0px solid #eeeeee;
-		background-image: url('images/background.png');
+		background-image: url('default/images/background.png');
 		background-repeat: no-repeat;
 		
 }
 .Header{
 		border:0px;	
 		background-color:#ffffff; 
-		background-image: url('images/header.png');
+		background-image: url('default/images/header.png');
 		#background-repeat: repeat-y;
 }
 .Footer{
@@ -160,8 +160,8 @@ img{
 		padding-bottom:5px;
 		padding-right:5px;
 		vertical-align:top;
-		background-image: url('images/contents.png'); 
-		background-repeat: repeat-y;
+		/* background-image: url('default/images/contents.png'); 
+		background-repeat: repeat-y; */
 		margin: 0 200px 0 230px; /*Margins for content column. Should be "0 RightColumnWidth 0 LeftColumnWidth*/
 }
 #Contents{
@@ -174,13 +174,13 @@ margin: 0 200px 0 230px; /*Margins for content column. Should be "0 RightColumnW
 		font-family: verdana;
 		font-size:11px;
 		vertical-align: top;
-		background-image: url('images/contents.png');
-		background-repeat: repeat-y;
+		/* background-image: url('default/images/contents.png');
+		background-repeat: repeat-y; */
 }	
 
 .Menu{
 			
-		background-image: url('images/menu.png'); 
+		background-image: url('default/images/menu.png'); 
 		font-family:verdana;
 		font-size: 11px;
 		font-weight:bold;
@@ -198,7 +198,7 @@ margin: 0 200px 0 230px; /*Margins for content column. Should be "0 RightColumnW
 	background: #ffffff;
  border-left:0px solid #000000;
  border-right:0px solid #000000;
- /*background-image: url('images/tabHover.png');*/
+ background-image: url('default/images/tabHover.png');
 }
 .Menu li a {
 	margin-left: 10px;
@@ -210,7 +210,7 @@ margin: 0 200px 0 230px; /*Margins for content column. Should be "0 RightColumnW
  border-right:1px solid #cccdce;
  border-bottom:0px solid #ffffff;
  background:orange;
- background-image: url('images/tab.png');
+ background-image: url('default/images/tab.png');
 }
 .active a {
  color:#ffffff;
@@ -223,11 +223,7 @@ margin: 0 200px 0 230px; /*Margins for content column. Should be "0 RightColumnW
 .Menu li a:active{
 	color:#ffffff;
 }
-
-.Banner{
-		width:100%;
-		background-image: url('images/welcome.png'); 
-	}		
+	
 .Advertiesements{
 		width:100%;
 		height:100px;
@@ -237,7 +233,7 @@ margin: 0 200px 0 230px; /*Margins for content column. Should be "0 RightColumnW
 		float:left;
 		height:92px;
 		width:261px;
-		background-image: url('images/bitguiders.png');
+		background-image: url('default/images/logo.png');
 		background-repeat: no-repeat; 	
 	}		
 	
@@ -246,13 +242,13 @@ FORM ELEMENTS
 */
 input[type="button"],input[type="submit"]{
 		color:#ffffff;
-		background-image: url('images/button.png'); 	
+		background-image: url('default/images/button.png'); 	
 		font-size: 10px;
 		border:1px solid #eeeeee;
 }
 input[type="button"]:hover,input[type="submit"]:hover{
 		color:#ffffff;
-		background-image: url('images/buttonHover.png'); 	
+		background-image: url('default/images/buttonHover.png'); 	
 		font-size: 10px;
 		border:1px solid #eeeeee;
 		cursor:hand;
@@ -287,10 +283,10 @@ COMMON
 		font-size:12px;
 		font-weight: bold;
 		font-family: sans-serif;
-		background-image: url('images/smallTitleBar.png'); 	
+		background-image: url('default/images/smallTitleBar.png'); 	
 }
 .TitleBar{
-		background-image: url('images/titleBar.png'); 
+		background-image: url('default/images/titleBar.png'); 
 }
 
 .SimpleButtonsBar{
@@ -301,14 +297,14 @@ COMMON
 		padding-top:5px;
 		padding-right:15px;
 		text-align:right;
-		background-image: url('images/buttonsBar.png'); 
+		background-image: url('default/images/buttonsBar.png'); 
 }
 .Separator{
 		float:left;
 		padding:5px;
 		height:28px;
 		width:3px;
-		background-image: url('images/events.png'); 
+		background-image: url('default/images/events.png'); 
 		background-repeat: no-repeat; 	
 }
 
@@ -461,7 +457,7 @@ margin:5px;
 	text-align:center;
 	height:25px;
 	border:1px solid blue;
-	background-image: url('images/progressBar1.png');
+	background-image: url('default/images/progressBar1.png');
 }
 .ProjectAlias{
 	font-family:Times New Roman;
@@ -507,7 +503,7 @@ margin:5px;
 		padding-right:10px;
 		padding-top:15px;
 		background: linear-gradient(to bottom,  #FFFFFF 0%,#F2F2F2 100%);
-		background-image: url('images/titleBar.png'); 	
+		background-image: url('default/images/titleBar.png'); 	
 }
 .PageTitle{
 	 padding-top:2px;
@@ -515,8 +511,8 @@ margin:5px;
 	 font-size: 20px;
 	 font-weight:bold;
 	 text-shadow: -1px -1px white, 1px 1px #eeeeee;
-	  background-image: url('images/pageTitle.png');
-	  background-repeat:no-repeat;
+	 /* background-image: url('default/images/pageTitle.png');
+	 background-repeat:no-repeat; */
 	  padding-bottom: 5px;
 }
 .PopupButtonsBar{
@@ -524,5 +520,5 @@ margin:5px;
 		text-align:right;
 		height:29px;
 		background: linear-gradient(to bottom,  #ffffff 25%,#f2f2f2 100%);
-		background-image: url('images/popupButtonsBar.png'); 
+		/* background-image: url('default/images/popupButtonsBar.png');  */
 }
