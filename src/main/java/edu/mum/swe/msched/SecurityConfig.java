@@ -47,11 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-		StringBuilder qAuthorities = new StringBuilder();
-		qAuthorities.append("select u.username, r.name from users_roles usr, role r, user u ");
-		qAuthorities.append("where u.user_id = usr.user_id ");
-		qAuthorities.append("AND r.role_id = usr.role_id ");
-		qAuthorities.append("AND u.username = ?");
+		StringBuilder qAuthorities = new StringBuilder();		
+		qAuthorities.append("select u.username, u.role from user u ");
+		qAuthorities.append("where u.username = ?");
 		
 		auth.jdbcAuthentication()
          .dataSource(dataSource)
