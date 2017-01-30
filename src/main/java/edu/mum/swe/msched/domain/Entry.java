@@ -27,7 +27,7 @@ public class Entry {
 	private double percentOfCPT;
 	private double percentOfOPT;
 	private int localStudentNum;
-	@Temporal(TemporalType.TIMESTAMP)	
+	//@Temporal(TemporalType.TIMESTAMP)	
 	private Date entryDate;
 	@Transient
 	private String displayEntryDate;

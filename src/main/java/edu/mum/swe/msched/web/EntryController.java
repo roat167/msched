@@ -13,7 +13,7 @@ import edu.mum.swe.msched.domain.Entry;
 import edu.mum.swe.msched.service.EntryService;
 
 @Controller
-@RequestMapping(value = "entry")
+@RequestMapping(value = "/entry")
 public class EntryController extends GenericController {
 	// private static Logger logger = LogManager.getLogger();
 	private static final String MODEL_ATTRIBUTE = "entry";
@@ -23,7 +23,7 @@ public class EntryController extends GenericController {
 	@Autowired
 	EntryService entryService;
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = {"/list", ""}, method = RequestMethod.GET)
 	public String getList(Model model) {
 		model.addAttribute("entries", entryService.getAllEntries());
 		return getView(model, VIEW_LIST);
@@ -43,7 +43,7 @@ public class EntryController extends GenericController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute(MODEL_ATTRIBUTE) Entry entry, Model model) {
+	public String save(@ModelAttribute(MODEL_ATTRIBUTE) Entry entry, Model model) {
 		// logger.info("---entry Controller called for save");
 		if (entry.getEntryId() == null) {
 			entryService.save(entry);
@@ -53,7 +53,8 @@ public class EntryController extends GenericController {
 
 		model.addAttribute("entry", entry);
 		setMessage(model, "entry save successfully");
-		return new ModelAndView(getView(model, VIEW_FORM), "command", entry);
+		//return new ModelAndView(getView(model, VIEW_LIST), "command", entry);
+		return "redirect:/entry";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
