@@ -1,7 +1,9 @@
 package edu.mum.swe.msched.domain;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
@@ -9,11 +11,14 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -36,11 +41,16 @@ public class Faculty {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "FACULTY_COURSE", joinColumns = {
+			@JoinColumn(name = "FACULTY_ID", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "COURSE_ID",nullable = false, updatable = false) })
 	private List<Course> courses;
 	@ElementCollection
 	@CollectionTable(name = "prefered_blocks")
-	private List<Integer> preferedBlocks; // may change type later
+	private Set<Integer> preferedBlocks = new HashSet<Integer>(); // may change type later
+	@OneToMany(mappedBy="faculty")
+	private Set<Section> sections = new HashSet<Section>();
 
 	public Long getFacultyId() {
 		return facultyId;
@@ -122,12 +132,20 @@ public class Faculty {
 		this.courses = courses;
 	}
 
-	public List<Integer> getPreferedBlocks() {
+	public Set<Integer> getPreferedBlocks() {
 		return preferedBlocks;
 	}
 
-	public void setPreferedBlocks(List<Integer> preferedBlocks) {
+	public void setPreferedBlocks(Set<Integer> preferedBlocks) {
 		this.preferedBlocks = preferedBlocks;
+	}
+
+	public Set<Section> getSections() {
+		return sections;
+	}
+
+	public void setSections(Set<Section> sections) {
+		this.sections = sections;
 	}
 
 	@Transient

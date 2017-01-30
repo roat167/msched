@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -31,7 +30,7 @@ public class LoginController extends GenericController {
 	
 	@RequestMapping(value="/loginSucess")
 	public String loginSucess(Model model) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		//Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		return getView(model, "welcome");
 	}
 	
@@ -50,16 +49,4 @@ public class LoginController extends GenericController {
 		model.addAttribute("view","login");		
 		return getView(model, "403");		
 	}
-	
-//	@RequestMapping(value = "/login", method = RequestMethod.GET)
-//	public String login(Model model, String error, String logout) {
-//		if (error != null)
-//			model.addAttribute("error", "Your username and password is invalid.");
-//
-//		if (logout != null)
-//			model.addAttribute("message", "You have been logged out successfully.");
-//		
-//		return "login";
-//	}
-
 }
