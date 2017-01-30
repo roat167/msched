@@ -1,9 +1,11 @@
 package edu.mum.swe.msched.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -11,11 +13,14 @@ public class Section {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long sectionId;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "block_id")
 	private Block block;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id")
 	private Course course;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "faculty_id")
 	private Faculty faculty;
 	private int minCapacity;
 	private int maxCapacity;
