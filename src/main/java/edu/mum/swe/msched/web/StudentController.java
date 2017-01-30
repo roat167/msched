@@ -10,46 +10,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.mum.swe.msched.domain.Student;
+import edu.mum.swe.msched.service.StudentService;
 import edu.mum.swe.msched.service.impl.StudentServiceImpl;
 
 @Controller
+@RequestMapping("/student")
 public class StudentController extends GenericController {
 
 	@Autowired
-	StudentServiceImpl studentService;
+	StudentService studentService;
 	
-	
-	@RequestMapping(value = "/students", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public List<Student> getAllStudentList() {		
 		return studentService.getAllStudents();
 	}
 	
-	@RequestMapping(value = "/students", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public void addStudent(@RequestBody Student student) {
 		studentService.saveStudent(student);
 	}
 	
-	@RequestMapping(value = "/students/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT)
 	public void updateStudent(@PathVariable long id, @RequestBody Student student) {
 		studentService.updateStudent(id, student);
 	}
 	
-	@RequestMapping(value = "/students/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public void deleteStudent(@PathVariable long id) {
 		studentService.deleteStudent(id);
 	}
 	
-	@RequestMapping(value = "/students/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
 	public Student getStudentById(@PathVariable long id) {
 		return studentService.findStudentById(id);
 	}
 	
-	@RequestMapping(value = "/students/{firstName}", method = RequestMethod.GET)
+	@RequestMapping(value = "/first_name/{firstName}", method = RequestMethod.GET)
 	public List<Student> getStudentByFirstName(@PathVariable String firstName) {
 		return studentService.findStudentByFirstName(firstName);
 	}
 	
-	@RequestMapping(value = "/students/{lastName}", method = RequestMethod.GET)
+	@RequestMapping(value = "/last_name/{lastName}", method = RequestMethod.GET)
 	public List<Student> getStudentByLastName(String lastName) {
 		return studentService.findStudentByLastName(lastName);
 	}

@@ -3,11 +3,13 @@ package edu.mum.swe.msched.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import edu.mum.swe.msched.dao.StudentDao;
 import edu.mum.swe.msched.domain.Student;
 import edu.mum.swe.msched.service.StudentService;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 	
 	@Autowired
@@ -40,13 +42,13 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void saveStudent(Student student) {
 		// TODO Auto-generated method stub
-		studentDao.save(student);
+		studentDao.saveAndFlush(student);
 	}
 
 	@Override
 	public void updateStudent(Long id, Student student) {
 		// TODO Auto-generated method stub
-		
+		studentDao.save(student);
 	}
 
 	@Override

@@ -14,9 +14,6 @@ public class MschedApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		UserService userService = new UserServiceImpl();
-		//System.out.println(userService.getAllUsers().toString());
-		userService.getAllUsers().forEach(System.out::print);		
 	}
 
 }
