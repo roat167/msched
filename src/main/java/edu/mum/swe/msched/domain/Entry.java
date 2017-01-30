@@ -8,6 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import edu.mum.swe.msched.util.CustomDateFormatter;
 
 @Entity
 public class Entry {
@@ -15,14 +20,17 @@ public class Entry {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long entryId;
 	private String name;
-	@OneToMany
+	@OneToMany(mappedBy="entry")
 	private List<Block> blocks;
 	private int mppStudentNum;
 	private int fppStudentNum;
 	private double percentOfCPT;
 	private double percentOfOPT;
 	private int localStudentNum;
+	//@Temporal(TemporalType.TIMESTAMP)	
 	private Date entryDate;
+	@Transient
+	private String displayEntryDate;
 
 	public Long getEntryId() {
 		return entryId;
@@ -95,5 +103,14 @@ public class Entry {
 	public void setEntryDate(Date entryDate) {
 		this.entryDate = entryDate;
 	}
+	
+	public String getDisplayEntryDate() {
+		return CustomDateFormatter.displayDateFormat(entryDate);
+	}
+
+	public void setDisplayEntryDate(String displayEntryDate) {
+		this.displayEntryDate = displayEntryDate;
+	}
+
 
 }
