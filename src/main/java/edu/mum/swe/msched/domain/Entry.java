@@ -15,7 +15,7 @@ public class Entry {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long entryId;
 	private String name;
-	@OneToMany
+	@OneToMany(mappedBy="entry")
 	private List<Block> blocks;
 	private int mppStudentNum;
 	private int fppStudentNum;

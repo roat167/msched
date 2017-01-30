@@ -1,6 +1,7 @@
 package edu.mum.swe.msched.domain;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
@@ -18,7 +19,7 @@ public class Course {
 	private String description;
 	@ElementCollection
 	@CollectionTable(name = "target_blocks")
-	private List<String> targetBlocks;
+	private Set<String> targetBlocks = new HashSet<String>();
 
 	public Long getCouresId() {
 		return couresId;
@@ -44,11 +45,11 @@ public class Course {
 		this.description = description;
 	}
 
-	public List<String> getTargetBlocks() {
+	public Set<String> getTargetBlocks() {
 		return targetBlocks;
 	}
 
-	public void setTargetBlocks(List<String> targetBlocks) {
+	public void setTargetBlocks(Set<String> targetBlocks) {
 		this.targetBlocks = targetBlocks;
 	}
 
