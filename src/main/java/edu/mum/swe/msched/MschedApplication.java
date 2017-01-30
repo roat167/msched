@@ -12,14 +12,14 @@ public class MschedApplication {
 		SpringApplication.run(MschedApplication.class, args);
 	}
 
-	@Bean
-	InternalResourceViewResolver internalResourceViewResolver() {
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/jsp/");
-		viewResolver.setSuffix(".jsp");
-		return viewResolver;
-
-	}
-	
+//	@Bean
+//	InternalResourceViewResolver internalResourceViewResolver() {
+//		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+//		viewResolver.setPrefix("/WEB-INF/jsp/");
+//		viewResolver.setSuffix(".jsp");
+//		return viewResolver;
+//
+//	}
+//
 	
 }

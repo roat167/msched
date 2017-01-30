@@ -15,7 +15,7 @@ public class UserController extends GenericController {
 
 	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
 	public String welcome(Model model) {
-		return getView(model, "welcome");		
+		return getView(model, "welcome");
 	}
 
 }
