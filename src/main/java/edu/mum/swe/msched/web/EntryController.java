@@ -15,7 +15,6 @@ import edu.mum.swe.msched.service.EntryService;
 @Controller
 @RequestMapping(value = "/entry")
 public class EntryController extends GenericController {
-	// private static Logger logger = LogManager.getLogger();
 	private static final String MODEL_ATTRIBUTE = "entry";
 	private static final String VIEW_LIST = "entry/entryList";
 	private static final String VIEW_FORM = "entry/entryForm";
@@ -23,17 +22,17 @@ public class EntryController extends GenericController {
 	@Autowired
 	EntryService entryService;
 
-	@RequestMapping(value = {"/list", ""}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/list", "" }, method = RequestMethod.GET)
 	public String getList(Model model) {
 		model.addAttribute("entries", entryService.getAllEntries());
 		return getView(model, VIEW_LIST);
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam long id, Model model) {
+	public String edit(@RequestParam long id, Model model) {
 		Entry entry = entryService.findEntryById(id);
 		model.addAttribute(MODEL_ATTRIBUTE, entry);
-		return new ModelAndView(getView(model, VIEW_FORM), "command", entry);
+		return getView(model, VIEW_FORM);
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -41,25 +40,18 @@ public class EntryController extends GenericController {
 		model.addAttribute("view", VIEW_FORM);
 		return "dashboard";
 	}
-	
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String save(@ModelAttribute(MODEL_ATTRIBUTE) Entry entry, Model model) {
-		// logger.info("---entry Controller called for save");
-		if (entry.getEntryId() == null) {
-			entryService.save(entry);
-		} else {
-			entryService.updateEntry(entry);
-		}
-
+		entryService.updateEntry(entry);
 		model.addAttribute("entry", entry);
-		setMessage(model, "entry save successfully");
-		//return new ModelAndView(getView(model, VIEW_LIST), "command", entry);
+		setMessage(model, "save successfully");
 		return "redirect:/entry";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView delete(@RequestParam long id, Model model) {
-		setMessage(model, "Selected entry deleted successfully");
+		setMessage(model, "Selected item deleted successfully");
 
 		entryService.remove(id);
 

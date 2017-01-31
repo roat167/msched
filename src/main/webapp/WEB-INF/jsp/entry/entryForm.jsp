@@ -41,7 +41,7 @@ FPP No:
 		<form:errors path="percentOfCPT" cssStyle="color:red"></form:errors>
 		<br>
 CPT %:
-<form:input class="form-control" placeholder="" path="percentOfCPT"		type="number" />
+<form:input class="form-control" placeholder="" path="percentOfCPT"	type="number" />
 		<br>
 
 		<form:errors path="percentOfOPT" cssStyle="color:red" />
@@ -55,7 +55,7 @@ OPT %:
 US Student No:
 <form:input class="form-control" path="localStudentNum" type="text" />
 		<br>
-
+<form:input path="entryId" type="hidden" />
 		<form:button class="btn btn-default" value="SignUp" name="submit">Submit</form:button>
 	</form:form>
 
