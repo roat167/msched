@@ -30,8 +30,6 @@ public class Student {
 	@Enumerated(EnumType.ORDINAL)
 	private GENDER gender;
 	private String snn;
-	private String email;
-	private String phoneNo;
 	@ManyToOne
 	private Entry entry;
 	@Enumerated(EnumType.ORDINAL)
@@ -84,23 +82,7 @@ public class Student {
 
 	public void setSnn(String snn) {
 		this.snn = snn;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
+	}	
 
 	public Entry getEntry() {
 		return entry;
