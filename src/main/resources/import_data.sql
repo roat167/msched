@@ -1,7 +1,7 @@
 
 --USER
 insert into msched.user(user_id,username, password, enabled, role) values(1,'kloem', 'password', 1, 'ADMIN');
-insert into msched.user(user_id,username, password, enabled, role) values(2,'dkheiv', 'password', 1, 'FACULTY');
+insert into msched.user(user_id,username, password, enabled, role) values(2,'dora', 'password', 1, 'ADMIN');
 insert into msched.user(user_id,username, password, enabled, role) values(3,'sean', 'tmptmp', 1, 'FACULTY');
 insert into msched.user(user_id,username, password, enabled, role) values(4,'fitsum', 'pass222', 1, 'FACULTY');
 insert into msched.user(user_id,username, password, enabled, role) values(5,'feven', 'pass111', 1, 'STUDENT');
