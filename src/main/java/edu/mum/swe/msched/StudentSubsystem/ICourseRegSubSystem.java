@@ -19,10 +19,9 @@ public interface ICourseRegSubSystem {
 	Entry getEntry(Student student);
 	List<Block> getBlocks(Entry entry);
 	Section getSection(Long sectionId);
-	List<Section> getAvailableSection(Block block);
+	List<Section> getAvailableSections(Block block);
 	Course getCourse(Section section);
-	List<Course> getPrerequisites(Course course);
-	void enrollSection(Student student, Section section);
+	Course getPrerequisite(Course course);
 	Student saveStudent(Student student);
 	Section saveSection(Section section);
 }

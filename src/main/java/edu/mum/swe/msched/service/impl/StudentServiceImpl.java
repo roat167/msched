@@ -17,43 +17,36 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student findStudentById(Long id) {
-		// TODO Auto-generated method stub
 		return studentDao.findOne(id);
 	}
 
 	@Override
 	public List<Student> findStudentByFirstName(String firstName) {
-		// TODO Auto-generated method stub
 		return studentDao.findStudentByFirstName(firstName);
 	}
 
 	@Override
 	public List<Student> findStudentByLastName(String lastName) {
-		// TODO Auto-generated method stub
 		return studentDao.findStudentByLastName(lastName);
 	}
 
 	@Override
 	public List<Student> getAllStudents() {
-		// TODO Auto-generated method stub
 		return studentDao.findAll();
 	}
 
 	@Override
-	public void saveStudent(Student student) {
-		// TODO Auto-generated method stub
-		studentDao.saveAndFlush(student);
+	public Student saveStudent(Student student) {
+		return studentDao.saveAndFlush(student);
 	}
 
 	@Override
 	public void updateStudent(Long id, Student student) {
-		// TODO Auto-generated method stub
 		studentDao.save(student);
 	}
 
 	@Override
 	public void deleteStudent(Long id) {
-		// TODO Auto-generated method stub
 		studentDao.delete(id);
 		
 	}
