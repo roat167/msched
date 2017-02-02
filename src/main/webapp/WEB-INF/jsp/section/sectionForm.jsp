@@ -28,24 +28,17 @@ Max Capacity:
 			type="number" />
 		<br>
 
-<%-- 		<form:errors path="block" cssStyle="color:red" />
+ 		<form:errors path="block" cssStyle="color:red" />
 		<br>	
 Block:
-	<form:select class="form-control" path="block" items="${blockList}" itemValue = "${block.blockId}"> 
- --%><%--  			<option ${faculty.gender.equals(GENDER.MALE) ? "selected" : ""}
-				value="${GENDER.MALE}">MALE</option>
-			<option ${faculty.gender.equals(GENDER.FEMALE) ? "selected" : ""}
-				value="${GENDER.FEMALE}">FEMALE</option>
- --%>
-	<%-- 	</form:select> --%>
-		<!-- <br> -->
+	<form:select class="form-control" path="block" items="${blockList}" itemValue = "id" itemLabel = "name"/> 
 
-<%-- 		<form:errors path="course" cssStyle="color:red" />
+ 		<form:errors path="course" cssStyle="color:red" />
 		<br>			
 Course:
-<form:select class="form-control" path="course" items = "${courseList" itemValue = "${course.courseId}" />
+<form:select class="form-control" path="course" items = "${courseList}" itemValue = "id" itemLabel = "courseName"/>
 		<br>
- --%>
+
 		<form:errors path="faculty" cssStyle="color:red" />
 		<br>			
 Faculty:
