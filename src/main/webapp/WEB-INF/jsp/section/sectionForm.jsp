@@ -18,7 +18,7 @@
 		<br>
 Min Capacity: 
   <form:input class="form-control" placeholder="" path="minCapacity"
-			type="number" />
+			type="number"  />
 		<br>
 
 		<form:errors path="maxCapacity" cssStyle="color:red"></form:errors>
