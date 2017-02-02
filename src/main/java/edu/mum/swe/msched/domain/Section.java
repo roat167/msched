@@ -13,9 +13,9 @@ public class Section {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long sectionId;
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "block_id")
-	private Block block;
+	//@ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "block_id")
+//	private Block block;
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
 	private Course course;
@@ -33,13 +33,13 @@ public class Section {
 		this.sectionId = sectionId;
 	}
 
-	public Block getBlock() {
-		return block;
-	}
-
-	public void setBlock(Block block) {
-		this.block = block;
-	}
+//	public Block getBlock() {
+//		return block;
+//	}
+//
+//	public void setBlock(Block block) {
+//		this.block = block;
+//	}
 
 	public Course getCourse() {
 		return course;

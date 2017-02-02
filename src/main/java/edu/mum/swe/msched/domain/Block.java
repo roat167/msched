@@ -9,15 +9,15 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Id;
 
 @Entity
 public class Block {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long blockId;
+	private Long id;
 	private String name;
 	private Date startDate;
 	private Date endDate;
@@ -29,16 +29,18 @@ public class Block {
 	@OneToMany(mappedBy="block")
 	private Set<Section> sections = new HashSet<Section>();
 	
-	public Long getBlockId() {
-		return blockId;
-	}
-
-	public void setBlockId(Long blockId) {
-		this.blockId = blockId;
-	}
+	
 
 	public String getName() {
 		return name;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setName(String name) {
