@@ -7,9 +7,11 @@ import edu.mum.swe.msched.domain.Section;
 import edu.mum.swe.msched.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDateTime;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
@@ -21,15 +23,16 @@ import java.text.SimpleDateFormat;
 public class ScheduleController {
 
     private Entry currentEntry;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MM");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM");
     Calendar cal = Calendar.getInstance();
 
     @Autowired
     private EntryService entryService;
 
 
-    @RequestMapping(value = "/generate-schedule")
-    public String createSchedule(Long entryId){
+    @RequestMapping(value = "/generate-schedule",method = RequestMethod.POST)
+    public String createSchedule(@RequestParam long entryId, Model model ){
+       //System.out.print(entryService.findEntryById(1L));
         this.currentEntry = entryService.findEntryById(entryId);
         currentEntry.getBlocks().clear();
         currentEntry.getBlocks().addAll(createBlock(currentEntry));
@@ -37,6 +40,13 @@ public class ScheduleController {
 
 
         return "success";
+    }
+
+    @RequestMapping(value = "/generate-schedule",method = RequestMethod.GET)
+    public String showScheduleForm( Model model ){
+
+        model.addAttribute("entries",entryService.getAllEntries());
+        return "schedule/generate-schedule";
     }
 
 
@@ -64,12 +74,11 @@ public class ScheduleController {
 
                 cal.add(Calendar.DATE, Constants.NO_OF_DAYS_IN_BLOCK);
                 block.setEndDate(cal.getTime());
-                block.setName(dateFormat.format(entry.getEntryDate()));
+                block.setName(dateFormat.format(initDate));
 
                 initDate = cal.getTime();
             }
-
-
+            block.setEntry(entry);
             blockList.add(block);
 
 

@@ -1,16 +1,10 @@
 package edu.mum.swe.msched.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import edu.mum.swe.msched.util.CustomDateFormatter;
 
@@ -20,8 +14,8 @@ public class Entry {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long entryId;
 	private String name;
-	@OneToMany(mappedBy="entry")
-	private List<Block> blocks;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="entry")
+	private List<Block> blocks = new ArrayList<Block>();
 	private int mppStudentNum;
 	private int fppStudentNum;
 	private double percentOfCPT;
