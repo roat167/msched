@@ -1,5 +1,6 @@
 package edu.mum.swe.msched.domain;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,32 +10,61 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long couresId;
-	private String code;
+	private Long id;
+	@NotEmpty
+	private String courseName;
+	@NotEmpty
+	private String courseCode;
+	@NotEmpty
 	private String description;
+	@OneToOne
+	private Course preReqiusite;
 	@ElementCollection
 	@CollectionTable(name = "target_blocks")
 	private Set<String> targetBlocks = new HashSet<String>();
 
-	public Long getCouresId() {
-		return couresId;
+	public String getCourseName() {
+		return courseName;
 	}
 
-	public void setCouresId(Long couresId) {
-		this.couresId = couresId;
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
 
-	public String getCode() {
-		return code;
+	public Course getPreReqiusite() {
+		return preReqiusite;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setPreReqiusite(Course preReqiusite) {
+		this.preReqiusite = preReqiusite;
+	}
+
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getgetCourseCode() {
+		return courseCode;
+	}
+
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
 	}
 
 	public String getDescription() {

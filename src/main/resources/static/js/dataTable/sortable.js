@@ -11,7 +11,7 @@ Version 1.5.7
 /* You can change these values */
 
 
-var image_path =  "https://www.cms-dgpc.com:8443/cms/cms/scripts/sortable/";
+var image_path =  "/themes/default/images/";
 var image_up =  "arrow-up.gif";
 var image_down = "arrow-down.gif";
 var image_none = "arrow-none.gif";

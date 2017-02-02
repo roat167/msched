@@ -26,14 +26,17 @@
                      <li class="${(not empty view and fn:containsIgnoreCase(view, '/entryList') ?'active':'')}">
                         <a href="${pageContext.request.contextPath}/entry/list">Entry</a>
                     </li>
+                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/studentList') ?'active':'')}">
+                        <a href="${pageContext.request.contextPath}/student/list">Student</a>
+                    </li>
                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/block') ?'active':'')}">
-	                        <a href="${pageContext.request.contextPath}/welcome"> Block</a>
+	                        <a href="${pageContext.request.contextPath}/block/list"> Block</a>
 	                </li>			
 					<li class="${(not empty view and fn:containsIgnoreCase(view, '/facultyList') ?'active':'')}">
-						<a href="${pageContext.request.contextPath}">Faculty</a>
+						<a href="${pageContext.request.contextPath}/faculty/list">Faculty</a>
 					</li>
 					<li	class="${(not empty view and fn:containsIgnoreCase(view, '/courseList') ?'active':'')}">
-						<a href="${pageContext.request.contextPath}">Course</a>
+						<a href="${pageContext.request.contextPath}/course/list">Course</a>
 					</li>
 					<li class="${(not empty view and fn:containsIgnoreCase(view, '/schedule') ?'active':'')}">
                        <a  href="${pageContext.request.contextPath}/welcome">Schedule</a>

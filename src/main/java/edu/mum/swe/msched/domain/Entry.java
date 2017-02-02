@@ -1,5 +1,6 @@
 package edu.mum.swe.msched.domain;
 
+import java.beans.Transient;
 import java.util.Date;
 import java.util.List;
 
@@ -10,9 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
-import edu.mum.swe.msched.util.CustomDateFormatter;
 
 @Entity
 public class Entry {
@@ -29,8 +28,16 @@ public class Entry {
 	private int localStudentNum;
 	@Temporal(TemporalType.TIMESTAMP)	
 	private Date entryDate;
-	@Transient
+	//@Transient
 	private String displayEntryDate;
+
+	public String getDisplayEntryDate() {
+		return displayEntryDate;
+	}
+
+	public void setDisplayEntryDate(String displayEntryDate) {
+		this.displayEntryDate = displayEntryDate;
+	}
 
 	public Long getEntryId() {
 		return entryId;
@@ -104,13 +111,13 @@ public class Entry {
 		this.entryDate = entryDate;
 	}
 	
-	public String getDisplayEntryDate() {
-		return CustomDateFormatter.displayDateFormat(entryDate);
-	}
-
-	public void setDisplayEntryDate(String displayEntryDate) {
-		this.displayEntryDate = displayEntryDate;
-	}
+//	public String getDisplayEntryDate() {
+//		return CustomDateFormatter.displayDateFormat(entryDate);
+//	}
+//
+//	public void setDisplayEntryDate(String displayEntryDate) {
+//		this.displayEntryDate = displayEntryDate;
+//	}
 
 
 }
