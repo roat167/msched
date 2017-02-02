@@ -3,8 +3,11 @@ package edu.mum.swe.msched.web;
 import edu.mum.swe.msched.constants.Constants;
 import edu.mum.swe.msched.domain.Block;
 import edu.mum.swe.msched.domain.Entry;
+import edu.mum.swe.msched.domain.Schedule;
 import edu.mum.swe.msched.domain.Section;
+import edu.mum.swe.msched.service.BlockService;
 import edu.mum.swe.msched.service.EntryService;
+import edu.mum.swe.msched.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,17 +32,26 @@ public class ScheduleController {
     @Autowired
     private EntryService entryService;
 
+    @Autowired
+    private ScheduleService scheduleService;
 
-    @RequestMapping(value = "/generate-schedule",method = RequestMethod.POST)
+    @Autowired
+    private BlockService blockService;
+
+
+    @RequestMapping(value = "/save-schedule",method = RequestMethod.GET)
     public String createSchedule(@RequestParam long entryId, Model model ){
        //System.out.print(entryService.findEntryById(1L));
         this.currentEntry = entryService.findEntryById(entryId);
         currentEntry.getBlocks().clear();
         currentEntry.getBlocks().addAll(createBlock(currentEntry));
         entryService.save(currentEntry);
+        Schedule schedule = new Schedule();
+        schedule.setEntryId(entryId);
+        scheduleService.save(schedule);
 
-
-        return "success";
+        model.addAttribute("blocks",currentEntry.getBlocks());
+        return "schedule/show-schedule";
     }
 
     @RequestMapping(value = "/generate-schedule",method = RequestMethod.GET)

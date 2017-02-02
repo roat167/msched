@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<form method="post" action="/generate-schedule">
+<form method="get" action="/save-schedule">
     <select name="entryId">
     <c:forEach var="entry" items="${entries}">
         <option value="${entry.entryId}">${entry.name}</option>
