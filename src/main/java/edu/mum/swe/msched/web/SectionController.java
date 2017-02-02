@@ -6,8 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.mum.swe.msched.domain.Section;
+import edu.mum.swe.msched.service.BlockService;
+import edu.mum.swe.msched.service.CourseService;
 import edu.mum.swe.msched.service.FacultyService;
 import edu.mum.swe.msched.service.SectionService;
 
@@ -22,6 +25,10 @@ public class SectionController extends GenericController {
 	@Autowired
 	SectionService sectionService;
 	@Autowired
+	BlockService blockService;
+	@Autowired
+	CourseService courseService;
+	@Autowired
 	FacultyService facultyService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -32,6 +39,8 @@ public class SectionController extends GenericController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String sectionForm(@ModelAttribute(MODEL_ATTRIBUTE) Section section, Model model) {
+		model.addAttribute("blockList", blockService.getAllBlocks());
+		model.addAttribute("courseList", courseService.getAllCourses());
 		model.addAttribute("facultyList", facultyService.getAllFacultys());
 		return getView(model, VIEW_FORM);
 	}
@@ -45,6 +54,22 @@ public class SectionController extends GenericController {
 		}
 		model.addAttribute(MODEL_ATTRIBUTE, section);
 		setMessage(model, "Section is saved successfully!");
+		return "redirect:/section/list";
+	}
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public String loadSectionToUpdate(@RequestParam long id, Model model) {
+		Section section = sectionService.findSectionById(id);
+		model.addAttribute(MODEL_ATTRIBUTE, section);
+		model.addAttribute("blockList", blockService.getAllBlocks());
+		model.addAttribute("courseList", courseService.getAllCourses());
+		model.addAttribute("facultyList", facultyService.getAllFacultys());
+		return getView(model, VIEW_FORM);
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String deleteSection(@RequestParam long id, Model model) {
+		sectionService.deleteSection(id);
 		return "redirect:/section/list";
 	}
 }

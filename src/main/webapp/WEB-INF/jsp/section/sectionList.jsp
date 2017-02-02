@@ -31,7 +31,7 @@
 			<td>${section.minCapacity}</td>
 			<td>${section.maxCapacity}</td>
 			<td>${section.block.name}</td>
-			<td>${section.course.code}</td>
+			<td>${section.course.courseName}</td>
 			<td>Prof. ${section.faculty.lastName}</td>
 			<td> &nbsp;
 			<a href="${pageContext.request.contextPath}/section/edit?id=${section.sectionId}"> <span   class="glyphicon glyphicon-pencil"></span></a>

@@ -14,7 +14,7 @@ public class Section {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long sectionId;
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "block_id")
+    @JoinColumn(name = "block_id")//, insertable = false, updatable = false
 	private Block block;
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
