@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.mum.swe.msched.domain.Entry;
 import edu.mum.swe.msched.domain.Student;
 import edu.mum.swe.msched.domain.User;
+import edu.mum.swe.msched.enumeration.ROLE;
 import edu.mum.swe.msched.service.EntryService;
 import edu.mum.swe.msched.service.StudentService;
 import edu.mum.swe.msched.service.impl.StudentServiceImpl;
@@ -47,8 +48,10 @@ public class StudentController extends GenericController {
 		if (student.getStudentId() == null) {
 						
 			User user = student.getUser();
+			user.setRole(ROLE.STUDENT);
 			user.setPassword("password");
-			user.setUsername(student.getFirstName().substring(0, 1) + student.getLastName());			
+			user.setUsername(student.getFirstName().substring(0, 1) + student.getLastName());
+			user.setEnabled(true);
 			
 			studentService.saveStudent(student);
 		} else {

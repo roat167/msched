@@ -33,7 +33,7 @@
 	                        <a href="${pageContext.request.contextPath}/welcome"> Block</a>
 	                </li>			
 					<li class="${(not empty view and fn:containsIgnoreCase(view, '/facultyList') ?'active':'')}">
-						<a href="${pageContext.request.contextPath}">Faculty</a>
+						<a href="${pageContext.request.contextPath}/faculty/list">Faculty</a>
 					</li>
 					<li	class="${(not empty view and fn:containsIgnoreCase(view, '/courseList') ?'active':'')}">
 						<a href="${pageContext.request.contextPath}">Course</a>
