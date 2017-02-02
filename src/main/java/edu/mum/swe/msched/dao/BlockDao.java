@@ -1,16 +1,20 @@
 package edu.mum.swe.msched.dao;
 
-import edu.mum.swe.msched.domain.Block;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import edu.mum.swe.msched.domain.Block;
 
-/**
- * Created by acer-usrpu on 2/2/2017.
- */
 
 @Repository
-public interface BlockDao extends JpaRepository<Block,Long> {
-    List<Block>  findAllByEntry(Long entry);
+public interface BlockDao extends JpaRepository<Block, Long> {
+	Block findOneByEndDate(Date blockDate);
+
+	List<Block> findByName(String name);
+	Block findById(Long id);
+	Block findOneByStartDate(Date startDate);
+
 }

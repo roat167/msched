@@ -27,6 +27,9 @@ public class User implements Serializable {
 	@Column(name = "username", unique = true)
 	private String username;
 	private String password;
+	private String email;
+	private String phoneNo;
+	private String address;
 	private Boolean enabled;
 	@Enumerated(EnumType.STRING)
 	private ROLE role;
@@ -53,6 +56,30 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public Boolean getEnabled() {

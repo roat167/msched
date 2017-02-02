@@ -1,39 +1,65 @@
 package edu.mum.swe.msched.service.impl;
 
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import edu.mum.swe.msched.dao.BlockDao;
 import edu.mum.swe.msched.domain.Block;
 import edu.mum.swe.msched.service.BlockService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-/**
- * Created by acer-usrpu on 2/2/2017.
- */
 @Service
+@Transactional
 public class BlockServiceImpl implements BlockService {
+	@Autowired
+	BlockDao blockDao;
 
-    @Autowired
-    BlockDao blockDao;
+	@Override
+	public List<Block> getAllBlocks() {
+		// TODO Auto-generated method stub
+		return blockDao.findAll();
+	}
 
-    @Override
-    public void updateBlock(Block block) {
-        blockDao.save(block);
-    }
+	@Override
+	public List<Block> findByName(String name) {
+		// TODO Auto-generated method stub
+		return blockDao.findByName(name);
+	}
 
-    @Override
-    public List<Block> findAllByEntry(Long entry) {
-        return blockDao.findAllByEntry(entry);
-    }
 
-    @Override
-    public Block save(Block block) {
-        return blockDao.saveAndFlush(block);
-    }
 
-    @Override
-    public void remove(Long blockId) {
-        blockDao.delete(blockId);
-    }
+	@Override
+	public void updateBlock(Block block) {
+		// TODO Auto-generated method stub
+		blockDao.save(block);
+	}
+
+	@Override
+	public Block findById(Long id) {
+		// TODO Auto-generated method stub
+		return blockDao.findOne(id);
+	}
+
+	@Override
+	public Block saveBlock(Block block) {
+		// TODO Auto-generated method stub
+		return blockDao.save(block);
+	}
+
+	@Override
+	public void deleteBlock(Long id) {
+		// TODO Auto-generated method stub
+		blockDao.delete(id);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Block> findByStartDate(Date startDate) {
+		// TODO Auto-generated method stub
+		return (List<Block>) blockDao.findOneByStartDate(startDate);
+	}
+
 }
