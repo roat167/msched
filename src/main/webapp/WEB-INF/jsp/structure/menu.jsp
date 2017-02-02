@@ -38,6 +38,9 @@
 					<li	class="${(not empty view and fn:containsIgnoreCase(view, '/courseList') ?'active':'')}">
 						<a href="${pageContext.request.contextPath}/course/list">Course</a>
 					</li>
+					<li	class="${(not empty view and fn:containsIgnoreCase(view, '/sectionList') ?'active':'')}">
+						<a href="${pageContext.request.contextPath}/section/list">Section</a>
+					</li>
 					<li class="${(not empty view and fn:containsIgnoreCase(view, '/schedule') ?'active':'')}">
                        <a  href="${pageContext.request.contextPath}/welcome">Schedule</a>
                     </li>				
