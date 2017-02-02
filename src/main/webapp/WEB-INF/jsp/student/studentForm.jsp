@@ -40,11 +40,18 @@ Gender:
 		</form:select>
 		<br>
 
-		<form:errors path="phoneNo" cssStyle="color:red" />
+		<form:errors path="user.phoneNo" cssStyle="color:red" />
 		<br>			
 Phone No:
-<form:input class="form-control" path="phoneNo" type="text" />
+<form:input class="form-control" path="user.phoneNo" type="text" />
 		<br>
+
+		<form:errors path="user.email" cssStyle="color:red" />
+		<br>			
+Email:
+<form:input class="form-control" path="user.email" type="email" />
+		<br>
+
 
 		<form:errors path="snn" cssStyle="color:red" />
 		<br>

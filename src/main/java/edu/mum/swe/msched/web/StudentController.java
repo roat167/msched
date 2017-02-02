@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import edu.mum.swe.msched.domain.Entry;
 import edu.mum.swe.msched.domain.Student;
+import edu.mum.swe.msched.domain.User;
 import edu.mum.swe.msched.service.EntryService;
 import edu.mum.swe.msched.service.StudentService;
 import edu.mum.swe.msched.service.impl.StudentServiceImpl;
@@ -44,6 +45,11 @@ public class StudentController extends GenericController {
 		//studentService.saveStudent(student);
 		System.out.println("Add student!!!");
 		if (student.getStudentId() == null) {
+						
+			User user = student.getUser();
+			user.setPassword("password");
+			user.setUsername(student.getFirstName().substring(0, 1) + student.getLastName());			
+			
 			studentService.saveStudent(student);
 		} else {
 			studentService.updateStudent(student.getStudentId(), student);
@@ -74,9 +80,10 @@ public class StudentController extends GenericController {
 		studentService.updateStudent(id, student);
 	}
 	
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView deleteStudent(@RequestParam long id, Model model) {
 		setMessage(model, "Selected student deleted successfully");
+		System.out.println("Delete student with id = " + id);
 
 		studentService.deleteStudent(id);
 

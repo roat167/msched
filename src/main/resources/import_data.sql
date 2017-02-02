@@ -25,4 +25,4 @@ insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_stud
 insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(3, 'January 2017', '2017-01-30', 50, 20, 50, 10, 10);
 
 --Student 
-insert into msched.student(student_id, email, first_name, last_name, gender, phone_no, snn, student_type, entry_entry_id, user_id) values (2, 'khievdora@gmail.com', 'Dora', 'Khiev', 1, '0976600719', '1234567897', 1, 2, 2);
+insert into msched.student(student_id,first_name, last_name, gender, snn, student_type, entry_entry_id, user_id) values (2, 'Dora', 'Khiev', 1, '1234567897', 1, 2, 2);
