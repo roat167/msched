@@ -23,7 +23,7 @@ import java.text.SimpleDateFormat;
  */
 
 @Controller
-public class ScheduleController {
+public class ScheduleController extends GenericController {
 
     private Entry currentEntry;
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM");
@@ -39,7 +39,7 @@ public class ScheduleController {
     private BlockService blockService;
 
 
-    @RequestMapping(value = "/save-schedule",method = RequestMethod.GET)
+    @RequestMapping(value = "/generate-schedule",method = RequestMethod.POST)
     public String createSchedule(@RequestParam long entryId, Model model ){
        //System.out.print(entryService.findEntryById(1L));
         this.currentEntry = entryService.findEntryById(entryId);
@@ -50,15 +50,16 @@ public class ScheduleController {
         schedule.setEntryId(entryId);
         scheduleService.save(schedule);
 
+        model.addAttribute("entry",currentEntry);
         model.addAttribute("blocks",currentEntry.getBlocks());
-        return "schedule/show-schedule";
+        return getView(model,"schedule/show-schedule");
     }
 
     @RequestMapping(value = "/generate-schedule",method = RequestMethod.GET)
     public String showScheduleForm( Model model ){
 
         model.addAttribute("entries",entryService.getAllEntries());
-        return "schedule/generate-schedule";
+        return getView(model,"schedule/generate-schedule");
     }
 
 
