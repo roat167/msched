@@ -41,9 +41,9 @@
 					<li	class="${(not empty view and fn:containsIgnoreCase(view, '/sectionList') ?'active':'')}">
 						<a href="${pageContext.request.contextPath}/section/list">Section</a>
 					</li>
-					<li class="${(not empty view and fn:containsIgnoreCase(view, '/schedule') ?'active':'')}">
-                       <a  href="${pageContext.request.contextPath}/welcome">Schedule</a>
-                    </li>				
+					<li class="${(not empty view and fn:containsIgnoreCase(view, '/generate-schedule') ?'active':'')}">
+                       <a  href="${pageContext.request.contextPath}/generate-schedule">Generate Schedule</a>
+                    </li>
 					
                 </sec:authorize>
 				<sec:authorize access="hasAuthority('STUDENT')">

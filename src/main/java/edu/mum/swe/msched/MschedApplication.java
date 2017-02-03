@@ -22,6 +22,7 @@ public class MschedApplication {
 		return viewResolver;
 
 	}
+
 	
 	@Bean
 	public MessageSource messageSource() {

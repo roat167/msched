@@ -14,25 +14,25 @@
 	<form:form modelAttribute="faculty" action="/faculty/add" method="post">
 		<input name="facultyId" type="hidden" value="${faculty.facultyId}">
 
- 		<form:errors path="firstName" cssStyle="color:red" />
+		<form:errors path="firstName" cssStyle="color:red" />
 		<br>
 First Name: 
   <form:input class="form-control" placeholder="" path="firstName"
-			type="text" />
+			type="text" required = "required"/>
 		<br>
 
 		<form:errors path="lastName" cssStyle="color:red"></form:errors>
 		<br>
 Last Name:
 <form:input class="form-control" placeholder="" path="lastName"
-			type="text" />
+			type="text" required = "required"/>
 		<br>
 
 		<form:errors path="gender" cssStyle="color:red" />
 		<br>	
 Gender:
-	<form:select class="form-control" path="gender"> 
- 			<option ${faculty.gender.equals(GENDER.MALE) ? "selected" : ""}
+	<form:select class="form-control" path="gender">
+			<option ${faculty.gender.equals(GENDER.MALE) ? "selected" : ""}
 				value="${GENDER.MALE}">MALE</option>
 			<option ${faculty.gender.equals(GENDER.FEMALE) ? "selected" : ""}
 				value="${GENDER.FEMALE}">FEMALE</option>
@@ -49,7 +49,7 @@ Phone No:
 		<form:errors path="user.email" cssStyle="color:red" />
 		<br>			
 Email:
-<form:input class="form-control" path="user.email" type="email" />
+<form:input required = "requried" class="form-control" path="user.email" type="email" />
 		<br>
 
 
@@ -57,6 +57,13 @@ Email:
 		<br>
 SSN:
 <form:input class="form-control" path="snn" type="text" />
+		<br>
+
+		<form:errors path="startWorkDate" cssStyle="color:red" />
+		<br>
+		<spring:message code="message.startWorkDate" text="Start Work Date" />
+		<form:input class="form-control" placeholder="Start Work Date"
+			required="required" path="startWorkDate" type="text" />
 		<br>
 
 
