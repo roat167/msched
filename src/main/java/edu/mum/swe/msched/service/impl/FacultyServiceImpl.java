@@ -16,7 +16,7 @@ public class FacultyServiceImpl implements FacultyService{
 	private FacultyDao facultyDao;
 
 	@Override
-	public Faculty findFacultyById(Long id) {
+	public Faculty findFacultyById(long id) {
 		// TODO Auto-generated method stub
 		return facultyDao.findOne(id);
 	}

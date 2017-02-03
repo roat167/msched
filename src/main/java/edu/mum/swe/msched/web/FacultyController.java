@@ -21,6 +21,9 @@ public class FacultyController extends GenericController {
 	private static final String MODEL_ATTRIBUTE = "faculty";
 	private static final String VIEW_FORM = "faculty/facultyForm";
 	private static final String VIEW_LIST = "faculty/facultyList";
+	
+	private static final String VIEW_SCHEDULE = "faculty/facultySchedule";
+
 
 	@Autowired
 	private FacultyService facultyService;
@@ -76,5 +79,12 @@ public class FacultyController extends GenericController {
 		setMessage(model, "Faculty is deleted successfully!");
 		
 		return getView(model, VIEW_LIST);
+	}
+	
+
+	@RequestMapping(value = "/schedule", method = RequestMethod.GET)
+	public String getFacultySchedule(Model model) {
+		model.addAttribute("faculty", facultyService.findFacultyById(3));
+		return getView(model, VIEW_SCHEDULE);
 	}
 }
