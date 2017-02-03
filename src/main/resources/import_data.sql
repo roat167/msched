@@ -1,23 +1,23 @@
 
 --USER
-insert into msched.user(user_id,username, password, enabled, role) values(1,'kloem', 'password', 1, 'ADMIN');
-insert into msched.user(user_id,username, password, enabled, role) values(2,'dora', 'password', 1, 'ADMIN');
-insert into msched.user(user_id,username, password, enabled, role) values(3,'sean', 'tmptmp', 1, 'FACULTY');
-insert into msched.user(user_id,username, password, enabled, role) values(4,'fitsum', 'pass222', 1, 'FACULTY');
-insert into msched.user(user_id,username, password, enabled, role) values(5,'feven', 'pass111', 1, 'ADMIN');
-insert into msched.user(user_id,username, password, enabled, role) values(6,'pukar', 'pass333', 1, 'STUDENT');
+insert into msched.user(user_id,username, password, enabled, role, email) values(1,'kloem', 'password', 1, 'ADMIN', 'kloem@mum.edu');
+insert into msched.user(user_id,username, password, enabled, role, email) values(2,'dora', 'password', 1, 'ADMIN', 'dkheiv@mum.edu');
+insert into msched.user(user_id,username, password, enabled, role, email) values(3,'sean', 'tmptmp', 1, 'FACULTY', 'scake@mum.edu');
+insert into msched.user(user_id,username, password, enabled, role, email) values(4,'fitsum', 'pass222', 1, 'FACULTY', 'fb@mum.edu');
+insert into msched.user(user_id,username, password, enabled, role, email) values(5,'feven', 'pass111', 1, 'ADMIN', 'fe@mum.edu');
+insert into msched.user(user_id,username, password, enabled, role, email) values(6,'pukar', 'pass333', 1, 'STUDENT', 'mp@mum.edu');
 
 --Admin
-insert into msched.admin(admin_id, first_name, last_name, email, user_id) values (1, 'Khemroat', 'Loem', 'kloem@mum.edu', 1);
+insert into msched.admin(admin_id, first_name, last_name, user_id) values (1, 'Khemroat', 'Loem', 1);
 
 --Faculty
-insert into msched.faculty(faculty_id, first_name, last_name, email, user_id) values (1, 'Dora', 'Kheiv', 'dkheiv@mum.edu', 2);
-insert into msched.faculty(faculty_id, first_name, last_name, email, user_id) values (2, 'Sean', 'Cake', 'scake@mum.edu', 3);
-insert into msched.faculty(faculty_id, first_name, last_name, email, user_id) values (3, 'Fitsum', 'B', 'fb@mum.edu', 4);
+insert into msched.faculty(faculty_id, first_name, last_name, user_id) values (1, 'Dora', 'Kheiv', 2);
+insert into msched.faculty(faculty_id, first_name, last_name, user_id) values (2, 'Sean', 'Cake', 3);
+insert into msched.faculty(faculty_id, first_name, last_name, user_id) values (3, 'Fitsum', 'B', 4);
 
 --Faculty
-insert into msched.student(student_id, first_name, last_name, email, user_id) values (1, 'Feven', 'E', 'fe@mum.edu', 5);
-insert into msched.faculty(faculty_id, first_name, last_name, email, user_id) values (2, 'Pukar', 'M', 'mp@mum.edu', 6);
+insert into msched.student(student_id, first_name, last_name, user_id) values (1, 'Feven', 'E', 5);
+insert into msched.faculty(faculty_id, first_name, last_name, user_id) values (2, 'Pukar', 'M', 6);
 
 --Entry
 insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(1, 'August 2016', '2016-08-05', 50, 20, 50, 10, 10);
