@@ -5,12 +5,12 @@
 <%@ page import="edu.mum.swe.msched.enumeration.*"%>
 <html>
 <head>
-<title>Faculty Information</title>
+<title>Faculty Course And Block</title>
 </head>
 <body>
 	<br>
 	<br>
-	<span class="PageTitle">&nbsp; Faculty Details</span>
+	<span class="PageTitle">&nbsp; Faculty Course and Block</span>
 	<form:form modelAttribute="faculty" action="/faculty/add" method="post">
 		<input name="facultyId" type="hidden" value="${faculty.facultyId}">
 
