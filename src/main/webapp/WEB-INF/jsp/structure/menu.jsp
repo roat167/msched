@@ -30,17 +30,20 @@
                         <a href="${pageContext.request.contextPath}/student/list">Student</a>
                     </li>
                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/block') ?'active':'')}">
-	                        <a href="${pageContext.request.contextPath}/welcome"> Block</a>
+	                        <a href="${pageContext.request.contextPath}/block/list"> Block</a>
 	                </li>			
 					<li class="${(not empty view and fn:containsIgnoreCase(view, '/facultyList') ?'active':'')}">
-						<a href="${pageContext.request.contextPath}">Faculty</a>
+						<a href="${pageContext.request.contextPath}/faculty/list">Faculty</a>
 					</li>
 					<li	class="${(not empty view and fn:containsIgnoreCase(view, '/courseList') ?'active':'')}">
-						<a href="${pageContext.request.contextPath}">Course</a>
+						<a href="${pageContext.request.contextPath}/course/list">Course</a>
 					</li>
-					<li class="${(not empty view and fn:containsIgnoreCase(view, '/schedule') ?'active':'')}">
-                       <a  href="${pageContext.request.contextPath}/welcome">Schedule</a>
-                    </li>				
+					<li	class="${(not empty view and fn:containsIgnoreCase(view, '/sectionList') ?'active':'')}">
+						<a href="${pageContext.request.contextPath}/section/list">Section</a>
+					</li>
+					<li class="${(not empty view and fn:containsIgnoreCase(view, '/generate-schedule') ?'active':'')}">
+                       <a  href="${pageContext.request.contextPath}/generate-schedule">Generate Schedule</a>
+                    </li>
 					
                 </sec:authorize>
 				<sec:authorize access="hasAuthority('STUDENT')">
@@ -65,7 +68,7 @@
         </sec:authorize>        
         <sec:authorize access="isAuthenticated()">
         <sec:authentication var="principal" property="principal" />
-        	<li><a href="${pageContext.request.contextPath}/welcome"><span class="glyphicon glyphicon-user"></span>Hi ${principal.username}</a></li>	
+        	<li><a href="${pageContext.request.contextPath}/profile/contact"><span class="glyphicon glyphicon-user"></span> Hi ${principal.username}</a></li>	
         	<li><a href="${pageContext.request.contextPath}/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </sec:authorize>
 	</ul>

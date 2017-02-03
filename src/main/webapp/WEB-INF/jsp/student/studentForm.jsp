@@ -18,14 +18,14 @@
 		<br>
 First Name: 
   <form:input class="form-control" placeholder="" path="firstName"
-			type="text" />
+			type="text" required = "requried"/>
 		<br>
 
 		<form:errors path="lastName" cssStyle="color:red"></form:errors>
 		<br>
 Last Name:
 <form:input class="form-control" placeholder="" path="lastName"
-			type="text" />
+			type="text" required = "required" />
 		<br>
 
 		<form:errors path="gender" cssStyle="color:red" />
@@ -40,11 +40,18 @@ Gender:
 		</form:select>
 		<br>
 
-		<form:errors path="phoneNo" cssStyle="color:red" />
+		<form:errors path="user.phoneNo" cssStyle="color:red" />
 		<br>			
 Phone No:
-<form:input class="form-control" path="phoneNo" type="text" />
+<form:input class="form-control" path="user.phoneNo" type="text" required = "required"/>
 		<br>
+
+		<form:errors path="user.email" cssStyle="color:red" />
+		<br>			
+Email:
+<form:input class="form-control" path="user.email" type="email" requried = "required"/>
+		<br>
+
 
 		<form:errors path="snn" cssStyle="color:red" />
 		<br>
@@ -71,7 +78,7 @@ SSN:
 		<form:errors path="entry" cssStyle="color:red" />
 		<br>	
 Entry:
-<form:select class="form-control" path = "entry" items = "${entryList}" itemValue="entryId" itemLabel="name" />
+<form:select class="form-control" path = "entry" items = "${entryList}" itemValue="entryId" itemLabel="name" required = "requried" />
 		<br>
 
 		<form:button class="btn btn-default" value="SignUp" name="submit">Submit</form:button>

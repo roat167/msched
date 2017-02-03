@@ -8,13 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Section {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long sectionId;
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "block_id")
+    @JoinColumn(name = "block_id")//, insertable = false, updatable = false
 	private Block block;
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")

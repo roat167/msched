@@ -14,20 +14,23 @@ import javax.persistence.Transient;
 
 import edu.mum.swe.msched.util.CustomDateFormatter;
 
+import java.util.ArrayList;
+import javax.persistence.CascadeType;
+
 @Entity
 public class Entry {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long entryId;
 	private String name;
-	@OneToMany(mappedBy="entry")
-	private List<Block> blocks;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="entry")
+	private List<Block> blocks = new ArrayList<Block>();
 	private int mppStudentNum;
 	private int fppStudentNum;
 	private double percentOfCPT;
 	private double percentOfOPT;
 	private int localStudentNum;
-	//@Temporal(TemporalType.TIMESTAMP)	
+	@Temporal(TemporalType.TIMESTAMP)	
 	private Date entryDate;
 	@Transient
 	private String displayEntryDate;

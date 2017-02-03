@@ -2,8 +2,6 @@ package edu.mum.swe.msched.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import edu.mum.swe.msched.domain.Student;
 
 public interface StudentService {
@@ -11,7 +9,7 @@ public interface StudentService {
 	List<Student> findStudentByFirstName(String firstName);
 	List<Student> findStudentByLastName(String lastName);
 	List<Student> getAllStudents();
-	void saveStudent(Student student);
+	Student saveStudent(Student student);
 	void updateStudent(Long id, Student student);
 	void deleteStudent(Long id);
 }
