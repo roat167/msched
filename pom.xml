@@ -7,7 +7,6 @@
 	<artifactId>msched</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
 	<name>msched</name>
 	<description>MUM Course Schedule</description>
 
@@ -25,7 +24,7 @@
 	</properties>
 
 	<dependencies>
-		<!-- 
+
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -36,7 +35,7 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.0.1.Final</version>
 		</dependency>
--->
+
 
 
 

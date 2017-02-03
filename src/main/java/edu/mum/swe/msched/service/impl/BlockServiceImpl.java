@@ -29,8 +29,6 @@ public class BlockServiceImpl implements BlockService {
 		return blockDao.findByName(name);
 	}
 
-
-
 	@Override
 	public void updateBlock(Block block) {
 		// TODO Auto-generated method stub
@@ -39,6 +37,11 @@ public class BlockServiceImpl implements BlockService {
 
 	@Override
 	public Block findByName(Long id) {
+		return blockDao.findById(id);
+	}
+
+	public Block findById(Long id) {
+
 		// TODO Auto-generated method stub
 		return blockDao.findOne(id);
 	}

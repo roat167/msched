@@ -15,18 +15,20 @@
 
 
 
+
 		<form:errors path="courseName" cssClass="error" cssStyle="color:red" />
 		<br>
 		<spring:message code="message.name" text="Course Name" />
 		<form:input class="form-control" placeholder="Course Name"
-		 path="courseName" type="text"/>
+			path="courseName" type="text" />
 
 		<br>
 
 		<form:errors path="courseCode" cssClass="error" cssStyle="color:red" />
 		<br>
 		<spring:message code="message.courseCode" text="Course Code" />
-		<form:input class="form-control" placeholder="Course Code" path="courseCode" type="text" />
+		<form:input class="form-control" placeholder="Course Code"
+			path="courseCode" type="text" />
 
 		<br>
 
@@ -34,10 +36,12 @@
 		<br>
 		<spring:message code="message.description" text="Description:" />
 		<form:input class="form-control" placeholder="Description"
-				path="description" type="text" />
+			path="description" type="text" />
+
 		<br>
 PreRequisite:
-		<form:select path="preReqiusite" items="${courses}" itemValue="id" itemLable="courseName">
+		<form:select path="preReqiusite" items="${courses}" itemValue="id"
+			itemLable="courseName">
 		</form:select>
 		<!-- <select class="form-control">
 			<option value="WAP">WAP</option>
@@ -49,14 +53,17 @@ PreRequisite:
 			<option value="ASD">ASD</option>
 		</select> -->
 
-		<form:errors path="preReqiusite" cssClass="error"  cssStyle="color:red"></form:errors>
-		<br>
-Target Blocks:
-<form:input class="form-control" placeholder="Target Blocks"
-		path="targetBlocks" type="text" />
+
+		<form:errors path="preReqiusite" cssClass="error" cssStyle="color:red"></form:errors>
 		<br>
 
-		<form:errors path="targetBlocks" cssClass="error" cssStyle="color:red" />
+Target Blocks:
+<form:input class="form-control" placeholder="Target Blocks"
+			required="required" path="targetBlocks" type="text" />
+		<br>
+
+		<form:errors path="targetBlocks" cssStyle="color:red" />
+
 
 		<form:input path="id" type="hidden" />
 		<form:button class="btn btn-default" value="SignUp" name="submit">Submit</form:button>

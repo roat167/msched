@@ -48,7 +48,9 @@ public class CourseController extends GenericController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
+
 	public String save(@ModelAttribute(MODEL_ATTRIBUTE) @Valid Course course, BindingResult result,Model model) {
+
 		if (result.hasErrors()) {
 			return "dashboard";
 		}

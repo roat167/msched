@@ -32,7 +32,11 @@ public class BlockController extends GenericController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(@RequestParam long id, Model model) {
+
 		Block block = blockService.findByName(id);
+
+		//Block block = blockService.findById(id);
+
 		model.addAttribute(MODEL_ATTRIBUTE, block);
 		return getView(model, VIEW_FORM);
 	}
