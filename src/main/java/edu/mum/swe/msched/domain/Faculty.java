@@ -1,5 +1,6 @@
 package edu.mum.swe.msched.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -48,7 +49,7 @@ public class Faculty {
 	@CollectionTable(name = "prefered_blocks")
 	private Set<Integer> preferedBlocks = new HashSet<Integer>(); // may change type later
 	@OneToMany(mappedBy="faculty")
-	private Set<Section> sections = new HashSet<Section>();
+	private List<Section> sections = new ArrayList<Section>();
 
 	public Long getFacultyId() {
 		return facultyId;
@@ -122,11 +123,11 @@ public class Faculty {
 		this.preferedBlocks = preferedBlocks;
 	}
 
-	public Set<Section> getSections() {
+	public List<Section> getSections() {
 		return sections;
 	}
 
-	public void setSections(Set<Section> sections) {
+	public void setSections(List<Section> sections) {
 		this.sections = sections;
 	}
 
