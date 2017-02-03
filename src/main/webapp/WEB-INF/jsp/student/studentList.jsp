@@ -21,7 +21,7 @@
 			<th>First Name</th>
 			<th>Last Name</th>
 			<th>Gender</th>
-			<th>Phone Number</th>
+			<th>Email</th>
 			<th>SSN</th>
 			<th>Student Type</th>
 			<th>Entry</th>
@@ -33,7 +33,7 @@
 			<td>${student.firstName}</td>
 			<td>${student.lastName}</td>
 			<td>${student.gender}</td>
-			<td>${student.phoneNo}</td>
+			<td>${student.user.email}</td>
 			<td>${student.snn}</td>
 			<td>${student.studentType}</td>
 			<td>${student.entry.name}</td>			
