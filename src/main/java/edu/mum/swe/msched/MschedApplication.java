@@ -20,6 +20,6 @@ public class MschedApplication {
 		return viewResolver;
 
 	}
-	
+
 	
 }

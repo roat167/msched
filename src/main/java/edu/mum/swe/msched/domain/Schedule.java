@@ -11,4 +11,13 @@ public class Schedule {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long scheduleId;
 
+	private Long entryId;
+
+	public Long getEntryId() {
+		return entryId;
+	}
+
+	public void setEntryId(Long entryId) {
+		this.entryId = entryId;
+	}
 }

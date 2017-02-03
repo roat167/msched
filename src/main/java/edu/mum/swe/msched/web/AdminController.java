@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class UserController extends GenericController {
-
-	@RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
-	public String welcome(Model model) {
-		return getView(model, "welcome");		
+public class AdminController extends GenericController {
+	
+	@RequestMapping(value={"/dashboard"}, method = RequestMethod.GET)
+	public String dashboard(Model model){
+		return "adminDashboard";
+		
 	}
+	
 
 }
-

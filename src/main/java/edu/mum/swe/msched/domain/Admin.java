@@ -1,5 +1,6 @@
 package edu.mum.swe.msched.domain;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -59,4 +60,5 @@ public class Admin {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 }

@@ -1,5 +1,6 @@
 package edu.mum.swe.msched.service;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +19,11 @@ public interface BlockService {
 
 	public void updateBlock(Block block);
 
-	public Block findByName(Long id);
-
 	public Block saveBlock(Block block);
 
 	public void deleteBlock(Long id);
+
+	public Block findById(Long id);
+
 
 }

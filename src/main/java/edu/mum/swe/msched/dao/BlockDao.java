@@ -14,5 +14,7 @@ public interface BlockDao extends JpaRepository<Block, Long> {
 	Block findOneByEndDate(Date blockDate);
 
 	List<Block> findByName(String name);
+	Block findById(Long id);
 	Block findOneByStartDate(Date startDate);
+
 }

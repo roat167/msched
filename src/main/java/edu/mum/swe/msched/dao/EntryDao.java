@@ -12,4 +12,6 @@ import edu.mum.swe.msched.domain.Entry;
 public interface EntryDao extends JpaRepository<Entry, Long> {	
 	Entry findOneByEntryDate(Date entryDate);
 	List<Entry> findByName(String name);
+
+	//List<Entry>
 }
