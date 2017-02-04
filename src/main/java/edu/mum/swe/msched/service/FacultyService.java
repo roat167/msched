@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import edu.mum.swe.msched.domain.Faculty;
 
 public interface FacultyService {
-	Faculty findFacultyById(Long id);
+	Faculty findFacultyById(long i);
 	List<Faculty> findFacultyByFirstName(String firstName);
 	List<Faculty> findFacultyByLastName(String lastName);
 	List<Faculty> getAllFacultys();
