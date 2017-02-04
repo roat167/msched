@@ -1,5 +1,6 @@
 package edu.mum.swe.msched.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -35,6 +36,7 @@ public class Student {
 	private GENDER gender;
 	private String snn;
 	@ManyToOne
+	@JoinColumn(name="entry_id")
 	private Entry entry;
 	@Enumerated(EnumType.ORDINAL)
 	private STUDENT_TYPE studentType;
@@ -46,7 +48,7 @@ public class Student {
 	@JoinTable(name = "STUDENT_SECTION", joinColumns = {
 			@JoinColumn(name = "STUDENT_ID", nullable = false, updatable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "SECTION_ID",nullable = false, updatable = false) })
-	private List<Section> sections;
+	private List<Section> sections = new ArrayList<Section>();
 
 	public Long getStudentId() {
 		return studentId;

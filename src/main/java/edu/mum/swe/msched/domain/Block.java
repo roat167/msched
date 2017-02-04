@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Block {
@@ -22,6 +23,7 @@ public class Block {
 	private Date startDate;
 	private Date endDate;
 	@ManyToOne
+	@JoinColumn(name="entry_id")
 	private Entry entry;
 	@ElementCollection
 	@CollectionTable(name = "target_electives")

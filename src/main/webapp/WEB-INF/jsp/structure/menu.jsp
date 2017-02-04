@@ -50,8 +50,8 @@
                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/student/schedule') ?'active':'')}">
                        <a  href="${pageContext.request.contextPath}/welcome">My Schedule</a>
                     </li>
-                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/student/enrollSection') ?'active':'')}">
-                       <a  href="${pageContext.request.contextPath}/welcome">Enroll</a>
+                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/student/enrollCourse') ?'active':'')}">
+                       <a  href="${pageContext.request.contextPath}/student/enrollCourse">Enroll</a>
                     </li>
                 </sec:authorize>
                 <sec:authorize access="hasAuthority('FACULTY')">

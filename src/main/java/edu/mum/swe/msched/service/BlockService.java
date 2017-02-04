@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.mum.swe.msched.domain.Block;
+import edu.mum.swe.msched.domain.Entry;
 
 @Service
 @Transactional
@@ -26,5 +27,6 @@ public interface BlockService {
 	public void deleteBlock(Long id);
 
 	public Block findById(Long id);
+	List<Block> findAllByEntry(Entry entry);
 
 }
