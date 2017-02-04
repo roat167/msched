@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import edu.mum.swe.msched.domain.Block;
+import edu.mum.swe.msched.domain.Entry;
 
 @Repository
 public interface BlockDao extends JpaRepository<Block, Long> {
@@ -16,6 +17,6 @@ public interface BlockDao extends JpaRepository<Block, Long> {
 
 	Block findOneByStartDate(Date startDate);
 
-	Block findById(Long id);
-
+	Block findById(Long id);	
+	List<Block> findAllByEntry(Entry entry);
 }

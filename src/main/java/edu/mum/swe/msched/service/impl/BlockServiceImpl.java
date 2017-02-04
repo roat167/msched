@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.mum.swe.msched.dao.BlockDao;
 import edu.mum.swe.msched.domain.Block;
+import edu.mum.swe.msched.domain.Entry;
 import edu.mum.swe.msched.service.BlockService;
 
 @Service
@@ -63,6 +64,11 @@ public class BlockServiceImpl implements BlockService {
 	public List<Block> findByStartDate(Date startDate) {
 		// TODO Auto-generated method stub
 		return (List<Block>) blockDao.findOneByStartDate(startDate);
+	}
+
+	@Override
+	public List<Block> findAllByEntry(Entry entry) {
+		return blockDao.findAllByEntry(entry);
 	}
 
 }

@@ -7,8 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.validator.constraints.NotEmpty;
+import javax.persistence.Transient;
 
 @Entity
 public class Section {
@@ -26,7 +25,11 @@ public class Section {
 	private Faculty faculty;
 	private int minCapacity;
 	private int maxCapacity;
+	
+	@Transient
+	private boolean isSelected;
 
+	/** Getter and Starter **/
 	public Long getSectionId() {
 		return sectionId;
 	}
@@ -73,6 +76,15 @@ public class Section {
 
 	public void setMaxCapacity(int maxCapacity) {
 		this.maxCapacity = maxCapacity;
+	}
+	/** End of Getter and Starter **/
+
+	public boolean isSelected() {
+		return isSelected;
+	}
+
+	public void setSelected(boolean isSelected) {
+		this.isSelected = isSelected;
 	}
 
 }

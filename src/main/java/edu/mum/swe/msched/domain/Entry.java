@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -24,6 +25,7 @@ public class Entry {
 	private Long entryId;
 	private String name;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="entry")
+	@OrderBy(value = "startDate")
 	private List<Block> blocks = new ArrayList<Block>();
 	private int mppStudentNum;
 	private int fppStudentNum;
