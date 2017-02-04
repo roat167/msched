@@ -20,6 +20,10 @@ import javax.persistence.Transient;
 import edu.mum.swe.msched.enumeration.GENDER;
 import edu.mum.swe.msched.enumeration.STUDENT_TYPE;
 
+/**
+ * @author Dora
+ *
+ */
 @Entity
 public class Student {
 	@Id
@@ -121,4 +125,12 @@ public class Student {
 		return this.firstName + " " + this.lastName;
 	}
 
+	@Override
+	public String toString() {
+		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
+				+ gender + ", snn=" + snn + ", entry=" + entry + ", studentType=" + studentType + ", user=" + user.toString()
+				+ ", sections=" + sections + "]";
+	}
+
+	
 }
