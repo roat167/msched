@@ -45,9 +45,9 @@ public class CourseRegistrationController extends GenericController {
 	
 	@RequestMapping(value="/student/enrollCourse", method=RequestMethod.POST) 
 	public String showForm(@ModelAttribute(ATTRIBUTE) Student student, Model model) {
-		System.out.println(student.getSections());
 		List<Block> blocks = blockService.findAllByEntry(student.getEntry());
 		model.addAttribute("blockList", blocks);
+		studentService.saveStudent(student);
 		return getView(model, VIEW_FORM);
 	}
 }

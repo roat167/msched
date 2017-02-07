@@ -52,3 +52,9 @@ insert into msched.section(section_id, max_capacity, min_capacity, block_id, cou
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (6, 25, 15, 2, 4, 2);
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (7, 25, 15, 2, 2, 3);
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (8, 25, 15, 2, 1, 4);
+
+--Table student_section
+
+--insert into msched.student_section(section_id, section_id) values (8, 25, 15, 2, 1, 4);
+
+

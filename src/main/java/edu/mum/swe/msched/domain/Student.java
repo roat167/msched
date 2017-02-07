@@ -45,6 +45,9 @@ public class Student {
 			@JoinColumn(name = "STUDENT_ID", nullable = false, updatable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "SECTION_ID",nullable = false, updatable = false) })
 	private List<Section> sections = new ArrayList<Section>();
+	
+	@Transient
+	private List<Section> tmpSections = new ArrayList<Section>();
 
 	public Long getStudentId() {
 		return studentId;
@@ -121,6 +124,14 @@ public class Student {
 	@Transient
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
+	}
+
+	public List<Section> getTmpSections() {
+		return tmpSections;
+	}
+
+	public void setTmpSections(List<Section> tmpSections) {
+		this.tmpSections = tmpSections;
 	}
 
 }

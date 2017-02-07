@@ -11,5 +11,5 @@ import edu.mum.swe.msched.domain.Student;
 		
 public interface ICourseRegSubSystem {
 	Student findStudent(Long studentId);
-	void enrollSection(Student student, Section section);
+	String enrollSection(Student student, Section section);
 }
