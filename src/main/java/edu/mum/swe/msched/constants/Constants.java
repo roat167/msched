@@ -7,7 +7,9 @@ public class Constants {
 
     public static final int BLOCKS = 5;
     public static final int NO_OF_DAYS_IN_BLOCK = 30;
-    public static final int STUDENT_PER_BLOCK = 25;
+    public static final int STUDENT_PER_SECTION = 25;
+
+
 
 
 }

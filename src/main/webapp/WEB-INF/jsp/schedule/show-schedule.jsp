@@ -21,7 +21,11 @@
         <td class="tg-yw4l">${block.name}</td>
         <td class="tg-yw4l">${block.startDate}</td>
         <td class="tg-yw4l">${block.endDate}</td>
-        <td class="tg-yw4l">----</td>
+        <td class="tg-yw4l">
+            <c:forEach var="section" items="${block.sections}">
+                ${section.course}<br>
+            </c:forEach>
+        </td>
     </tr>
     </c:forEach>
 
