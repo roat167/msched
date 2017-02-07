@@ -23,6 +23,7 @@ import edu.mum.swe.msched.service.StudentService;
 public class CourseRegistrationController extends GenericController {
 	private final static String ATTRIBUTE = "student";
 	private final static String VIEW_FORM = "student/enrollSectionForm";
+	private final static String VIEW_SCHEDULE = "student/schedule";
 
 	@Autowired
 	private StudentService studentService;
@@ -64,4 +65,12 @@ public class CourseRegistrationController extends GenericController {
 		List<Block> blocks = blockService.findAllByEntry(student.getEntry());
 		model.addAttribute("blockList", blocks);
 	}
+	
+	@RequestMapping(value = "/student/schedule", method = RequestMethod.GET)
+	public String showSchedule(Model model) {
+		Student student = studentService.findStudentByUsername(GenericController.getCurrentUsername());
+		model.addAttribute(ATTRIBUTE, student);
+		return getView(model, VIEW_SCHEDULE);
+	}
+
 }
