@@ -49,8 +49,6 @@ public class Student {
 			@JoinColumn(name = "STUDENT_ID", nullable = false, updatable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "SECTION_ID",nullable = false, updatable = false) })
 	private List<Section> sections = new ArrayList<Section>();
-	
-	private List<Section> tmpSections = new ArrayList<Section>();
 
 	public Long getStudentId() {
 		return studentId;
