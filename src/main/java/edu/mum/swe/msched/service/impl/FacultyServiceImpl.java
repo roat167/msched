@@ -11,9 +11,16 @@ import edu.mum.swe.msched.service.FacultyService;
 
 @Service
 public class FacultyServiceImpl implements FacultyService{
-	
+
 	@Autowired
 	private FacultyDao facultyDao;
+
+
+	@Override
+	public List<Faculty> findFacultyByPreferedBlock(int BlockNo) {
+		return facultyDao.findByPreferedBlocks(BlockNo);
+	}
+
 
 	@Override
 	public Faculty findFacultyById(long id) {
