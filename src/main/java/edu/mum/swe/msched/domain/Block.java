@@ -4,15 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 
 @Entity
 public class Block {
@@ -28,10 +20,8 @@ public class Block {
 	@ElementCollection
 	@CollectionTable(name = "target_electives")
 	private Set<String> targetElectives = new HashSet<String>(); // might have to change type
-	@OneToMany(mappedBy="block")
+	@OneToMany(mappedBy="block", cascade = CascadeType.ALL)
 	private Set<Section> sections = new HashSet<Section>();
-	
-	
 
 	public String getName() {
 		return name;

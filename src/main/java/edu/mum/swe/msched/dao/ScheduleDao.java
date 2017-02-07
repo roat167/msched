@@ -1,5 +1,6 @@
 package edu.mum.swe.msched.dao;
 
+import edu.mum.swe.msched.domain.Entry;
 import edu.mum.swe.msched.domain.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ScheduleDao extends JpaRepository<Schedule, Long> {
-    Schedule findOneByEntryId(Long entryId);
+    Schedule findOneByEntry(Entry entry);
 }

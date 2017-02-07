@@ -24,6 +24,7 @@ insert into msched.faculty(faculty_id, first_name, last_name, user_id) values (4
 insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(1, 'August 2016', '2016-08-05', 50, 20, 50, 10, 10);
 insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(2, 'October 2016', '2016-10-28', 50, 20, 50, 10, 10);
 insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(3, 'January 2017', '2017-01-30', 50, 20, 50, 10, 10);
+insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(4, 'maharishi', '2017-01-30', 10, 10, 05, 0, 0);
 
 --Student 
 insert into msched.student(student_id, first_name, last_name, user_id) values (1, 'Pukar', 'M', 6);
@@ -58,3 +59,14 @@ insert into msched.section(section_id, max_capacity, min_capacity, block_id, cou
 --insert into msched.student_section(section_id, section_id) values (8, 25, 15, 2, 1, 4);
 
 
+--faculty prefered block
+INSERT INTO `msched`.`prefered_blocks` (`faculty_faculty_id`, `prefered_blocks`) VALUES ('1', '1');
+INSERT INTO `msched`.`prefered_blocks` (`faculty_faculty_id`, `prefered_blocks`) VALUES ('1', '2');
+INSERT INTO `msched`.`prefered_blocks` (`faculty_faculty_id`, `prefered_blocks`) VALUES ('1', '3');
+INSERT INTO `msched`.`prefered_blocks` (`faculty_faculty_id`, `prefered_blocks`) VALUES ('1', '4');
+INSERT INTO `msched`.`prefered_blocks` (`faculty_faculty_id`, `prefered_blocks`) VALUES ('1', '5');
+
+
+--faculty courses
+INSERT INTO `msched`.`faculty_courses` (`faculty_id`, `course_id`) VALUES ('1', '1');
+INSERT INTO `msched`.`faculty_courses` (`faculty_id`, `course_id`) VALUES ('1', '2');

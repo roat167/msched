@@ -41,7 +41,7 @@ public class Faculty {
 	private User user;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "FACULTY_COURSE", joinColumns = {
+	@JoinTable(name = "FACULTY_COURSES", joinColumns = {
 			@JoinColumn(name = "FACULTY_ID", nullable = false, updatable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "COURSE_ID",nullable = false, updatable = false) })
 	private List<Course> courses;

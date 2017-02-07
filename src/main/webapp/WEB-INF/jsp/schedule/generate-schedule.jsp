@@ -10,11 +10,18 @@
     </select>
 
     <label>No. of blocks in this entry:</label>
-    <input type="number" name="totalBlocks" value="">
+    <input type="number" name="totalBlocks" value="5">
     <br>
     <button type="submit" >Generate Schedule</button>
     <input type="hidden"
            name="${_csrf.parameterName}"
            value="${_csrf.token}"/>
 </form>
+
+<div>
+    List of Schedules:
+    <c:forEach var="schedule" items="${schedules}">
+        ${schedule.Entry.name}
+    </c:forEach>
+</div>
 

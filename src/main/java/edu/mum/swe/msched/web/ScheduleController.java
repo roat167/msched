@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 import java.text.SimpleDateFormat;
-import java.lang.Math;
 
 /**
  * Created by acer-usrpu on 1/30/2017.
@@ -52,19 +51,16 @@ public class ScheduleController extends GenericController {
         currentEntry.getBlocks().clear();
         try {
             currentEntry.getBlocks().addAll(createBlock(currentEntry));
-            entryService.save(currentEntry);
+         //   entryService.save(currentEntry);
+
             Schedule schedule = new Schedule();
-            schedule.setEntryId(entryId);
+            schedule.setEntry(currentEntry);
             scheduleService.save(schedule);
         }catch (FacultyNotEnoughExecption e){
+            model.addAttribute("schedules",scheduleService.findAllSchedule());
             model.addAttribute("entries",entryService.getAllEntries());
             return getView(model,"schedule/generate-schedule");
         }
-        currentEntry.getBlocks().addAll(createBlock(currentEntry));
-        entryService.save(currentEntry);
-        Schedule schedule = new Schedule();
-        schedule.setEntryId(entryId);
-        scheduleService.save(schedule);
 
         model.addAttribute("entry",currentEntry);
         model.addAttribute("blocks",currentEntry.getBlocks());
@@ -76,6 +72,7 @@ public class ScheduleController extends GenericController {
     public String showScheduleForm( Model model ){
 
         model.addAttribute("entries",entryService.getAllEntries());
+        model.addAttribute("schedules",scheduleService.findAllSchedule());
         return getView(model,"schedule/generate-schedule");
     }
 
@@ -85,19 +82,19 @@ public class ScheduleController extends GenericController {
 
         Date initDate = null;
 
-        for (int i=0; i<= Constants.BLOCKS;i++){
+        for (int i=1; i< Constants.BLOCKS;i++){
             Block block = new Block();
             block.setEntry(entry);
             if(initDate==null){
                 Date entryDate = entry.getEntryDate();
                 block.setStartDate(entryDate);
                 this.cal.setTime(entryDate);
-
+                int month = cal.get(Calendar.MONTH);
                 cal.add(Calendar.DATE, Constants.NO_OF_DAYS_IN_BLOCK);
                 block.setEndDate(cal.getTime());
                 block.setName(dateFormat.format(entry.getEntryDate()));
 
-                Set<Section> sections = this.createSection(block,i+1);
+                Set<Section> sections = this.createSection(block,month+1);
                 block.setSections(sections);
 
                 initDate = cal.getTime();
@@ -106,12 +103,13 @@ public class ScheduleController extends GenericController {
             else{
                 block.setStartDate(initDate);
                 this.cal.setTime(initDate);
-
+                int month = cal.get(Calendar.MONTH);
                 cal.add(Calendar.DATE, Constants.NO_OF_DAYS_IN_BLOCK);
                 block.setEndDate(cal.getTime());
                 block.setName(dateFormat.format(initDate));
-                Set<Section> sections = this.createSection(block,i+1);
-                block.setSections(sections);
+                Set<Section> sections = this.createSection(block,month+1);
+                block.getSections().addAll(sections);
+               // block.setSections(sections);
                 initDate = cal.getTime();
             }
             blockList.add(block);
@@ -129,16 +127,17 @@ public class ScheduleController extends GenericController {
 
         int totalStudents = block.getEntry().getFppStudentNum()+block.getEntry().getMppStudentNum()+ block.getEntry().getLocalStudentNum();
 
-        int requiredSection = totalStudents/Constants.STUDENT_PER_SECTION;
+        int requiredSection = (int) Math.ceil(totalStudents/Constants.STUDENT_PER_SECTION);
 
         List<Faculty> availableFaculties = facultyService.findFacultyByPreferedBlock(blockNo);
 
         int totalAvialableFaculties = availableFaculties.size();
         if(totalAvialableFaculties < requiredSection )
         {
+
             String message;
             if(totalAvialableFaculties<=0)
-                message = "No faculties in the system for this entry, please add faculties <a href=\"/faculty/add\">here</a>";
+                message = totalAvialableFaculties +" "+blockNo+ " "+requiredSection+" No faculties in the system for this entry, please add faculties <a href=\"/faculty/add\">here</a>";
             else
                 message = "Not enough Faculties for the entry.<br> You have two options: <br> 1. add "+(requiredSection-totalAvialableFaculties)+" more availableFaculties<br> 2. increase no. of student per section to "+totalStudents/totalAvialableFaculties;
             setMessage(model,message);
