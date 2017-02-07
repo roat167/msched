@@ -55,6 +55,7 @@ public class StudentController extends GenericController {
 			
 			studentService.saveStudent(student);
 		} else {
+			System.out.println("Student -> " + student.toString());
 			studentService.updateStudent(student.getStudentId(), student);
 		}
 		model.addAttribute(MODEL_ATTRIBUTE, student);

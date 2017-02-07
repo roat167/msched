@@ -1,5 +1,6 @@
 package edu.mum.swe.msched.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,6 +21,10 @@ import javax.persistence.Transient;
 import edu.mum.swe.msched.enumeration.GENDER;
 import edu.mum.swe.msched.enumeration.STUDENT_TYPE;
 
+/**
+ * @author Dora
+ *
+ */
 @Entity
 public class Student {
 	@Id
@@ -31,6 +36,7 @@ public class Student {
 	private GENDER gender;
 	private String snn;
 	@ManyToOne
+	@JoinColumn(name="entry_id")
 	private Entry entry;
 	@Enumerated(EnumType.ORDINAL)
 	private STUDENT_TYPE studentType;
@@ -42,7 +48,9 @@ public class Student {
 	@JoinTable(name = "STUDENT_SECTION", joinColumns = {
 			@JoinColumn(name = "STUDENT_ID", nullable = false, updatable = false) },
 			inverseJoinColumns = { @JoinColumn(name = "SECTION_ID",nullable = false, updatable = false) })
-	private List<Section> sections;
+	private List<Section> sections = new ArrayList<Section>();
+	
+	private List<Section> tmpSections = new ArrayList<Section>();
 
 	public Long getStudentId() {
 		return studentId;
@@ -121,4 +129,12 @@ public class Student {
 		return this.firstName + " " + this.lastName;
 	}
 
+	@Override
+	public String toString() {
+		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
+				+ gender + ", snn=" + snn + ", entry=" + entry + ", studentType=" + studentType + ", user=" + user.toString()
+				+ ", sections=" + sections + "]";
+	}
+
+	
 }

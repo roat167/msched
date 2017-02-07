@@ -29,7 +29,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long userId;
 	@Column(name = "username", unique = true)
-	@NotEmpty
+	@NotEmpty	
 	private String username;
 	@NotEmpty
 	private String password;
@@ -106,4 +106,11 @@ public class User implements Serializable {
 	public void setRole(ROLE role) {
 		this.role = role;
 	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", phoneNo=" + phoneNo + ", address=" + address + ", enabled=" + enabled + ", role=" + role + "]";
+	}
+		
 }

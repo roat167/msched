@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -29,4 +31,7 @@ public class GenericController {
 	            dateFormat, false));
 	}
 
+	public static String getCurrentUsername() {
+		return ((Authentication)  SecurityContextHolder.getContext().getAuthentication()).getName();
+	}
 }
