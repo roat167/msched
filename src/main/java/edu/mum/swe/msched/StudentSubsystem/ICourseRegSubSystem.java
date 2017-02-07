@@ -1,5 +1,7 @@
 package edu.mum.swe.msched.StudentSubsystem;
 
+import java.util.List;
+
 import edu.mum.swe.msched.domain.Section;
 import edu.mum.swe.msched.domain.Student;
 
@@ -11,5 +13,6 @@ import edu.mum.swe.msched.domain.Student;
 		
 public interface ICourseRegSubSystem {
 	Student findStudent(Long studentId);
-	String enrollSection(Student student, Section section);
+	boolean enrollSection(Student student, Section section);
+	boolean enrollSections(Student student, List<Section> sections);
 }

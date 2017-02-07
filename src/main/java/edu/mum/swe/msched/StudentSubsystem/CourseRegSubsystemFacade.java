@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import edu.mum.swe.msched.domain.Course;
 import edu.mum.swe.msched.domain.Section;
 import edu.mum.swe.msched.domain.Student;
+import edu.mum.swe.msched.exception.NoAvailableSeatException;
+import edu.mum.swe.msched.exception.PrerequisiteNotSatisfyException;
 import edu.mum.swe.msched.service.SectionService;
 import edu.mum.swe.msched.service.StudentService;
+import edu.mum.swe.msched.util.DescriptionHelper;
 
 /**
  * 
@@ -29,17 +32,24 @@ public class CourseRegSubsystemFacade implements ICourseRegSubSystem {
 	}
 
 	@Override
-	public String enrollSection(Student student, Section section) {		
-		if (!sectionAvailable(section))
-			return "No Seat Available";
-		if (!checkPrerequisite(student.getSections(), section))
-			return "PreRequisite course is not statisfied";
+	public boolean enrollSection(Student student, Section section) {
 
+		if (!sectionAvailable(section))
+			throw new NoAvailableSeatException("No Seat Available for " + DescriptionHelper.shortDescription(section));
+		if (!checkPrerequisite(student.getSections(), section)) {
+			throw new PrerequisiteNotSatisfyException(section.getCourse().getPreReqiusite().getCourseName()
+					+ " is required before taking " + section.getCourse().getCourseName());
+		}
 		section.setTotalStudent(section.getTotalStudent() + 1);
 		student.getSections().add(section);
 		studentService.saveStudent(student);
 		sectionService.saveSection(section);
-		return "Sucessfully Saved";
+		return true;
+	}
+
+	@Override
+	public boolean enrollSections(Student student, List<Section> sections) {
+		return validateEnrollSections(student, sections);
 	}
 
 	/**
@@ -72,27 +82,29 @@ public class CourseRegSubsystemFacade implements ICourseRegSubSystem {
 	 * @param section
 	 * @return boolean
 	 */
-	private String validateEnrollSections(List<Section> enrolledSections) {
-		List<Section> tmpSections = enrolledSections;		
+	private boolean validateEnrollSections(Student student, List<Section> enrolledSections) {
+		List<Section> tmpSections = enrolledSections;
 		for (Section section : tmpSections) {
-			if (!sectionAvailable(section))
-				return "No Seat Available";
-			if (!checkPrerequisite(enrolledSections, section))
-				return "PreRequisite course is not statisfied";
-			Course preReq = section.getCourse().getPreReqiusite();	
-			if (preReq == null)
-				continue;
-			for (Section s : enrolledSections) {
-				if (!(s.getCourse().getId().equals(preReq.getId())
-						&& s.getBlock().getStartDate()
-						.before(section.getBlock().getStartDate()))) {
-					return preReq.getCourseName() + " is required before taking " + section.getCourse().getCourseName();
-				}
-			}
+			if (!sectionAvailable(section)) 
+				throw new NoAvailableSeatException(
+						"No Seat Available for " + DescriptionHelper.shortDescription(section));
+			
+			if (!checkPrerequisite(enrolledSections, section)) 
+				throw new PrerequisiteNotSatisfyException(section.getCourse().getPreReqiusite().getCourseName()
+						+ " is required before taking " + section.getCourse().getCourseName());
+						
 		}
-		return "";
+		//update Section
+		for (Section section : enrolledSections) { 
+			section.setTotalStudent(section.getTotalStudent() + 1);
+			sectionService.saveSection(section);
+		}		
+		studentService.saveStudent(student);
+		return true;
+		
 	}
-	
+
+	/** Check available seat for the section **/
 	private boolean sectionAvailable(Section section) {
 		return section.getMaxCapacity() - section.getTotalStudent() > 0;
 	}
