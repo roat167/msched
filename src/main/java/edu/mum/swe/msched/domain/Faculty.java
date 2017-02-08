@@ -26,6 +26,10 @@ import javax.persistence.Transient;
 import edu.mum.swe.msched.enumeration.GENDER;
 import edu.mum.swe.msched.enumeration.PREFERED_BLOCK;
 
+/**
+ * @author Dora
+ *
+ */
 @Entity
 public class Faculty {
 	@Id
@@ -136,4 +140,12 @@ public class Faculty {
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
 	}
+
+	@Override
+	public String toString() {
+		return "Faculty [facultyId=" + facultyId + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
+				+ gender + ", snn=" + snn + ", startWorkDate=" + startWorkDate + ", user=" + user + ", courses="
+				+ courses + ", preferedBlocks=" + preferedBlocks + ", sections=" + sections + "]";
+	}
+	
 }
