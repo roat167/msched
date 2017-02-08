@@ -1,5 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <title>Course Registration</title>
@@ -9,50 +11,52 @@
 	<br>
 	<span class="PageTitle">&nbsp; Course Registration</span>
 	<form:form modelAttribute="student" action="/student/enrollCourse" method="post">
-		<form:input path="studentId" type="hidden" />		
+		<form:input path="studentId" type="hidden" />
 		<table class="table table-bordered table-striped">
-			<c:forEach items="${blockList}" var="b" varStatus="i">										
-	        <tr>
-	            <td>
-	              <button type="button" class="btn" data-toggle="collapse" data-target="#block${i}"></button>	              
-	            </td>
-	        </tr>
-	        <c:choose>
-	        <c:if test="${not empty b.sections}">
-				<c:forEach items="${b.sections}" var="sect" varStatus="j">	                
-					<form:checkbox id="sections${i.index}" checked="checked"
-						name="${sect.course.courseName}" path="sections"
-						value="${sect.sectionId}" label="${sect.course.courseName}" />
-				</c:forEach>
-			</c:if>
-	        <c:otherwise>	        
-	        	<tr id="block${i}" class="collapse out"><td><div>No sections available</div></td></tr>
-	        </c:otherwise>
-	        </c:choose>
-	        </c:forEach>
-	    </table>
-		<%-- 	<c:forEach items="${blocks}" var="b" varStatus="i">
-			<c:if test="${not empty b.sections}">
-				<c:forEach items="${b.sections}" var="sect" varStatus="j">
-					<form:checkbox id="sections${i.index}" checked="checked"
-							name="${sect.course.courseName}" path="sections"
-							value="${sect.sectionId}" label="${sect.course.courseName}" />
-				<c:choose>
-					<c:when test="${sect.isSelected}">
-						<form:checkbox id="sections${i.index}" checked="checked"
-							name="${sect.course.courseName}" path="sections"
-							value="${sect.sectionId}" label="${cUsage.name}" />
-					</c:when>
-					<c:otherwise>
-						<form:checkbox id="sections${i.index}" path="sections"
-							name="${cUsage.name}" value="${cUsage.idCountryUsage}"
-							label="${cUsage.name}" />
-					</c:otherwise>
-				</c:choose>
+			<thead><th>Block</th><th>Course</th><th>Start Date</th><th>Faculty</th><th>Available Seats</th></thead>
+			<c:forEach items="${blockList}" var="b" varStatus="i">
+				<c:if test="${not empty b.sections}">
+					<tr class="clsBlocks">
+						<td rowSpan="${fn:length(b.sections) + 1}"><c:out value="${b.name}" /></td>
+						<td colSpan="5"></td>						
+					</tr>
+					<c:forEach items="${b.sections}" var="sect" varStatus="j">
+					<!--Checking availableSeat  -->
+					<c:if test="${(sect.maxCapacity - sect.totalStudent) > 0}">
+						<c:set var="isExists" value="false" />
+						<c:if test="${fn:contains(student.sections, sect)}">
+							<c:set var="isExists" value="true" />
+						</c:if>
+						<tr class="clsSections">
+							<td><span> 
+							<fmt:formatDate pattern="MMM-dd-yyyy" value="${sect.block.startDate}" var="startDate" /> 
+							<c:choose>
+								<c:when test="${isExists}">
+									<form:checkbox id="sections${i.index}"
+										class="chkSections${i.index}"
+										name="${sect.course.courseName}" path="sections"
+										value="${sect.sectionId}" checked="checked" />
+								</c:when>
+								<c:otherwise>
+									<form:checkbox id="sections${i.index}"
+										class="chkSections${i.index}"
+										name="${sect.course.courseName}" path="sections"
+										value="${sect.sectionId}" 
+										lable="${sect.course.courseName}"/>
+								</c:otherwise>
+							</c:choose>
+							</span>
+							<c:out value="${sect.course.courseName}" />
+							</td>							
+							<td><c:out value="${startDate}" /></td>
+							<td><c:out value="${sect.faculty.firstName}" /></td>
+							<td><c:out value="${sect.maxCapacity - sect.totalStudent}" /></td>
+						</tr>
+					</c:if>
+					</c:forEach>
 				</c:if>
 			</c:forEach>
-			<br />
-		</c:forEach> --%>
+		</table>		
 		<form:button class="btn btn-default" value="Update" name="submit">Submit</form:button>
 	</form:form>
 </body>

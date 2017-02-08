@@ -2,6 +2,7 @@ package edu.mum.swe.msched.service;
 
 import java.util.List;
 
+import edu.mum.swe.msched.domain.Block;
 import edu.mum.swe.msched.domain.Section;
 
 public interface SectionService {
@@ -11,5 +12,6 @@ public interface SectionService {
 	void saveSection(Section section);
 	void updateSection(Section section);
 	void deleteSection(long id);
+	List<Section> findAvailabeSection(Block block);
 	
 }

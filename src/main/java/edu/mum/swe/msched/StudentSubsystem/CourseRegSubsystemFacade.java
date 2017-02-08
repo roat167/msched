@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.mum.swe.msched.domain.Block;
 import edu.mum.swe.msched.domain.Course;
-import edu.mum.swe.msched.domain.Entry;
 import edu.mum.swe.msched.domain.Section;
 import edu.mum.swe.msched.domain.Student;
+import edu.mum.swe.msched.exception.NoAvailableSeatException;
+import edu.mum.swe.msched.exception.PrerequisiteNotSatisfyException;
+import edu.mum.swe.msched.service.SectionService;
 import edu.mum.swe.msched.service.StudentService;
+import edu.mum.swe.msched.util.DescriptionHelper;
 
 /**
  * 
@@ -19,63 +21,91 @@ import edu.mum.swe.msched.service.StudentService;
  */
 @Service
 public class CourseRegSubsystemFacade implements ICourseRegSubSystem {
-	 @Autowired
-	 StudentService studentService;	
+	@Autowired
+	StudentService studentService;
+	@Autowired
+	SectionService sectionService;
 
 	@Override
-	public Student findStudent(Long studentId) {		
+	public Student findStudent(Long studentId) {
 		return studentService.findStudentById(studentId);
 	}
 
-	public void enrollSection(Student student, Section section) {
-		// TODO Auto-generated method stub		
+	@Override
+	public boolean enrollSection(Student student, Section section) {
+
+		if (!sectionAvailable(section))
+			throw new NoAvailableSeatException("No Seat Available for " + DescriptionHelper.shortDescription(section));
+		if (!checkPrerequisite(student.getSections(), section)) {
+			throw new PrerequisiteNotSatisfyException(section.getCourse().getPreReqiusite().getCourseName()
+					+ " is required before taking " + section.getCourse().getCourseName());
+		}
+		section.setTotalStudent(section.getTotalStudent() + 1);
+		student.getSections().add(section);
+		studentService.saveStudent(student);
+		sectionService.saveSection(section);
+		return true;
 	}
 
 	@Override
-	public Entry getEntry(Student student) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean enrollSections(Student student, List<Section> sections) {
+		return validateEnrollSections(student, sections);
 	}
 
-	@Override
-	public List<Block> getBlocks(Entry entry) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * check if the section has preRequisite course then check if student have
+	 * enrolled prerequisite course for that section in former block
+	 * 
+	 * @param enrolledSections
+	 * @param section
+	 * @return boolean
+	 */
+	private boolean checkPrerequisite(List<Section> enrolledSections, Section section) {
+		Course preReq = section.getCourse().getPreReqiusite();
+		if (preReq == null)
+			return true;
+
+		for (Section s : enrolledSections) {
+			if (s.getCourse().getId().equals(preReq.getId())
+					&& s.getBlock().getStartDate().before(section.getBlock().getStartDate())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
-	@Override
-	public Section getSection(Long sectionId) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * check if the section has preRequisite course then check if student have
+	 * enrolled prerequisite course for that section in former block
+	 * 
+	 * @param enrolledSections
+	 * @param section
+	 * @return boolean
+	 */
+	private boolean validateEnrollSections(Student student, List<Section> enrolledSections) {
+		List<Section> tmpSections = enrolledSections;
+		for (Section section : tmpSections) {
+			if (!sectionAvailable(section)) 
+				throw new NoAvailableSeatException(
+						"No Seat Available for " + DescriptionHelper.shortDescription(section));
+			
+			if (!checkPrerequisite(enrolledSections, section)) 
+				throw new PrerequisiteNotSatisfyException(section.getCourse().getPreReqiusite().getCourseName()
+						+ " is required before taking " + section.getCourse().getCourseName());
+						
+		}
+		//update Section
+		for (Section section : enrolledSections) { 
+			section.setTotalStudent(section.getTotalStudent() + 1);
+			sectionService.saveSection(section);
+		}		
+		studentService.saveStudent(student);
+		return true;
+		
 	}
 
-	@Override
-	public List<Section> getAvailableSections(Block block) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Course getCourse(Section section) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Course getPrerequisite(Course course) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Student saveStudent(Student student) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Section saveSection(Section section) {
-		// TODO Auto-generated method stub
-		return null;
+	/** Check available seat for the section **/
+	private boolean sectionAvailable(Section section) {
+		return section.getMaxCapacity() - section.getTotalStudent() > 0;
 	}
 }

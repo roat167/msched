@@ -7,8 +7,12 @@ import org.springframework.data.repository.query.Param;
 import edu.mum.swe.msched.domain.Faculty;
 import edu.mum.swe.msched.domain.Student;
 
+import java.util.List;
+
 public interface FacultyDao extends JpaRepository<Faculty, Long>{
+
+	List<Faculty> findByPreferedBlocks(int blockNo);
+	
 	@Query("select distinct f from Faculty f inner join f.user u where u.username=:username")
 	Faculty findFacultyByUsername(@Param(value="username") String username);
-	
 }

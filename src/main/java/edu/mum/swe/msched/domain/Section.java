@@ -1,5 +1,6 @@
 package edu.mum.swe.msched.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -7,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 @Entity
 public class Section {
@@ -15,19 +15,18 @@ public class Section {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long sectionId;
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "block_id")//, insertable = false, updatable = false
+	@JoinColumn(name = "block_id") // , insertable = false, updatable = false
 	private Block block;
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id")
+	@JoinColumn(name = "course_id")
 	private Course course;
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "faculty_id")
+	@JoinColumn(name = "faculty_id")
 	private Faculty faculty;
 	private int minCapacity;
 	private int maxCapacity;
-	
-	@Transient
-	private boolean isSelected;
+	@Column(name = "total_student", nullable = false, columnDefinition = "int default 0")
+	private int totalStudent;
 
 	/** Getter and Starter **/
 	public Long getSectionId() {
@@ -77,14 +76,29 @@ public class Section {
 	public void setMaxCapacity(int maxCapacity) {
 		this.maxCapacity = maxCapacity;
 	}
+
+	public int getTotalStudent() {
+		return totalStudent;
+	}
+
+	public void setTotalStudent(int totalStudent) {
+		this.totalStudent = totalStudent;
+	}
+
 	/** End of Getter and Starter **/
 
-	public boolean isSelected() {
-		return isSelected;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (null == obj || null == this.getSectionId())
+			return false;
+		return (this.getSectionId().equals(((Section) obj).getSectionId()));
 	}
 
-	public void setSelected(boolean isSelected) {
-		this.isSelected = isSelected;
+	@Override
+	public int hashCode() {
+		int result = 17;
+		result = 37 * result + (this.getSectionId() == null ? 0 : this.getSectionId().hashCode());
+		return result;
 	}
-
 }

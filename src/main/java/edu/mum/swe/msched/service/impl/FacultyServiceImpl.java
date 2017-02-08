@@ -11,9 +11,16 @@ import edu.mum.swe.msched.service.FacultyService;
 
 @Service
 public class FacultyServiceImpl implements FacultyService{
-	
+
 	@Autowired
 	private FacultyDao facultyDao;
+
+
+	@Override
+	public List<Faculty> findFacultyByPreferedBlock(int BlockNo) {
+		return facultyDao.findByPreferedBlocks(BlockNo);
+	}
+
 
 	@Override
 	public Faculty findFacultyById(long id) {
@@ -26,6 +33,12 @@ public class FacultyServiceImpl implements FacultyService{
 		return facultyDao.findFacultyByUsername(username);
 	}
 	
+	@Override
+	public Faculty findFacultyByUserName(String name) {
+		// TODO Auto-generated method stub
+		return facultyDao.findFacultyByUsername(name);
+	}
+
 	@Override
 	public List<Faculty> findFacultyByFirstName(String firstName) {
 		// TODO Auto-generated method stub

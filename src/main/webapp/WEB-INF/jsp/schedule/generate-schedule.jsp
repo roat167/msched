@@ -8,6 +8,9 @@
         <option value="${entry.entryId}">${entry.name}</option>
     </c:forEach>
     </select>
+
+    <label>No. of blocks in this entry:</label>
+    <input type="number" name="totalBlocks" value="">
     <br>
     <button type="submit" >Generate Schedule</button>
     <input type="hidden"
