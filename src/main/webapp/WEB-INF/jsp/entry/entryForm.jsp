@@ -21,7 +21,7 @@
 		<form:errors path="displayEntryDate" cssStyle="color:red" />
 		<br>		
 		<spring:message code="message.entryDate" text="Date mm/dd/yyyy" />
-		<form:input class="form-control" placeholder="" path="entryDate" type="text" />
+		<form:input class="form-control datepicker" placeholder="" path="entryDate" type="text" />
 
 		<br>
 
