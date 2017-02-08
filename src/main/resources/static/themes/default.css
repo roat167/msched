@@ -522,3 +522,19 @@ margin:5px;
 		background: linear-gradient(to bottom,  #ffffff 25%,#f2f2f2 100%);
 		/* background-image: url('default/images/popupButtonsBar.png');  */
 }
+
+table.sortable td{
+	padding: 6px;
+}
+
+div > a {
+	/*  appearance: button;
+    -moz-appearance: button;
+    -webkit-appearance: button; */
+    text-decoration: none; font: menu; color: ButtonText;
+    display: inline-block; padding: 1px 3px 3px 1px;
+    color: #337ab7;
+}
+
+
+
