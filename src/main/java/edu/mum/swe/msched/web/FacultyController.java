@@ -19,7 +19,7 @@ import edu.mum.swe.msched.service.FacultyService;
 
 @Controller
 @RequestMapping(value = "/faculty")
-@SessionAttributes("faculty") // It equals to Model attribute in form
+@SessionAttributes("") // It equals to Model attribute in form
 public class FacultyController extends GenericController {
 	
 	private static final String MODEL_ATTRIBUTE = "faculty";
@@ -43,6 +43,10 @@ public class FacultyController extends GenericController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String facultyForm(@ModelAttribute(MODEL_ATTRIBUTE) Faculty faculty, Model model) {
+		if (faculty == null) {
+			faculty = new Faculty();
+		}
+		model.addAttribute(MODEL_ATTRIBUTE, faculty);
 		return getView(model, VIEW_FORM);
 	}
 	
