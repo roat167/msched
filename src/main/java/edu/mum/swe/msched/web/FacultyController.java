@@ -24,7 +24,7 @@ import edu.mum.swe.msched.util.MonthHelper;
 
 @Controller
 @RequestMapping(value = "/faculty")
-@SessionAttributes("") // It equals to Model attribute in form
+@SessionAttributes("faculty") // It equals to Model attribute in form
 public class FacultyController extends GenericController {
 	
 	private static final String MODEL_ATTRIBUTE = "faculty";

@@ -15,4 +15,5 @@ public interface FacultyDao extends JpaRepository<Faculty, Long>{
 	
 	@Query("select distinct f from Faculty f inner join f.user u where u.username=:username")
 	Faculty findFacultyByUsername(@Param(value="username") String username);
+
 }
