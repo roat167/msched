@@ -12,7 +12,6 @@ import edu.mum.swe.msched.domain.Student;
  */
 		
 public interface ICourseRegSubSystem {
-	Student findStudent(Long studentId);
 	boolean enrollSection(Student student, Section section);
 	boolean enrollSections(Student student, List<Section> sections);
 }

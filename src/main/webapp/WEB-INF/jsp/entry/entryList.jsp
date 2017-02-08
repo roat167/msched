@@ -23,7 +23,7 @@
 		<th>CPT(%)</th>
 		<th>OPT(%)</th>
 		<th>US Student</th>
-		<th></th>
+		<th>Action</th>
 	</tr>	
 	<c:forEach var="entry" items="${entries}">
 		<tr>

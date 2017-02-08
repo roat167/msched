@@ -27,17 +27,12 @@ public class CourseRegSubsystemFacade implements ICourseRegSubSystem {
 	SectionService sectionService;
 
 	@Override
-	public Student findStudent(Long studentId) {
-		return studentService.findStudentById(studentId);
-	}
-
-	@Override
 	public boolean enrollSection(Student student, Section section) {
 
 		if (!sectionAvailable(section))
 			throw new NoAvailableSeatException("No Seat Available for " + DescriptionHelper.shortDescription(section));
 		if (!checkPrerequisite(student.getSections(), section)) {
-			throw new PrerequisiteNotSatisfyException(section.getCourse().getPreReqiusite().getCourseName()
+			throw new PrerequisiteNotSatisfyException(DescriptionHelper.preRequisiteCourseName(section.getCourse())
 					+ " is required before taking " + section.getCourse().getCourseName());
 		}
 		section.setTotalStudent(section.getTotalStudent() + 1);
@@ -90,7 +85,7 @@ public class CourseRegSubsystemFacade implements ICourseRegSubSystem {
 						"No Seat Available for " + DescriptionHelper.shortDescription(section));
 			
 			if (!checkPrerequisite(enrolledSections, section)) 
-				throw new PrerequisiteNotSatisfyException(section.getCourse().getPreReqiusite().getCourseName()
+				throw new PrerequisiteNotSatisfyException(DescriptionHelper.preRequisiteCourseName(section.getCourse())
 						+ " is required before taking " + section.getCourse().getCourseName());
 						
 		}
