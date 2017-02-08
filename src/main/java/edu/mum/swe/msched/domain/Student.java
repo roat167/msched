@@ -41,7 +41,6 @@ public class Student {
 	private String snn;
 	@ManyToOne
 	@JoinColumn(name="entry_id")
-	@NotEmpty
 	private Entry entry;
 	@Enumerated(EnumType.ORDINAL)
 	private STUDENT_TYPE studentType;
