@@ -24,6 +24,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import edu.mum.swe.msched.enumeration.GENDER;
+import edu.mum.swe.msched.enumeration.MONTH;
 
 @Entity
 public class Faculty {
@@ -47,7 +48,7 @@ public class Faculty {
 	private List<Course> courses;
 	@ElementCollection
 	@CollectionTable(name = "prefered_blocks")
-	private Set<Integer> preferedBlocks = new HashSet<Integer>(); // may change type later
+	private Set<MONTH> preferedBlocks = new HashSet<MONTH>(); // may change type later
 	@OneToMany(mappedBy="faculty")
 	private List<Section> sections = new ArrayList<Section>();
 
@@ -115,11 +116,11 @@ public class Faculty {
 		this.courses = courses;
 	}
 
-	public Set<Integer> getPreferedBlocks() {
+	public Set<MONTH> getPreferedBlocks() {
 		return preferedBlocks;
 	}
 
-	public void setPreferedBlocks(Set<Integer> preferedBlocks) {
+	public void setPreferedBlocks(Set<MONTH> preferedBlocks) {
 		this.preferedBlocks = preferedBlocks;
 	}
 

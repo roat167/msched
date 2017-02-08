@@ -11,7 +11,7 @@
 </head>
 <body>
 	<br>
-	<span class="PageTitle">&nbsp; Faculty Schedule</span>
+	<span class="PageTitle">&nbsp; Faculty Choose Course</span>
 	<br>
 		<div class="col-lg-12" style="text-align:right">
 		&nbsp;
@@ -20,11 +20,12 @@
 	<div class="listing Box">
 		<table class="sortable" id='tblList'>
 		<tr>		
-			<th width='150px'>Entry</th>
-			<th width='100px'>Block</th>
-			<th width=100px'>Course</th>
-			<th width='90px'>Start Date</th>
+			<th width='50px'>Course List/th>
+			<th>Block</th>
+			<th>Course</th>
+			<th>Start Date</th>
 			<th>End Date</th>
+			
 			
 		</tr>
 		
@@ -36,10 +37,10 @@
 			
 			<fmt:formatDate value="${section.block.startDate}" var="startDate" pattern="MMM/dd/yyyy" />
 			<td>${startDate}</td>			
-			<td> 
+			<td> &nbsp;
 			<fmt:formatDate value="${section.block.endDate}" var="endDate" pattern="MMM/dd/yyyy" />
 			<td>${endDate}</td>			
-			<td> 
+			<td> &nbsp;
 		</td>
 		</tr>
 		</c:forEach>	
@@ -48,7 +49,9 @@
 		</table>
 	</div>
 	
-			<div id="Pagination" class="pagination"></div>
+			<div id="Pagination" class="pagination"><form>
+			
+		</form></div>
 			<input value="Prev" name="prev_text" id="prev_text" type="hidden"><input value="Next" name="next_text" id="next_text" type="hidden"><input value="10" name="items_per_page" id="items_per_page" class="numeric" type="hidden"><input value="10" name="num_display_entries" id="num_display_entries" class="numeric" type="hidden"><input value="2" name="num_edge_entries" id="num_edge_entries" class="numeric" type="hidden">
 	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/dataTable/filterTable.js"></script>

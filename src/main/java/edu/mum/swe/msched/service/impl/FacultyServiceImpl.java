@@ -20,7 +20,12 @@ public class FacultyServiceImpl implements FacultyService{
 		// TODO Auto-generated method stub
 		return facultyDao.findOne(id);
 	}
-
+	
+	@Override
+	public Faculty findFacultyByUserName(String username){
+		return facultyDao.findFacultyByUsername(username);
+	}
+	
 	@Override
 	public List<Faculty> findFacultyByFirstName(String firstName) {
 		// TODO Auto-generated method stub
