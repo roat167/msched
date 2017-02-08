@@ -30,7 +30,6 @@ public class LoginController extends GenericController {
 	
 	@RequestMapping(value="/loginSucess")
 	public String loginSucess(Model model) {
-		//Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		return getView(model, "welcome");
 	}
 	

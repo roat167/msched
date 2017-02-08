@@ -33,5 +33,15 @@ $(function() {
 		});
 		
 	});
+	
+	/**Redirect to url**/
+	var $node = $(".linkToUrl");	
+	if($node.length) {
+		$("body").on("click", ".linkToUrl" ,function(e) {
+			e.preventDefault();	
+			window.onbeforeunload = null;
+			window.location.href = $(this).data("url");
+		});
+	}
 
 });

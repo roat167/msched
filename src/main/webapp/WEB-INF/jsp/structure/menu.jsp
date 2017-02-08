@@ -49,10 +49,7 @@
 				<sec:authorize access="hasAuthority('STUDENT')">
                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/student/schedule') ?'active':'')}">
                        <a  href="${pageContext.request.contextPath}/student/schedule">My Schedule</a>
-                    </li>
-                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/student/enrollCourse') ?'active':'')}">
-                       <a  href="${pageContext.request.contextPath}/student/enrollCourse">Enroll</a>
-                    </li>
+                    </li>                   
                 </sec:authorize>
                 <sec:authorize access="hasAuthority('FACULTY')">
                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/faculty/schedule') ?'active':'')}">
