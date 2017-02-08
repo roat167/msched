@@ -2,9 +2,12 @@ package edu.mum.swe.msched.web;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,11 +45,18 @@ public class StudentController extends GenericController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addStudent(@ModelAttribute(MODEL_ATTRIBUTE) Student student, Model model) {
-		//studentService.saveStudent(student);
-		System.out.println("Add student!!!");
+	public String addStudent(@ModelAttribute(MODEL_ATTRIBUTE) @Valid Student student,  BindingResult result, Model model) {
+		
+		/**
+		 * Check empty fields from the form by using Hibernate validation
+		 */
+		if (result.hasErrors()) {
+			return getView(model, VIEW_FORM);
+		}		
+		
 		if (student.getStudentId() == null) {
-						
+	
+			// Create a user
 			User user = student.getUser();
 			user.setRole(ROLE.STUDENT);
 			user.setPassword("password");
