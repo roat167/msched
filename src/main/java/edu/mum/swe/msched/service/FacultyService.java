@@ -15,6 +15,5 @@ public interface FacultyService {
 	void saveFaculty(Faculty faculty);
 	void updateFaculty(Long id, Faculty faculty);
 	void deleteFaculty(Long id);
-	Faculty findFacultyByUserName(String username);
 	List<Faculty> findFacultyByPreferedBlock(int BlockNo);
 }
