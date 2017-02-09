@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import edu.mum.swe.msched.dao.SectionDao;
 import edu.mum.swe.msched.domain.Block;
+import edu.mum.swe.msched.domain.Faculty;
 import edu.mum.swe.msched.domain.Section;
 import edu.mum.swe.msched.service.SectionService;
 
@@ -46,4 +47,11 @@ public class SectionServiceImpl implements SectionService {
 		return sectionDao.findAvailableSectionByBlock(block);
 	}
 
+	@Override
+	public List<Section> findSectionByFacultyId(Faculty faculty) {
+		// TODO Auto-generated method stub
+		return sectionDao.findSectionByFacultyId(faculty);
+	}
+
+	
 }

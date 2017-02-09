@@ -54,7 +54,7 @@
 			<form:errors cssClass="error" path="user.email" cssStyle="color:red" />
 			<br>			
 			Email:
-			<form:input cssClass="error" class="form-control" path="user.email" type="email"/>
+			<form:input class="form-control" path="user.email" type="email"/>
 			<br>
 	
 	

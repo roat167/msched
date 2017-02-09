@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import edu.mum.swe.msched.domain.Faculty;
-import edu.mum.swe.msched.domain.Student;
 
 import java.util.List;
 
