@@ -21,7 +21,7 @@ public class Section {
 	@JoinColumn(name = "course_id")
 	private Course course;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "faculty_id")
+	@JoinColumn(name = "faculty_id", nullable = true)
 	private Faculty faculty;
 	private int minCapacity;
 	private int maxCapacity;

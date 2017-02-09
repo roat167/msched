@@ -15,13 +15,13 @@
 		<input name="facultyId" type="hidden" value="${faculty.facultyId}">
 
 		<!-- Keep default user's information  -->
-		<form:input name="userId" type="hidden" path="user.userId"/>
+<%-- 		<form:input name="userId" type="hidden" path="user.userId"/>
 		<form:input name="username" type="hidden" path="user.username"/>
 		<form:input name="password" type="hidden" path="user.password"/>
 		<form:input name="enabled" type="hidden" path="user.enabled"/>
 		<form:input name="role" type="hidden" path="user.role"/>
 		<form:input name="address" type="hidden" path="user.address"/>
-
+ --%>
 
 		<form:errors path="firstName" cssStyle="color:red" />
 		<br>
@@ -52,7 +52,7 @@ Gender:
 		<form:errors path="user.phoneNo" cssStyle="color:red" />
 		<br>			
 Phone No:
-<form:input class="form-control" path="user.phoneNo" type="text" />
+<form:input class="form-control" path="user.phoneNo" type="text" required = "required"/>
 		<br>
 
 		<form:errors path="user.email" cssStyle="color:red" />
