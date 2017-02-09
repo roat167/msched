@@ -9,33 +9,35 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Block {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotEmpty
 	private String name;
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date startDate;
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date endDate;
 	@ManyToOne
-	@JoinColumn(name="entry_id")
+	@JoinColumn(name = "entry_id")
 	private Entry entry;
 	@ElementCollection
 	@CollectionTable(name = "target_electives")
-	private Set<String> targetElectives = new HashSet<String>(); // might have to change type
-	@OneToMany(mappedBy="block")
+	private Set<String> targetElectives = new HashSet<String>(); // might have
+																	// to change
+																	// type
+	@OneToMany(mappedBy = "block")
 	private Set<Section> sections = new HashSet<Section>();
-	
-	
-
-	public String getName() {
-		return name;
-	}
 
 	public Long getId() {
 		return id;
@@ -43,6 +45,10 @@ public class Block {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public void setName(String name) {
@@ -88,4 +94,5 @@ public class Block {
 	public void setSections(Set<Section> sections) {
 		this.sections = sections;
 	}
+
 }

@@ -20,21 +20,20 @@
 		<th>Course Code</th>
 		<th>Prerequisite</th>
 		<th>Description</th>
-		<th>Target Block</th>
+	
 		<th></th>
 	</tr>	
 	<c:forEach var="course" items="${courses}">
 		<tr>
 			<td>${course.courseName}</td>
-			<td>${course.courseCode}</td>
+			<td>CS${course.courseCode}</td>
 			<c:if test="${not empty course.preReqiusite}">
 				<td>${course.preReqiusite.courseName}</td>
 			</c:if>
 			<c:if test="${empty course.preReqiusite}">
-				<td>&nbsp;</td>
+				<td class="text-danger">No PreRequisite</td>
 			</c:if>
-			<td>${course.description}</td>
-			<td>${course.targetBlocks}</td>			
+			<td>${course.description}</td>		
 			<td> &nbsp;
 			<a href="${pageContext.request.contextPath}/course/edit?id=${course.id}"> <span   class="glyphicon glyphicon-pencil"></span></a>
 			<a href="${pageContext.request.contextPath}/course/delete?id=${course.id}"> <span class="glyphicon glyphicon-remove"></span></a>
