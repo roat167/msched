@@ -58,13 +58,13 @@ insert into msched.section(section_id, max_capacity, min_capacity, block_id, cou
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (8, 25, 15, 2, 1, 4);
 
 --faculty prefered block
-INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 1);
-INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 2);
-INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 3);
-INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 4);
-INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 5);
+--INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 1);
+--INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 2);
+--INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 3);
+--INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 4);
+--INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 5);
 
 
 --faculty courses
-INSERT INTO msched.faculty_courses (faculty_id, course_id) VALUES (1, 1);
-INSERT INTO msched.faculty_courses (faculty_id, course_id) VALUES (1, 2);
+--INSERT INTO msched.faculty_courses (faculty_id, course_id) VALUES (1, 1);
+--INSERT INTO msched.faculty_courses (faculty_id, course_id) VALUES (1, 2);

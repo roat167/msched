@@ -31,8 +31,9 @@ public class PreferedBlockAndCourseController extends GenericController {
         String facultyName = getCurrentUsername(); 
         System.out.println("User name " + facultyName);
         Faculty faculty = facultyService.findFacultyByUserName(facultyName);
-        System.out.println("Faculty = " + faculty.toString());
-        //System.out.println("Blocks = [ " + faculty.getPreferedBlocks().toString() + "]");
+        //System.out.println("Faculty = " + faculty.toString());
+        System.out.println("Blocks = [ " + faculty.getPreferedBlocks().toString() + "]");
+        System.out.println("Courses = [ " + faculty.getCourses().toString() + "]");
         model.addAttribute(MODEL_ATTRIBUTE, faculty);
         model.addAttribute("courseList",courseService.getAllCourses());        
         model.addAttribute("preferedBlockList", PreferedBlockHelper.getPreferedBlockList());        
