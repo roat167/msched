@@ -19,5 +19,5 @@ public interface SectionDao extends JpaRepository<Section, Long> {
 	List<Section> findSectionByFacultyId(@Param(value="faculty") Faculty faculty);
 	
 	@Query("select distinct s from Section s where s.faculty=:faculty and s.block=:block")
-	List<Section> findSectionByFacultyAndSection(@Param(value="faculty") Faculty faculty, @Param(value="block") Block block);
+	List<Section> findSectionByFacultyAndBlock(@Param(value="faculty") Faculty faculty, @Param(value="block") Block block);
 }
