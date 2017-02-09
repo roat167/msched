@@ -20,7 +20,7 @@
 
     <c:forEach var="block" items="${blocks}">
     <tr>
-        <td>${block.name}</td>
+        <td>${block.name}<a href="/block/edit?id=${block.id}"><span class="glyphicon glyphicon-pencil"></a></td>
         <td ><fmt:formatDate value="${block.startDate}" var="startDate" pattern="MM-dd-yyyy" /> ${startDate}</td>
         <td ><fmt:formatDate value="${block.endDate}" var="endDate" pattern="MM-dd-yyyy" />${endDate}</td>
         <td >
@@ -36,6 +36,7 @@
 
                     </c:otherwise>
                 </c:choose>
+                <a href="/section/edit?id=${section.sectionId}"><span class="glyphicon glyphicon-pencil"></a>
                 <br>
             </c:forEach>
         </td>

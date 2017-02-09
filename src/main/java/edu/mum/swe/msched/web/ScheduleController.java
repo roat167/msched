@@ -121,10 +121,10 @@ public class ScheduleController extends GenericController {
 
         int totalStudents = block.getEntry().getFppStudentNum()+block.getEntry().getMppStudentNum()+ block.getEntry().getLocalStudentNum();
 
-        int requiredSection = (int) Math.floor(totalStudents/Constants.STUDENT_PER_SECTION);
+        int requiredSection = (int) Math.ceil((double)totalStudents/Constants.STUDENT_PER_SECTION);
 
         List<Faculty> availableFaculties = facultyService.findFacultyByPreferedBlock(monthNo);
-        System.out.println("block:"+blockNo+" month:"+monthNo);
+        System.out.println("block:"+blockNo+" month:"+monthNo+" reqBlo:"+requiredSection);
         System.out.println("students:"+totalStudents+",sections:"+requiredSection+"facul:"+availableFaculties);
 
         int totalAvialableFaculties = availableFaculties.size();
@@ -149,14 +149,14 @@ public class ScheduleController extends GenericController {
         {
             section = new Section();
             Course mppCourse = courseService.findByCourseCode("cs401").get(0);
-            for(int k=0; k<(int)Math.floor(block.getEntry().getMppStudentNum()/Constants.STUDENT_PER_SECTION);k++){
+            for(int k=0; k<(int)Math.ceil((double)block.getEntry().getMppStudentNum()/Constants.STUDENT_PER_SECTION);k++){
                 section = new Section();
                 section.setCourse(mppCourse);
                 section.setBlock(block);
                 block.getSections().add(section);
             }
                 Course  fppCourse= courseService.findByCourseCode("cs390").get(0);
-            for(int i=0; i<(int)Math.floor(block.getEntry().getFppStudentNum()/Constants.STUDENT_PER_SECTION);i++){
+            for(int i=0; i<(int)Math.ceil((double)block.getEntry().getFppStudentNum()/Constants.STUDENT_PER_SECTION);i++){
                 section = new Section();
                 section.setCourse(fppCourse);
                 section.setBlock(block);
