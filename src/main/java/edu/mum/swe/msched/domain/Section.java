@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 public class Section {
@@ -23,9 +26,13 @@ public class Section {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "faculty_id", nullable = true)
 	private Faculty faculty;
+	@NotNull
+	@Range(min = 1, max = 15)
 	private int minCapacity;
+	@NotNull
+	@Range(min = 10, max = 50)
 	private int maxCapacity;
-	@Column(name = "total_student", columnDefinition = "int default 0")
+	@Column(name = "total_student", columnDefinition = "int default 0")	
 	private int totalStudent;
 
 	/** Getter and Starter **/
