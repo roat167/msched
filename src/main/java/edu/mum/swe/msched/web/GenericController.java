@@ -24,6 +24,11 @@ public class GenericController {
 		model.addAttribute(VIEW_ATTRIBUTE_MSG, message);
 	}
 	
+	public void setMessage(Model model, String message, String cssStyle) {
+		model.addAttribute(VIEW_ATTRIBUTE_MSG, message);
+		model.addAttribute("msgstyle", cssStyle);
+	}
+	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");

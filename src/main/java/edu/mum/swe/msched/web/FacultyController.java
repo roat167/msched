@@ -1,5 +1,6 @@
 package edu.mum.swe.msched.web;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -60,8 +61,13 @@ public class FacultyController extends GenericController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addOrUpdateFaculty(@ModelAttribute(MODEL_ATTRIBUTE) Faculty faculty, Model model , SessionStatus sessionStatus)
-	{
+	public String addOrUpdateFaculty(@ModelAttribute(MODEL_ATTRIBUTE) Faculty faculty, Model model , SessionStatus sessionStatus) {
+		
+		if (faculty.getStartWorkDate() != null && faculty.getStartWorkDate().after(Calendar.getInstance().getTime())) {
+			setMessage(model, "Start date should be before or equal today!");
+			return getView(model, VIEW_FORM);
+		}
+		
 		if (faculty.getFacultyId() == null) {
 			/**
 			 * Since faculty has property user; therefore, every time we register new faculty we need to create 
