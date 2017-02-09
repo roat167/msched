@@ -1,6 +1,6 @@
 package edu.mum.swe.msched.web;
 
-import edu.mum.swe.msched.FacultyNotEnoughExecption;
+import edu.mum.swe.msched.FacultyNotEnoughException;
 import edu.mum.swe.msched.constants.Constants;
 import edu.mum.swe.msched.domain.*;
 import edu.mum.swe.msched.service.*;
@@ -42,21 +42,21 @@ public class ScheduleController extends GenericController {
     @Autowired
     private FacultyService facultyService;
 
+    @Autowired
+    private CourseService courseService;
+
 
     @RequestMapping(value = "/generate-schedule",method = RequestMethod.POST)
-    public String createSchedule(@RequestParam long entryId,@RequestParam int totalBlocks, Model model ){
+    public String createSchedule(@RequestParam long entryId, Model model ){
         this.model = model;
-       //System.out.print(entryService.findEntryById(1L));
         this.currentEntry = entryService.findEntryById(entryId);
         currentEntry.getBlocks().clear();
         try {
             currentEntry.getBlocks().addAll(createBlock(currentEntry));
-         //   entryService.save(currentEntry);
-
             Schedule schedule = new Schedule();
             schedule.setEntry(currentEntry);
             scheduleService.save(schedule);
-        }catch (FacultyNotEnoughExecption e){
+        }catch (FacultyNotEnoughException e){
             model.addAttribute("schedules",scheduleService.findAllSchedule());
             model.addAttribute("entries",entryService.getAllEntries());
             return getView(model,"schedule/generate-schedule");
@@ -64,8 +64,8 @@ public class ScheduleController extends GenericController {
 
         model.addAttribute("entry",currentEntry);
         model.addAttribute("blocks",currentEntry.getBlocks());
-
-        return getView(model,"schedule/show-schedule");
+        model.addAttribute("message","created new schedule");
+        return "redirect:/generate-schedule";
     }
 
     @RequestMapping(value = "/generate-schedule",method = RequestMethod.GET)
@@ -77,82 +77,138 @@ public class ScheduleController extends GenericController {
     }
 
 
-    public List<Block> createBlock(Entry entry) throws FacultyNotEnoughExecption{
+    public List<Block> createBlock(Entry entry) throws FacultyNotEnoughException {
         List<Block> blockList = new ArrayList<Block>();
 
         Date initDate = null;
 
-        for (int i=1; i< Constants.BLOCKS;i++){
+        for (int i=1; i<= Constants.BLOCKS+1;i++){
             Block block = new Block();
             block.setEntry(entry);
+            int month;
             if(initDate==null){
                 Date entryDate = entry.getEntryDate();
                 block.setStartDate(entryDate);
                 this.cal.setTime(entryDate);
-                int month = cal.get(Calendar.MONTH);
+                 month = cal.get(Calendar.MONTH);
+
+                block.setName(dateFormat.format(entry.getEntryDate()));
                 cal.add(Calendar.DATE, Constants.NO_OF_DAYS_IN_BLOCK);
                 block.setEndDate(cal.getTime());
-                block.setName(dateFormat.format(entry.getEntryDate()));
-
-                Set<Section> sections = this.createSection(block,month+1);
-                block.setSections(sections);
-
                 initDate = cal.getTime();
             }
-
             else{
                 block.setStartDate(initDate);
                 this.cal.setTime(initDate);
-                int month = cal.get(Calendar.MONTH);
+                 month = cal.get(Calendar.MONTH);
                 cal.add(Calendar.DATE, Constants.NO_OF_DAYS_IN_BLOCK);
                 block.setEndDate(cal.getTime());
                 block.setName(dateFormat.format(initDate));
-                Set<Section> sections = this.createSection(block,month+1);
-                block.getSections().addAll(sections);
-               // block.setSections(sections);
                 initDate = cal.getTime();
             }
+            this.createSection(block,month+1,i);
             blockList.add(block);
-
 
         }
         return blockList;
     }
 
 
-    public Set<Section> createSection(Block block,int blockNo){
+    public Set<Section> createSection(Block block,int monthNo,int blockNo){
         Set<Section> sections = new HashSet<>();
-        Section section = new Section();
+        Section section = null;
 
 
         int totalStudents = block.getEntry().getFppStudentNum()+block.getEntry().getMppStudentNum()+ block.getEntry().getLocalStudentNum();
 
-        int requiredSection = (int) Math.ceil(totalStudents/Constants.STUDENT_PER_SECTION);
+        int requiredSection = (int) Math.floor(totalStudents/Constants.STUDENT_PER_SECTION);
 
-        List<Faculty> availableFaculties = facultyService.findFacultyByPreferedBlock(blockNo);
+        List<Faculty> availableFaculties = facultyService.findFacultyByPreferedBlock(monthNo);
+        System.out.println("block:"+blockNo+" month:"+monthNo);
+        System.out.println("students:"+totalStudents+",sections:"+requiredSection+"facul:"+availableFaculties);
 
         int totalAvialableFaculties = availableFaculties.size();
-        if(totalAvialableFaculties < requiredSection )
+//        if(totalAvialableFaculties < requiredSection && blockNo <=1 )
+//        {
+//
+//            String message;
+//            if(totalAvialableFaculties<=0)
+//                message = totalAvialableFaculties +" "+blockNo+ " "+requiredSection+" No faculties in the system for this entry, please add faculties <a href=\"/faculty/add\">here</a>";
+//            else
+//                message = "Not enough Faculties for the entry.<br> You have two options: <br> 1. add "+(requiredSection-totalAvialableFaculties)+" more availableFaculties<br> 2. increase no. of student per section to "+totalStudents/totalAvialableFaculties;
+//            setMessage(model,message);
+//            throw new FacultyNotEnoughException("Faculty Not Enough in: ScheduleController , createSection()");
+//        }
+
+        //if we want to put as unstaffed
+        Random rd = new Random();
+        List<Course> courses = courseService.getAllCourses();
+
+
+        if(blockNo==1)
         {
+            section = new Section();
+            Course mppCourse = courseService.findByCourseCode("cs401").get(0);
+            for(int k=0; k<(int)Math.floor(block.getEntry().getMppStudentNum()/Constants.STUDENT_PER_SECTION);k++){
+                section = new Section();
+                section.setCourse(mppCourse);
+                section.setBlock(block);
+                block.getSections().add(section);
+            }
+                Course  fppCourse= courseService.findByCourseCode("cs390").get(0);
+            for(int i=0; i<(int)Math.floor(block.getEntry().getFppStudentNum()/Constants.STUDENT_PER_SECTION);i++){
+                section = new Section();
+                section.setCourse(fppCourse);
+                section.setBlock(block);
+                block.getSections().add(section);
+            }
 
-            String message;
-            if(totalAvialableFaculties<=0)
-                message = totalAvialableFaculties +" "+blockNo+ " "+requiredSection+" No faculties in the system for this entry, please add faculties <a href=\"/faculty/add\">here</a>";
-            else
-                message = "Not enough Faculties for the entry.<br> You have two options: <br> 1. add "+(requiredSection-totalAvialableFaculties)+" more availableFaculties<br> 2. increase no. of student per section to "+totalStudents/totalAvialableFaculties;
-            setMessage(model,message);
-            throw new FacultyNotEnoughExecption("Faculty Not Enough in: ScheduleController , createSection()");
+        }else {
+            List<Faculty> fac = new ArrayList<>();
+            for (int i = 1; i <= requiredSection; i++) {
+                section = new Section();
+
+                if (availableFaculties.size() > 0) {
+                    int index = rd.nextInt(availableFaculties.size());
+                    Faculty sectionFaculty = availableFaculties.get(index);
+
+                    if (fac.contains(sectionFaculty))
+                        section.setFaculty(null);
+                    else
+                        section.setFaculty(sectionFaculty);
+                    fac.add(sectionFaculty);
+                }
+                int courseindex = rd.nextInt(courses.size());
+                section.setCourse(courses.get(courseindex));
+                System.out.println("    section:" + i + " " + section.toString());
+
+                section.setBlock(block);
+                block.getSections().add(section);
+            }
         }
 
-        for (Faculty faculty:availableFaculties) {
-            section.setFaculty(faculty);
-            Random rd = new Random();
-            int index = rd.nextInt(faculty.getCourses().size());
-            section.setCourse(faculty.getCourses().get(index));
+//        for (Faculty faculty:availableFaculties) {
+//            section.setFaculty(faculty);
+//
+//            int index = rd.nextInt(faculty.getCourses().size());
+//            section.setCourse(faculty.getCourses().get(index));
+//
+//        }
 
-        }
 
-        section.setBlock(block);
+
+
         return sections;
+    }
+
+
+    @RequestMapping(value = "/view-schedule")
+    public String viewSchedule(@RequestParam Long entryId, Model model){
+
+        Entry entry = entryService.findEntryById(entryId);
+
+        model.addAttribute("entry",entry);
+        model.addAttribute("blocks",entry.getBlocks());
+        return getView(model,"schedule/show-schedule");
     }
 }

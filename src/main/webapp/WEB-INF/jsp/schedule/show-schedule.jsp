@@ -1,32 +1,46 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <br>
-<span class="PageTitle"> Schedule schedule for ${entry.name}</span>
+<span class="PageTitle"> Schedule for: ${entry.name}</span> <a href="/generate-schedule">back to list</a>
 <style type="text/css">
     .tg  {border-collapse:collapse;border-spacing:0;}
     .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
     .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
     .tg .tg-yw4l{vertical-align:top}
 </style>
-<table class="tg">
+<div class="col-lg-12">
+<table class="table table-striped">
 
     <tr>
-        <th class="tg-yw4l">Block</th>
-        <th class="tg-yw4l">Start Date</th>
-        <th class="tg-yw4l">End Date</th>
-        <th class="tg-yw4l">Courses</th>
+        <th >Block</th>
+        <th >Start Date</th>
+        <th >End Date</th>
+        <th >Section</th>
     </tr>
 
     <c:forEach var="block" items="${blocks}">
     <tr>
-        <td class="tg-yw4l">${block.name}</td>
-        <td class="tg-yw4l">${block.startDate}</td>
-        <td class="tg-yw4l">${block.endDate}</td>
-        <td class="tg-yw4l">
+        <td>${block.name}</td>
+        <td ><fmt:formatDate value="${block.startDate}" var="startDate" pattern="MM-dd-yyyy" /> ${startDate}</td>
+        <td ><fmt:formatDate value="${block.endDate}" var="endDate" pattern="MM-dd-yyyy" />${endDate}</td>
+        <td >
             <c:forEach var="section" items="${block.sections}">
-                ${section.course}<br>
+                ${section.course.courseName}
+                <c:choose>
+                    <c:when test="${section.faculty==null}">
+                        <span class="label label-danger">UNSTAFFED </span>
+
+                    </c:when>
+                    <c:otherwise>
+                        <span class="label label-primary"> ${section.faculty.firstName}</span>
+
+                    </c:otherwise>
+                </c:choose>
+                <br>
             </c:forEach>
         </td>
     </tr>
     </c:forEach>
 
 </table>
+</div>

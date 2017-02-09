@@ -10,7 +10,7 @@ public class Schedule {
 	private Long scheduleId;
 
 	@OneToOne
-	@JoinColumn(name = "entry_id", insertable=false, updatable=false)
+	//@JoinColumn(name = "entry_id", insertable=false, updatable=false)
 	private Entry entry;
 
 	public Long getScheduleId() {

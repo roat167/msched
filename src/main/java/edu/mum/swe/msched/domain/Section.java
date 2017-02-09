@@ -25,7 +25,7 @@ public class Section {
 	private Faculty faculty;
 	private int minCapacity;
 	private int maxCapacity;
-	@Column(name = "total_student", nullable = false, columnDefinition = "int default 0")
+	@Column(name = "total_student", columnDefinition = "int default 0")
 	private int totalStudent;
 
 	/** Getter and Starter **/

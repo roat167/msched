@@ -11,7 +11,7 @@ import edu.mum.swe.msched.domain.Course;
 @Repository
 public interface CourseDao extends JpaRepository<Course, Long>{
 
-	List<Course> findByCourseCode(String code);
+	List<Course> findOneByCourseCode(String code);
 //	Entry findOneByEntryDate(Date entryDate);
 //	List<Entry> findByName(String name);
 

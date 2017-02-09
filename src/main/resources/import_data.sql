@@ -43,6 +43,9 @@ insert into msched.course(id, course_code, course_name, description, pre_reqiusi
 insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (4, 'cs501','WAA', 'Web Application Architecture', 3);
 insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (5, 'cs502','Big Data', 'Big Data', 2);
 insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (6, 'cs503','EA', 'Enterprise Architecture', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (7, 'cs401','MPP', 'Modern Programming Practices', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (8, 'cs390','FPP', 'Fundamental Programming Practices', null);
+
 
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (1, 25, 15, 1, 3, 1);
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (2, 25, 15, 1, 4, 2);
