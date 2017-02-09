@@ -1,6 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,7 +12,7 @@
 	<br>
 	<span class="PageTitle">&nbsp; Block Details</span>
 	<form:form modelAttribute="block" action="/block/add" method="post">
-		<input name="id" type="hidden" value="${block.id} + ${block.startDate}">
+		<input name="id" type="hidden" value="${block.id}">
 
 		<br>			
 Entry:
@@ -24,9 +25,10 @@ Entry:
 
 	
 Block Name:
-		<form:select class="form-control" path="name">
-			<form:options items="${nameList}" />
-
+		
+		<form:select class="form-control" path="name" items="${nameList}"
+		selected="${fn:contains(nameList,name)?\"selected\":\"\"}">
+			
 		</form:select>
 		<br>
 		<form:errors path="startDate" cssStyle="color:red" />

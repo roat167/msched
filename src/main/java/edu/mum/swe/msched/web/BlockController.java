@@ -83,7 +83,7 @@ public class BlockController extends GenericController {
 		return getView(model, VIEW_LIST);
 	}
 	
-	@ModelAttribute
+	@ModelAttribute("nameList")
 	private List<String> nameList() {
 		return Arrays.asList("January","February", "March","April","May","June",
 			"July","August", "September","October","November","December");
