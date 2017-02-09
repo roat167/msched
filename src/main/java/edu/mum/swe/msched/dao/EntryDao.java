@@ -1,7 +1,6 @@
 package edu.mum.swe.msched.dao;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +13,6 @@ import edu.mum.swe.msched.domain.Faculty;
 @Repository
 public interface EntryDao extends JpaRepository<Entry, Long> {	
 	Entry findOneByEntryDate(Date entryDate);
-	List<Entry> findByName(String name);
 
     @Query("select distinct f from Faculty f inner join f.user u where u.username=:username")
     Faculty findFacultyByUsername(@Param(value="username") String username);

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 
@@ -23,11 +24,12 @@
 		<th>CPT(%)</th>
 		<th>OPT(%)</th>
 		<th>US Student</th>
-		<th></th>
+		<th>Action</th>
 	</tr>	
 	<c:forEach var="entry" items="${entries}">
 		<tr>
-			<td>${entry.name}</td>
+		<fmt:formatDate value="${block.startDate}" var="entryName" pattern="MMM yyyy" />
+			<td>${entryName}</td>
 			<td>${entry.displayEntryDate}</td>
 			<td>${entry.mppStudentNum}</td>
 			<td>${entry.fppStudentNum}</td>

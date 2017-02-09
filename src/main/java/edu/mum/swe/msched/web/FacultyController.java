@@ -12,19 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import edu.mum.swe.msched.domain.Faculty;
+import edu.mum.swe.msched.domain.Section;
 import edu.mum.swe.msched.domain.User;
 import edu.mum.swe.msched.enumeration.MONTH;
 import edu.mum.swe.msched.enumeration.ROLE;
 import edu.mum.swe.msched.helper.PreferedBlockHelper;
 import edu.mum.swe.msched.service.CourseService;
 import edu.mum.swe.msched.service.FacultyService;
+import edu.mum.swe.msched.service.SectionService;
 import edu.mum.swe.msched.util.MonthHelper;
 
 @Controller
 @RequestMapping(value = "/faculty")
-@SessionAttributes("faculty") // It equals to Model attribute in form
+@SessionAttributes("faculty")
 public class FacultyController extends GenericController {
 	
 	private static final String MODEL_ATTRIBUTE = "faculty";
@@ -33,13 +36,15 @@ public class FacultyController extends GenericController {
 	
 	private static final String VIEW_SCHEDULE = "faculty/facultySchedule";
 	private static final String VIEW_COURSEBLOCK = "faculty/facultyPreferedCourseAndBlock";
-	private static final String VIEW_PREFER_BLOCK_COURSE = "faculty/preferedBlockCourseForm";
 
 	@Autowired
 	private FacultyService facultyService;
 	
 	@Autowired
 	private CourseService courseService;
+	
+	@Autowired
+	private SectionService sectionService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String getFacultyList(Model model) {
@@ -48,16 +53,15 @@ public class FacultyController extends GenericController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String facultyForm(@ModelAttribute(MODEL_ATTRIBUTE) Faculty faculty, Model model) {
-		if (faculty == null) {
-			faculty = new Faculty();
-		}
+	public String facultyForm(Model model) {
+		Faculty faculty = new Faculty();
 		model.addAttribute(MODEL_ATTRIBUTE, faculty);
 		return getView(model, VIEW_FORM);
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addOrUpdateFaculty(@ModelAttribute(MODEL_ATTRIBUTE) Faculty faculty, Model model) {
+	public String addOrUpdateFaculty(@ModelAttribute(MODEL_ATTRIBUTE) Faculty faculty, Model model , SessionStatus sessionStatus)
+	{
 		if (faculty.getFacultyId() == null) {
 			/**
 			 * Since faculty has property user; therefore, every time we register new faculty we need to create 
@@ -79,7 +83,7 @@ public class FacultyController extends GenericController {
 		
 		model.addAttribute(MODEL_ATTRIBUTE, faculty);
 		setMessage(model, "Faculty is saved successfully!");
-		
+				
 		return "redirect:/faculty/list";
 	}
 	
@@ -91,11 +95,23 @@ public class FacultyController extends GenericController {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String deleteFaculty(@RequestParam long id, Model model) {	
-		facultyService.deleteFaculty(id);		
-		setMessage(model, "Faculty is deleted successfully!");
+	public String deleteFaculty(@RequestParam long id, Model model) {
 		
+		//Detach related entity from Faculty
+		//detachRelatedFields(id);
+		
+		//Delete faculty
+		facultyService.deleteFaculty(id);
+		setMessage(model, "Faculty is deleted successfully!");		
 		return getView(model, VIEW_LIST);
+	}
+	
+	public void detachRelatedFields(long facultyId) {
+		List<Section> sectionList = sectionService.findSectionByFacultyId(facultyService.findFacultyById(facultyId));
+		for (Section item : sectionList) {
+			item.setFaculty(null);
+			sectionService.updateSection(item);
+		}
 	}
 	
 
@@ -114,32 +130,5 @@ public class FacultyController extends GenericController {
 		model.addAttribute("listOfCourses",courseService.getAllCourses());
 		return getView(model, VIEW_COURSEBLOCK);
 	}
-	
-    @RequestMapping(value = "/perfered_block_course", method = RequestMethod.GET)
-    public String getPreferedBlockAndCourse(Model model) {
-        String facultyName = getCurrentUsername(); 
-        System.out.println("User name " + facultyName);
-        Faculty faculty = facultyService.findFacultyByUserName(facultyName);
-        System.out.println("Faculty = " + faculty.toString());
-        //System.out.println("Blocks = [ " + faculty.getPreferedBlocks().toString() + "]");
-        model.addAttribute(MODEL_ATTRIBUTE, faculty);
-        model.addAttribute("courseList",courseService.getAllCourses());        
-        model.addAttribute("preferedBlockList", PreferedBlockHelper.getPreferedBlockList());        
-        return getView(model, VIEW_PREFER_BLOCK_COURSE);
-    }
-    
-    @RequestMapping(value = "/prefered_block_course/edit", method = RequestMethod.POST)
-    public String addPreferedBlockAndCourse(@ModelAttribute(MODEL_ATTRIBUTE) Faculty faculty, Model model) {
-        System.out.println("Save prefered block and course!!!");
-        if (faculty != null && faculty.getFacultyId() != null) {
-            facultyService.updateFaculty(faculty.getFacultyId(), faculty);
-            faculty.getCourses().forEach(System.out::print);
-        }
-        model.addAttribute(MODEL_ATTRIBUTE, faculty);
-        model.addAttribute("courseList",courseService.getAllCourses());        
-        model.addAttribute("preferedBlockList", PreferedBlockHelper.getPreferedBlockList());        
-        setMessage(model, "Preferred blocks and course have been saved successfully!");
-        return getView(model, VIEW_PREFER_BLOCK_COURSE);
-    }
 	
 }

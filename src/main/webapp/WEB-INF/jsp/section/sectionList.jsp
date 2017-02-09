@@ -17,22 +17,24 @@
 	<div><a href="/section/add">Add Section</a></div>
 	<div class="listing Box">
 		<table class="sortable" id='tblList'>
-		<tr>		
-			<th>Min Capacity</th>
-			<th>Max Capacity</th>
+		<tr>					
 			<th>Block</th>
 			<th>Course</th>
 			<th>Faculty</th>
+			<th>Min Capacity</th>
+			<th>Max Capacity</th>
+			<th>Seat Available</th>
 			<th>Action</th>
 		</tr>
 		
 		<c:forEach var="section" items="${sectionList}">
-		<tr>
-			<td>${section.minCapacity}</td>
-			<td>${section.maxCapacity}</td>
+		<tr>			
 			<td>${section.block.name}</td>
 			<td>${section.course.courseName}</td>
 			<td>Prof. ${section.faculty.lastName}</td>
+			<td>${section.minCapacity}</td>
+			<td>${section.maxCapacity}</td>
+			<td>${section.maxCapacity - section.totalStudent}</td>
 			<td> &nbsp;
 			<a href="${pageContext.request.contextPath}/section/edit?id=${section.sectionId}"> <span   class="glyphicon glyphicon-pencil"></span></a>
 			<a href="${pageContext.request.contextPath}/section/delete?id=${section.sectionId}"> <span class="glyphicon glyphicon-remove"></span></a>

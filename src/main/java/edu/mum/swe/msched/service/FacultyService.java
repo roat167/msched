@@ -2,8 +2,6 @@ package edu.mum.swe.msched.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import edu.mum.swe.msched.domain.Faculty;
 
 public interface FacultyService {

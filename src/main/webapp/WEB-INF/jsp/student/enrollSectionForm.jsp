@@ -25,6 +25,7 @@
 					<c:if test="${(sect.maxCapacity - sect.totalStudent) > 0}">
 						<c:set var="isExists" value="false" />
 						<c:if test="${fn:contains(student.sections, sect)}">
+							<!-- set isExists true if section is selected -->
 							<c:set var="isExists" value="true" />
 						</c:if>
 						<tr class="clsSections">
