@@ -1,5 +1,9 @@
 package edu.mum.swe.msched.web;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +81,12 @@ public class BlockController extends GenericController {
 		model.addAttribute("id", id);
 		model.addAttribute("blocks", blockService.getAllBlocks());
 		return getView(model, VIEW_LIST);
+	}
+	
+	@ModelAttribute
+	private List<String> nameList() {
+		return Arrays.asList("January","February", "March","April","May","June",
+			"July","August", "September","October","November","December");
 	}
 
 }

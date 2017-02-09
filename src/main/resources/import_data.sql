@@ -31,11 +31,11 @@ insert into msched.student(student_id, first_name, last_name, user_id) values (1
 insert into msched.student(student_id, first_name, last_name, user_id, entry_id) values (2, 'Stu', 'M', 7, 1);
 insert into msched.student(student_id,first_name, last_name, gender, snn, student_type, entry_id, user_id) values (3, 'Dora', 'Khiev', 1, '1234567897', 1, 1, 10);
 --Table block
-insert into msched.block(id, name, start_date, end_date, entry_id) values (1, 'October', '2016-10-05', '2016-10-05' , 1 );
-insert into msched.block(id, name, start_date, end_date, entry_id) values (2, 'November', '2016-11-05', '2016-11-05' , 1 );
-insert into msched.block(id, name, start_date, end_date, entry_id) values (3, 'December', '2016-12-05', '2016-12-22' , 1 );
-insert into msched.block(id, name, start_date, end_date, entry_id) values (4, 'January', '2017-01-16', '2017-09-05' , 1 );
-insert into msched.block(id, name, start_date, end_date, entry_id) values (5, 'February', '2017-02-10', '2017-09-05' , 1 );
+--insert into msched.block(id, name, start_date, end_date, entry_id) values (1, 'October', '2016-10-05', '2016-10-05' , 1 );
+--insert into msched.block(id, name, start_date, end_date, entry_id) values (2, 'November', '2016-11-05', '2016-11-05' , 1 );
+--insert into msched.block(id, name, start_date, end_date, entry_id) values (3, 'December', '2016-12-05', '2016-12-22' , 1 );
+--insert into msched.block(id, name, start_date, end_date, entry_id) values (4, 'January', '2017-01-16', '2017-09-05' , 1 );
+--insert into msched.block(id, name, start_date, end_date, entry_id) values (5, 'February', '2017-02-10', '2017-09-05' , 1 );
 --Table Course
 insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (1, 425,'SWE', 'Software Engineering', null);
 insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (2, 403,'DBMS', 'Database Management', null);
@@ -47,15 +47,15 @@ insert into msched.course(id, course_code, course_name, description, pre_reqiusi
 insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (8, 390,'FPP', 'Fundamental Programming Practices', null);
 
 
-insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (1, 25, 15, 1, 3, 1);
-insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (2, 25, 15, 1, 4, 2);
-insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (3, 25, 15, 1, 2, 3);
-insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (4, 25, 15, 1, 1, 4);
+--insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (1, 25, 15, 1, 3, 1);
+--insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (2, 25, 15, 1, 4, 2);
+--insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (3, 25, 15, 1, 2, 3);
+--insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (4, 25, 15, 1, 1, 4);
 
-insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (5, 25, 15, 2, 3, 1);
-insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (6, 25, 15, 2, 4, 2);
-insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (7, 25, 15, 2, 2, 3);
-insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (8, 25, 15, 2, 1, 4);
+--insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (5, 25, 15, 2, 3, 1);
+--insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (6, 25, 15, 2, 4, 2);
+--insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (7, 25, 15, 2, 2, 3);
+--insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (8, 25, 15, 2, 1, 4);
 
 --faculty prefered block
 --INSERT INTO msched.prefered_blocks (faculty_faculty_id, prefered_blocks) VALUES (1, 1);

@@ -58,7 +58,7 @@
 				</c:if>
 			</c:forEach>
 		</table>		
-		<form:button class="btn btn-default" value="Update" name="submit">Submit</form:button>
+		<form:button class="btn btn-default" value="Update" name="submit">Save</form:button>
 	</form:form>
 </body>
 </html>
