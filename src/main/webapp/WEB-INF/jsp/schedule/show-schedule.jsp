@@ -33,7 +33,7 @@
 
                     </c:when>
                     <c:otherwise>
-                        <span class="label label-primary"> ${section.faculty.firstName}</span>
+                        <span class="label label-primary"> ${section.faculty.lastName}</span>
 
                     </c:otherwise>
                 </c:choose>
