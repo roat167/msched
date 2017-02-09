@@ -1,8 +1,13 @@
 package edu.mum.swe.msched.web;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +51,23 @@ public class SectionController extends GenericController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String addOrUpdateSection(@ModelAttribute(MODEL_ATTRIBUTE) Section section, Model model) {
+	public String addOrUpdateSection(@ModelAttribute(MODEL_ATTRIBUTE) @Valid Section section, BindingResult result, Model model) {
+		
+		model.addAttribute("blockList", blockService.getAllBlocks());
+		model.addAttribute("courseList", courseService.getAllCourses());
+		model.addAttribute("facultyList", facultyService.getAllFacultys());
+
+		
+		if (result.hasErrors()) {
+			return getView(model, VIEW_FORM);
+		}
+		
+		List<Section> duplicateSections = sectionService.findSectionByFacultyAndBlock(section.getFaculty(), section.getBlock());
+		if (duplicateSections != null && duplicateSections.size() > 0) {
+			setMessage(model, "Prof. " + section.getFaculty().getFullName() + " has already taken that block!");
+			return getView(model, VIEW_FORM);
+		}
+		
 		if (section.getSectionId() != null) {
 			sectionService.saveSection(section);
 		} else {

@@ -83,7 +83,7 @@
 			<form:errors cssClass="error" path="entry" cssStyle="color:red" />
 			<br>	
 			Entry:
-			<form:select class="form-control" path = "entry" items = "${entryList}" itemValue="entryId" itemLabel="name"/>
+			<form:select class="form-control" path = "entry" items = "${entryList}" itemValue="entryId" itemLabel="entryDate"/>
 			<br>
 	
 			<form:button class="btn btn-default" value="SignUp" name="submit">Submit</form:button>

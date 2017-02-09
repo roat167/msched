@@ -52,7 +52,7 @@ Gender:
 		<form:errors path="user.phoneNo" cssStyle="color:red" />
 		<br>			
 Phone No:
-<form:input class="form-control" path="user.phoneNo" type="text" required = "required"/>
+<form:input class="form-control" path="user.phoneNo" type="number" required = "required"/>
 		<br>
 
 		<form:errors path="user.email" cssStyle="color:red" />
@@ -65,7 +65,7 @@ Email:
 		<form:errors path="snn" cssStyle="color:red" />
 		<br>
 SSN:
-<form:input class="form-control" path="snn" type="text" />
+<form:input class="form-control" path="snn" type="number" />
 		<br>
 
 		<form:errors path="startWorkDate" cssStyle="color:red" />

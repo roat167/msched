@@ -15,4 +15,5 @@ public interface SectionService {
 	void deleteSection(long id);
 	List<Section> findAvailabeSection(Block block);
 	List<Section> findSectionByFacultyId(Faculty faculty);
+	List<Section> findSectionByFacultyAndBlock(Faculty faculty, Block block);
 }

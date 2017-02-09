@@ -94,5 +94,11 @@ public class Course {
 		}
 		return false;
 	}
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", courseName=" + courseName + ", courseCode=" + courseCode + ", description="
+				+ description + ", preReqiusite=" + preReqiusite + ", targetBlocks=" + targetBlocks + "]";
+	}
 	
 }

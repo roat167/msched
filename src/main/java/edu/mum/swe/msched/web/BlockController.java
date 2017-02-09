@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import edu.mum.swe.msched.domain.Block;
 import edu.mum.swe.msched.service.BlockService;
@@ -35,10 +34,8 @@ public class BlockController extends GenericController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(@RequestParam long id, Model model) {
-
+		model.addAttribute("entries", entryService.getAllEntries());	
 		Block block = blockService.findByName(id);
-
-		//Block block = blockService.findById(id);
 
 		model.addAttribute(MODEL_ATTRIBUTE, block);
 		return getView(model, VIEW_FORM);
@@ -80,7 +77,6 @@ public class BlockController extends GenericController {
 		model.addAttribute("id", id);
 		model.addAttribute("blocks", blockService.getAllBlocks());
 		return getView(model, VIEW_LIST);
-		//return new ModelAndView(getView(model, VIEW_LIST), "command", new Block());
 	}
 
 }

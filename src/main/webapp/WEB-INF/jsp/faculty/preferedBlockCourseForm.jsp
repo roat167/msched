@@ -49,7 +49,7 @@ Preferred Courses:
 		 	<c:forEach var = "course" items = "${courseList}">
 		 	<tr>
 		 		<td>
-		 			<form:checkbox path = "courses" value = "${course.id}" checked="${courses.contains(course)?\"selected\":\"\"}"/>
+		 			<form:checkbox path = "courses" value = "${course}" checked="${courses.contains(course)?\"selected\":\"\"}"/>
 		 			<!-- ${courses.contain(course)?"selected":""} -->
 		 		</td>
 		 		<td>
