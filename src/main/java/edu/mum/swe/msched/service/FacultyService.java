@@ -3,6 +3,7 @@ package edu.mum.swe.msched.service;
 import java.util.List;
 
 import edu.mum.swe.msched.domain.Faculty;
+import edu.mum.swe.msched.enumeration.PREFERED_BLOCK;
 
 public interface FacultyService {
 	Faculty findFacultyById(long i);
@@ -13,5 +14,5 @@ public interface FacultyService {
 	void saveFaculty(Faculty faculty);
 	void updateFaculty(Long id, Faculty faculty);
 	void deleteFaculty(Long id);
-	List<Faculty> findFacultyByPreferedBlock(int BlockNo);
+	List<Faculty> findFacultyByPreferedBlock(PREFERED_BLOCK preferedBlock);
 }

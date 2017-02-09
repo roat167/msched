@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <br>
-<span class="PageTitle"> Schedule for: ${entry.name}</span> <a href="/generate-schedule">back to list</a>
+<fmt:formatDate type="date" pattern="MMM YYYY" var="entryDate" value="${entry.entryDate}"/>
+<span class="PageTitle"> Schedule for: ${entryDate}</span> <a href="/generate-schedule">back to list</a>
 <style type="text/css">
     .tg  {border-collapse:collapse;border-spacing:0;}
     .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}

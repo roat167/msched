@@ -13,7 +13,7 @@ insert into msched.user(user_id,username, password, enabled, role, email) values
 
 --Admin
 insert into msched.admin(admin_id, first_name, last_name, user_id) values (1, 'Khemroat', 'Loem', 1);
-insert into msched.admin(admin_id, first_name, last_name, user_id) values (1, 'Feven', 'E', 5);
+insert into msched.admin(admin_id, first_name, last_name, user_id) values (2, 'Feven', 'E', 5);
 --Faculty
 insert into msched.faculty(faculty_id, first_name, last_name, user_id) values (1, 'Dora', 'Kheiv', 9);
 insert into msched.faculty(faculty_id, first_name, last_name, user_id) values (2, 'Sean', 'Cake', 3);
@@ -21,10 +21,10 @@ insert into msched.faculty(faculty_id, first_name, last_name, user_id) values (3
 insert into msched.faculty(faculty_id, first_name, last_name, user_id) values (4, 'Steve', 'Nolle', 8);
 
 --Entry
-insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(1, 'August 2016', '2016-08-05', 50, 20, 50, 10, 10);
-insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(2, 'October 2016', '2016-10-28', 50, 20, 50, 10, 10);
-insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(3, 'January 2017', '2017-01-30', 50, 20, 50, 10, 10);
-insert into msched.entry(entry_id, name, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(4, 'maharishi', '2017-01-30', 10, 10, 05, 0, 0);
+insert into msched.entry(entry_id, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(1, '2016-08-05', 50, 20, 50, 10, 10);
+insert into msched.entry(entry_id, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(2, '2016-10-28', 50, 20, 50, 10, 10);
+insert into msched.entry(entry_id, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(3, '2017-01-30', 50, 20, 50, 10, 10);
+insert into msched.entry(entry_id, entry_date, fpp_student_num, local_student_num, mpp_student_num, percent_ofcpt, percent_ofopt) values(4, '2017-08-30', 10, 10, 05, 0, 0);
 
 --Student 
 insert into msched.student(student_id, first_name, last_name, user_id) values (1, 'Pukar', 'M', 6);
@@ -37,14 +37,14 @@ insert into msched.block(id, name, start_date, end_date, entry_id) values (3, 'D
 insert into msched.block(id, name, start_date, end_date, entry_id) values (4, 'January', '2017-01-16', '2017-09-05' , 1 );
 insert into msched.block(id, name, start_date, end_date, entry_id) values (5, 'February', '2017-02-10', '2017-09-05' , 1 );
 --Table Course
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (1, 'cs425','SWE', 'Software Engineering', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (2, 'cs401','DBMS', 'Database Management', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs402','WAP', 'Web Programming', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (4, 'cs501','WAA', 'Web Application Architecture', 3);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (5, 'cs502','Big Data', 'Big Data', 2);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (6, 'cs503','EA', 'Enterprise Architecture', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (7, 'cs401','MPP', 'Modern Programming Practices', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (8, 'cs390','FPP', 'Fundamental Programming Practices', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (1, 425,'SWE', 'Software Engineering', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (2, 403,'DBMS', 'Database Management', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 402,'WAP', 'Web Programming', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (4, 501,'WAA', 'Web Application Architecture', 3);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (5, 502,'Big Data', 'Big Data', 2);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (6, 503,'EA', 'Enterprise Architecture', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (7, 401,'MPP', 'Modern Programming Practices', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (8, 390,'FPP', 'Fundamental Programming Practices', null);
 
 
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (1, 25, 15, 1, 3, 1);
@@ -56,17 +56,6 @@ insert into msched.section(section_id, max_capacity, min_capacity, block_id, cou
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (6, 25, 15, 2, 4, 2);
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (7, 25, 15, 2, 2, 3);
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (8, 25, 15, 2, 1, 4);
-
---Table faculty_course
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs301','DBMS', 'Database Management', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs472','WAP', 'Web programming', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs435','Algorithm', 'algorithm', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs425','SWE', 'Software Engineering', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs544','EA', 'Enterprise Architecture', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs565','WAA', 'web programming architecture', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs402','MPP', 'Modern programming', null);
-insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs401','FPP', 'Fundamental programming', null);
-
 
 --faculty prefered block
 INSERT INTO `msched`.`prefered_blocks` (`faculty_faculty_id`, `prefered_blocks`) VALUES ('1', '1');

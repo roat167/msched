@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import edu.mum.swe.msched.dao.FacultyDao;
 import edu.mum.swe.msched.domain.Faculty;
+import edu.mum.swe.msched.enumeration.PREFERED_BLOCK;
 import edu.mum.swe.msched.service.FacultyService;
 
 @Service
@@ -17,8 +18,8 @@ public class FacultyServiceImpl implements FacultyService{
 
 
 	@Override
-	public List<Faculty> findFacultyByPreferedBlock(int BlockNo) {
-		return facultyDao.findByPreferedBlocks(BlockNo);
+	public List<Faculty> findFacultyByPreferedBlock(PREFERED_BLOCK preferedBlock) {
+		return facultyDao.findByPreferedBlocks(preferedBlock);
 	}
 
 

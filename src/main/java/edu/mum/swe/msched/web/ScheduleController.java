@@ -1,9 +1,14 @@
 package edu.mum.swe.msched.web;
 
-import edu.mum.swe.msched.FacultyNotEnoughException;
-import edu.mum.swe.msched.constants.Constants;
-import edu.mum.swe.msched.domain.*;
-import edu.mum.swe.msched.service.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.*;
-import java.text.SimpleDateFormat;
+import edu.mum.swe.msched.FacultyNotEnoughException;
+import edu.mum.swe.msched.constants.Constants;
+import edu.mum.swe.msched.domain.Block;
+import edu.mum.swe.msched.domain.Course;
+import edu.mum.swe.msched.domain.Entry;
+import edu.mum.swe.msched.domain.Faculty;
+import edu.mum.swe.msched.domain.Schedule;
+import edu.mum.swe.msched.domain.Section;
+import edu.mum.swe.msched.enumeration.PREFERED_BLOCK;
+import edu.mum.swe.msched.service.CourseService;
+import edu.mum.swe.msched.service.EntryService;
+import edu.mum.swe.msched.service.FacultyService;
+import edu.mum.swe.msched.service.ScheduleService;
 
 /**
  * Created by acer-usrpu on 1/30/2017.
@@ -31,13 +47,7 @@ public class ScheduleController extends GenericController {
     private EntryService entryService;
 
     @Autowired
-    private ScheduleService scheduleService;
-
-    @Autowired
-    private BlockService blockService;
-
-    @Autowired
-    private SectionService sectionService;
+    private ScheduleService scheduleService;	
 
     @Autowired
     private FacultyService facultyService;
@@ -123,7 +133,7 @@ public class ScheduleController extends GenericController {
 
         int requiredSection = (int) Math.ceil((double)totalStudents/Constants.STUDENT_PER_SECTION);
 
-        List<Faculty> availableFaculties = facultyService.findFacultyByPreferedBlock(monthNo);
+        List<Faculty> availableFaculties = facultyService.findFacultyByPreferedBlock(PREFERED_BLOCK.values()[monthNo-1])	;
         System.out.println("block:"+blockNo+" month:"+monthNo+" reqBlo:"+requiredSection);
         System.out.println("students:"+totalStudents+",sections:"+requiredSection+"facul:"+availableFaculties);
 

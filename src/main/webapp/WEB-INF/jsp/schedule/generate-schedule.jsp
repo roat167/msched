@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <br>
 
 <div class="col-lg-12">
@@ -9,7 +10,8 @@
         <div class="col-sm-4">
     <select class="form-control " name="entryId">
     <c:forEach var="entry" items="${entries}">
-        <option value="${entry.entryId}">${entry.name}</option>
+   		<fmt:formatDate type="date" pattern="MMM YYYY" var="entryDate" value="${entry.entryDate}"/>
+        <option value="${entry.entryId}">${entryDate}</option>
     </c:forEach>
     </select>
         </div>
@@ -29,7 +31,8 @@
         <li class="list-group-item list-group-item-info"><b>List of Schedules:</b></li>
 
         <c:forEach var="schedule" items="${schedules}">
-        <li class="list-group-item"><a href="/view-schedule?entryId=${schedule.entry.entryId}">${schedule.entry.name}</a></li>
+        <fmt:formatDate type="date" pattern="MMM YYYY" var="entryDate" value="${schedule.entry.entryDate}"/>
+        <li class="list-group-item"><a href="/view-schedule?entryId=${schedule.entry.entryId}">${entryDate}</a></li>
         </c:forEach>
 
     </ul>
