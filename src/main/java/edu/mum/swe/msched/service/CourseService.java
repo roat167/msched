@@ -11,7 +11,7 @@ import edu.mum.swe.msched.domain.Course;
 public interface CourseService {
 	List<Course> getAllCourses();
 
-	List<Course> findByCourseName(String name);
+	Course findByCourseName(String name);
 
 	public void updateCourse(Course course);
 

@@ -23,9 +23,10 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public List<Course> findByCourseName(String name) {
+	public Course findByCourseName(String name) {
 		// TODO Auto-generated method stub
-		return courseDao.findByCourseName(name);
+		List<Course> courses  = courseDao.findByCourseName(name);
+		return courses.size() > 0 ? courses.get(0) : null;
 	}
 
 	@Override

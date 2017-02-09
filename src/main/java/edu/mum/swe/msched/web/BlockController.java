@@ -54,8 +54,16 @@ public class BlockController extends GenericController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String save(@Valid @ModelAttribute(MODEL_ATTRIBUTE) Block block ,BindingResult result, Model model) {
 		if(result.hasErrors()){
+			model.addAttribute("entries", entryService.getAllEntries());
 			return getView(model, VIEW_FORM);
 		}
+		
+		if (!block.getEndDate().after(block.getStartDate())) {
+			setMessage(model, "End date should be after start date");
+			model.addAttribute("entries", entryService.getAllEntries());
+			return getView(model, VIEW_FORM);
+		}
+		
 		System.out.println("calling add Post");
 		blockService.saveBlock(block);
 		model.addAttribute("block", block);
@@ -64,14 +72,15 @@ public class BlockController extends GenericController {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public ModelAndView delete(@RequestParam long id, Model model) {
+	public String delete(@RequestParam long id, Model model) {
 		setMessage(model, "Selected item deleted successfully");
 
 		blockService.deleteBlock(id);
 
 		model.addAttribute("id", id);
-		model.addAttribute("courses",blockService.getAllBlocks());
-		return new ModelAndView(getView(model, VIEW_LIST), "command", new Block());
+		model.addAttribute("blocks", blockService.getAllBlocks());
+		return getView(model, VIEW_LIST);
+		//return new ModelAndView(getView(model, VIEW_LIST), "command", new Block());
 	}
 
 }

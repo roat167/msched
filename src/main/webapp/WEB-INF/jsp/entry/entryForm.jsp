@@ -14,31 +14,31 @@
 		<br>
 	Entry Date:
 	<form:input class="form-control datepicker" placeholder="Entry Date"
-			path="entryDate" type="text" />
+			path="entryDate" type="text"/>
 		<br>
-		<form:errors path="entryDate" cssStyle="color:red" />
+		<form:errors path="entryDate" cssClass="error" cssStyle="color:red" />
 		<br>
 		<br>
 
 	MPP No:
 	<form:input class="form-control " placeholder="Mpp Number"
-			path="mppStudentNum" type="text" />
+			path="mppStudentNum" type="text" required = "required"/>
 		<br>
-		<form:errors path="mppStudentNum" cssStyle="color:red" />
+		<form:errors path="mppStudentNum" cssClass="error" cssStyle="color:red" />
 		<br>
 		<br>
 
 	FPP No:
-	<form:input class="form-control " placeholder="Fpp Number"
+	<form:input class="form-control " placeholder="Fpp Number" required = "required"
 			path="fppStudentNum" type="text" />
 		<br>
-		<form:errors path="fppStudentNum" cssStyle="color:red" />
+		<form:errors path="fppStudentNum" cssClass="error" cssStyle="color:red" />
 		<br>
    CPT %:
-	<form:input class="form-control" placeholder="CPT" path="percentOfCPT"
+	<form:input class="form-control" placeholder="CPT" path="percentOfCPT" 
 			type="text" />
 		<br>
-		<form:errors path="percentOfCPT" cssStyle="color:red" />
+		<form:errors path="percentOfCPT" cssClass="error"  cssStyle="color:red" />
 		<br>
 		<br>
 		
@@ -46,7 +46,7 @@
 	<form:input class="form-control " placeholder="OPT" path="percentOfOPT"
 			type="text" />
 		<br>
-		<form:errors path="percentOfOPT" cssStyle="color:red" />
+		<form:errors path="percentOfOPT" cssClass="error" cssStyle="color:red" />
 		<br>
 		<br>
 	US Student No:
@@ -57,8 +57,6 @@
 		<br>
 		<br>
 
-
-		<form:input path="entryId" type="hidden" />
 		<form:button class="btn btn-default" value="SignUp" name="submit">Submit</form:button>
 	</form:form>
 

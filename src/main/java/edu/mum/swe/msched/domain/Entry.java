@@ -30,19 +30,13 @@ public class Entry {
 	@OrderBy(value = "startDate")
 	private List<Block> blocks = new ArrayList<Block>();
 	@NotNull
-	@Range(min = 1, max = 100000)
+	@Range(min = 1, max = 1000)
 	private int mppStudentNum;
 	@NotNull
-	@Range(min = 1, max = 100000)
+	@Range(min = 1, max = 1000)
 	private int fppStudentNum;
-	@NotNull
-	@Range(min = 1, max = 100000)
 	private double percentOfCPT;
-	@NotNull
-	@Range(min = 1, max = 100000)
 	private double percentOfOPT;
-	@NotNull
-	@Range(min = 1, max = 100000)
 	private int localStudentNum;
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "MM/dd/yyyy")

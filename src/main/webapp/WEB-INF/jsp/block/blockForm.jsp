@@ -14,9 +14,9 @@
 		<input name="id" type="hidden" value="${block.id}">
 
 		<br>			
-Entry Name:
+Entry:
 <form:select class="form-control" path="entry" items="${entries}"
-			itemValue="entryId" itemLabel="name" />
+			itemValue="entryId" itemLabel="entryDate" required ="required"/>
 		<br>
 
 		<form:errors path="entry" cssStyle="color:red" />

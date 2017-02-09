@@ -84,4 +84,15 @@ public class Course {
 		this.targetBlocks = targetBlocks;
 	}
 
+	public boolean mEquals(Course course) {
+		if (course  == null) {
+			return false;
+		}
+		if ((this.getId() == null || this.getId() != course.getId()) && 
+				(this.getCourseName().equals(course.getCourseName()) || this.getCourseCode() == course.getCourseCode())) {
+			return true;
+		}
+		return false;
+	}
+	
 }

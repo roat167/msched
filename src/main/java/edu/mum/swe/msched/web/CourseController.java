@@ -50,12 +50,27 @@ public class CourseController extends GenericController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-
 	public String save(@ModelAttribute(MODEL_ATTRIBUTE) @Valid Course course, BindingResult result,Model model) {
 
 		if (result.hasErrors()) {
 			return getView(model, VIEW_FORM);
 		}
+		
+		if (course.mEquals(courseService.findByCourseCode(course.getCourseCode()))) {
+			setMessage(model, "Duplicate couse!");
+			return getView(model, VIEW_FORM);
+		}
+		
+		if (course.mEquals(courseService.findByCourseName(course.getCourseName()))) {
+			setMessage(model, "Duplicate couse!");
+			return getView(model, VIEW_FORM);			
+		}
+		
+		if (course.getId() != null && course.mEquals(courseService.findByCourseId(course.getId()))) {
+			setMessage(model, "Duplicate course!");
+			return getView(model, VIEW_FORM);
+		}
+		
 		System.out.println("calling add Post");
 		courseService.updateCourse(course);
 		model.addAttribute("course", course);

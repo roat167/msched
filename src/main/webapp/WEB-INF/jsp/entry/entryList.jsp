@@ -17,7 +17,7 @@
 <div class="listing Box">
 	<table class="sortable" id='tblList'>
 	<tr>		
-		<th>Name</th>
+	
 		<th>Enroll Date</th>
 		<th>MPP StuNo</th>
 		<th>FFP StuNo</th>
@@ -29,7 +29,7 @@
 	<c:forEach var="entry" items="${entries}">
 		<tr>
 		<fmt:formatDate value="${block.startDate}" var="entryName" pattern="MMM yyyy" />
-			<td>${entryName}</td>
+		
 			<td>${entry.displayEntryDate}</td>
 			<td>${entry.mppStudentNum}</td>
 			<td>${entry.fppStudentNum}</td>

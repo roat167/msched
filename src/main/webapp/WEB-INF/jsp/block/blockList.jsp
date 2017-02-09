@@ -26,7 +26,9 @@
 			</tr>
 			<c:forEach var="block" items="${blocks}">
 				<tr>
-					<td>${block.entry.name}</td>
+					<fmt:formatDate value="${block.entry.entryDate}" var="entryDate"
+						pattern="MMM/dd/yyyy" />
+					<td>${entryDate}</td>
 					<td>${block.name}</td>
 					<fmt:formatDate value="${block.startDate}" var="startDate"
 						pattern="MMM/dd/yyyy" />
