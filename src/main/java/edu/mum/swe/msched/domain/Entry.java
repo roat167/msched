@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import edu.mum.swe.msched.util.CustomDateFormatter;
+import edu.mum.swe.msched.util.SectionDao;
 
 @Entity
 public class Entry {
@@ -109,7 +109,7 @@ public class Entry {
 	}
 
 	public String getDisplayEntryDate() {
-		return CustomDateFormatter.displayDateFormat(entryDate);
+		return SectionDao.displayDateFormat(entryDate);
 	}
 
 	public void setDisplayEntryDate(String displayEntryDate) {

@@ -11,7 +11,7 @@
 	<br>
 	<span class="PageTitle">&nbsp; Block Details</span>
 	<form:form modelAttribute="block" action="/block/add" method="post">
-		<input name="id" type="hidden" value="${block.id}">
+		<input name="id" type="hidden" value="${block.id} + ${block.startDate}">
 
 		<br>			
 Entry:

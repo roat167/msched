@@ -1,5 +1,7 @@
 package edu.mum.swe.msched.web;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +59,12 @@ public class SectionController extends GenericController {
 
 		
 		if (result.hasErrors()) {
+			return getView(model, VIEW_FORM);
+		}
+		
+		List<Section> duplicateSections = sectionService.findSectionByFacultyAndBlock(section.getFaculty(), section.getBlock());
+		if (duplicateSections != null && duplicateSections.size() > 0) {
+			setMessage(model, "Prof. " + section.getFaculty().getFullName() + " has already taken that block!");
 			return getView(model, VIEW_FORM);
 		}
 		

@@ -22,6 +22,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
 import edu.mum.swe.msched.enumeration.GENDER;
 import edu.mum.swe.msched.enumeration.PREFERED_BLOCK;
@@ -35,7 +36,9 @@ public class Faculty {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long facultyId;
+	@NotNull
 	private String firstName;
+	@NotNull
 	private String lastName;
 	@Enumerated(EnumType.ORDINAL)
 	private GENDER gender;

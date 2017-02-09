@@ -53,5 +53,11 @@ public class SectionServiceImpl implements SectionService {
 		return sectionDao.findSectionByFacultyId(faculty);
 	}
 
+	@Override
+	public List<Section> findSectionByFacultyAndBlock(Faculty faculty, Block block) {
+		// TODO Auto-generated method stub
+		return sectionDao.findSectionByFacultyAndSection(faculty, block);
+	}
+
 	
 }

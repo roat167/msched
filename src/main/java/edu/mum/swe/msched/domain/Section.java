@@ -30,7 +30,7 @@ public class Section {
 	@Range(min = 1, max = 15)
 	private int minCapacity;
 	@NotNull
-	@Range(min = 10, max = 50)
+	@Range(min = 15, max = 50)
 	private int maxCapacity;
 	@Column(name = "total_student", columnDefinition = "int default 0")	
 	private int totalStudent;
