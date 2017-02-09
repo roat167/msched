@@ -11,8 +11,8 @@
 	<br>
 	<span class="PageTitle">&nbsp; Block Details</span>
 	<form:form modelAttribute="block" action="/block/add" method="post">
-		<input name="id" type="hidden" value="${block.id} + ${block.startDate}">
-
+		<input name="id" type="hidden" >
+<%-- value="${block.id} + ${block.startDate}" --%>
 		<br>			
 Entry:
 <form:select class="form-control" path="entry" items="${entries}"
