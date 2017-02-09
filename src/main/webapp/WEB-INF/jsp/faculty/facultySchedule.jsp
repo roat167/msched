@@ -20,7 +20,7 @@
 	<div class="listing Box">
 		<table class="sortable" id='tblList'>
 		<tr>		
-			<th width='150px'>Entry</th>
+			
 			<th width='100px'>Block</th>
 			<th width=100px'>Course</th>
 			<th width='90px'>Start Date</th>
@@ -30,7 +30,7 @@
 		
 		<c:forEach var="section" items="${faculty.sections}">
 		<tr>
-			<td>${section.block.entry.name}</td>
+			
 			<td>${section.block.name}</td>
 			<td>${section.course.courseName}</td>
 			
