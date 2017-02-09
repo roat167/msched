@@ -59,9 +59,9 @@ public class FacultyServiceImpl implements FacultyService{
 	}
 
 	@Override
-	public void updateFaculty(Long id, Faculty faculty) {
+	public Faculty updateFaculty(Long id, Faculty faculty) {
 		// TODO Auto-generated method stub
-		facultyDao.save(faculty);
+		return facultyDao.save(faculty);
 	}
 
 	@Override

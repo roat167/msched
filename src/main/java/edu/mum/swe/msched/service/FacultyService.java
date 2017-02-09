@@ -12,7 +12,7 @@ public interface FacultyService {
 	List<Faculty> findFacultyByLastName(String lastName);
 	List<Faculty> getAllFacultys();
 	void saveFaculty(Faculty faculty);
-	void updateFaculty(Long id, Faculty faculty);
+	Faculty updateFaculty(Long id, Faculty faculty);
 	void deleteFaculty(Long id);
 	List<Faculty> findFacultyByPreferedBlock(PREFERED_BLOCK preferedBlock);
 }

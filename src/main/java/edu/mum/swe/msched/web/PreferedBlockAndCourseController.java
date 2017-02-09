@@ -43,10 +43,10 @@ public class PreferedBlockAndCourseController extends GenericController {
     public String addPreferedBlockAndCourse(@ModelAttribute(MODEL_ATTRIBUTE) Faculty faculty, Model model) {
         System.out.println("Save prefered block and course!!!");
         if (faculty != null && faculty.getFacultyId() != null) {
-            facultyService.updateFaculty(faculty.getFacultyId(), faculty);
+            faculty = facultyService.updateFaculty(faculty.getFacultyId(), faculty);
             
             //faculty.getCourses().forEach(System.out::print);
-        }
+        }      
         model.addAttribute(MODEL_ATTRIBUTE, faculty);
         model.addAttribute("courseList",courseService.getAllCourses());        
         model.addAttribute("preferedBlockList", PreferedBlockHelper.getPreferedBlockList());        
