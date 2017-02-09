@@ -10,52 +10,55 @@
 	<br>
 	<span class="PageTitle">&nbsp; Entry Details</span>
 	<form:form modelAttribute="entry" action="/entry/add" method="post">
-		<input name="id" type="hidden" value="${entry.entryId}">
-		<form:errors path="name" cssStyle="color:red" />
+		<input name="entryId" type="hidden" value="${entry.entryId}">
 		<br>
-		<spring:message code="message.name" text="Name" />
-		<form:input class="form-control" placeholder="" path="name"	type="text" />
-
+	Entry Date:
+	<form:input class="form-control datepicker" placeholder="Entry Date"
+			path="entryDate" type="text" />
 		<br>
-
-		<form:errors path="displayEntryDate" cssStyle="color:red" />
-		<br>		
-		<spring:message code="message.entryDate" text="Date mm/dd/yyyy" />
-		<form:input class="form-control datepicker" placeholder="" path="entryDate" type="text" />
-
+		<form:errors path="entryDate" cssStyle="color:red" />
+		<br>
 		<br>
 
+	MPP No:
+	<form:input class="form-control " placeholder="Mpp Number"
+			path="mppStudentNum" type="text" />
+		<br>
 		<form:errors path="mppStudentNum" cssStyle="color:red" />
 		<br>
-		<spring:message code="message.mppStudentNum" text="MPP No:" />
-		<form:input class="form-control" placeholder="" path="mppStudentNum" type="text" />
 		<br>
 
+	FPP No:
+	<form:input class="form-control " placeholder="Fpp Number"
+			path="fppStudentNum" type="text" />
+		<br>
 		<form:errors path="fppStudentNum" cssStyle="color:red" />
 		<br>
-FPP No: 
-  <form:input class="form-control" placeholder="" path="fppStudentNum"
-			type="number" />
+   CPT %:
+	<form:input class="form-control" placeholder="CPT" path="percentOfCPT"
+			type="text" />
 		<br>
-
-		<form:errors path="percentOfCPT" cssStyle="color:red"></form:errors>
+		<form:errors path="percentOfCPT" cssStyle="color:red" />
 		<br>
-CPT %:
-<form:input class="form-control" placeholder="" path="percentOfCPT"	type="number" />
 		<br>
-
+		
+	OPT %:
+	<form:input class="form-control " placeholder="OPT" path="percentOfOPT"
+			type="text" />
+		<br>
 		<form:errors path="percentOfOPT" cssStyle="color:red" />
-		<br>	
-OPT %:
-<form:input class="form-control" path="percentOfOPT" type="number" />
+		<br>
+		<br>
+	US Student No:
+	<form:input class="form-control " placeholder="US Student No"
+			path="localStudentNum" type="text" />
+		<br>
+		<form:errors path="localStudentNum" cssStyle="color:red" />
+		<br>
 		<br>
 
-		<form:errors path="localStudentNum" cssStyle="color:red" />
-		<br>	
-US Student No:
-<form:input class="form-control" path="localStudentNum" type="text" />
-		<br>
-<form:input path="entryId" type="hidden" />
+
+		<form:input path="entryId" type="hidden" />
 		<form:button class="btn btn-default" value="SignUp" name="submit">Submit</form:button>
 	</form:form>
 

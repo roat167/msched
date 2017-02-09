@@ -11,6 +11,7 @@
 	<br>
 	<br>
 	<span class="PageTitle">&nbsp; Faculty Course and Block</span>
+	
 	<form:form modelAttribute="faculty" action="/faculty/prefered_block_course/edit" method="post">
 		<input name="facultyId" type="hidden" value="${faculty.facultyId}">
 
@@ -26,7 +27,7 @@ Preferred Blocks:
 		 	<c:forEach var = "preferedBlock" items = "${preferedBlockList}">
 		 	<tr>
 		 		<td>
-		 			<form:checkbox path = "preferedBlocks" value = "${preferedBlock}" checked="${preferedBlocks.contains(preferedBlock)?\"checked\":\"\"}" />
+		 			<form:checkbox path = "preferedBlocks" value = "${preferedBlock}" checked="${preferedBlocks.contains(preferedBlock)?\"selected\":\"\"}" />
 		 			<!-- ${perferedBlocks.contains(preferedBlock)?"selected":"" } -->
 		 		</td>
 		 		<td>
@@ -48,7 +49,7 @@ Preferred Courses:
 		 	<c:forEach var = "course" items = "${courseList}">
 		 	<tr>
 		 		<td>
-		 			<form:checkbox path = "courses" value = "${course}" checked="${courses.contains(course)?\"checked\":\"\"}"/>
+		 			<form:checkbox path = "courses" value = "${course}" checked="${courses.contains(course)?\"selected\":\"\"}"/>
 		 			<!-- ${courses.contain(course)?"selected":""} -->
 		 		</td>
 		 		<td>

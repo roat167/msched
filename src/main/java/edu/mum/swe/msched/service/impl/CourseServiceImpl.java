@@ -29,7 +29,7 @@ public class CourseServiceImpl implements CourseService{
 	}
 
 	@Override
-	public List<Course> findByCourseCode(String code) {
+	public Course findByCourseCode(int code) {
 		// TODO Auto-generated method stub
 		return courseDao.findByCourseCode(code);
 	}

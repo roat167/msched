@@ -40,29 +40,15 @@
 
 		<br>
 PreRequisite:
-		<form:select path="preReqiusite" items="${courses}" itemValue="id"
-			itemLable="courseName">
+		<form:select class="form-control" path="preReqiusite">
+			<form:option value="-1">--Please Select--</form:option>
+			<form:options items="${courses}" itemValue="id" itemLabel="courseName" />
 		</form:select>
-		<!-- <select class="form-control">
-			<option value="WAP">WAP</option>
-			<option value="WAA">WAA</option>
-			<option value="EA">EA</option>
-			<option value="ALGORITHM">ALGORITHM</option>
-			<option value="BIG DATA">BIG DATA</option>
-			<option value="DATABASE">DATABASE</option>
-			<option value="ASD">ASD</option>
-		</select> -->
+
 
 
 		<form:errors path="preReqiusite" cssClass="error" cssStyle="color:red"></form:errors>
 		<br>
-
-Target Blocks:
-<form:input class="form-control" placeholder="Target Blocks"
-			required="required" path="targetBlocks" type="text" />
-		<br>
-
-		<form:errors path="targetBlocks" cssStyle="color:red" />
 
 
 		<form:input path="id" type="hidden" />

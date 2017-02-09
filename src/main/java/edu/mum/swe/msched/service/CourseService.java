@@ -13,8 +13,6 @@ public interface CourseService {
 
 	List<Course> findByCourseName(String name);
 
-	List<Course> findByCourseCode(String code);
-
 	public void updateCourse(Course course);
 
 	public Course findByCourseId(Long id);
@@ -22,4 +20,6 @@ public interface CourseService {
 	public Course saveCourse(Course course);
 
 	public void deleteCourse(Long id);
+
+	Course findByCourseCode(int code);
 }

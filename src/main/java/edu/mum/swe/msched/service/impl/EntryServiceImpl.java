@@ -14,11 +14,6 @@ import edu.mum.swe.msched.service.EntryService;
 public class EntryServiceImpl implements EntryService {
 	@Autowired 
 	EntryDao entryDao;
-	
-	@Override
-	public List<Entry> findByName(String name) {
-		return entryDao.findByName(name);
-	}
 
 	@Override
 	public List<Entry> getAllEntries() {
