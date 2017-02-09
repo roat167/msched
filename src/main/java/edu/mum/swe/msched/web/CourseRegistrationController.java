@@ -55,10 +55,12 @@ public class CourseRegistrationController extends GenericController {
 			courseRegSubSystem.enrollSections(student, student.getSections());
 		} catch (NoAvailableSeatException e) {
 			setMessage(model, e.getMessage());
+			return getView(model, VIEW_FORM);
 		} catch (PrerequisiteNotSatisfyException pe) {
-			setMessage(model, pe.getMessage());	
+			setMessage(model, pe.getMessage());
+			return getView(model, VIEW_FORM);
 		}
-		return getView(model, VIEW_FORM);
+		return getView(model, VIEW_SCHEDULE);
 	}
 
 	private void populateAttributes(Student student, Model model) {
