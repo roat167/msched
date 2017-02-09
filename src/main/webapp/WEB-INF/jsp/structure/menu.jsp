@@ -54,16 +54,12 @@
                 <sec:authorize access="hasAuthority('FACULTY')">
                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/faculty/schedule') ?'active':'')}">
                        <a  href="${pageContext.request.contextPath}/faculty/schedule">Class Schedule</a>
+                    </li>  
+                                       
+                    <li class="${(not empty view and fn:containsIgnoreCase(view, '/faculty/perferedBlockCourse') ?'active':'')}">
+                       <a  href="${pageContext.request.contextPath}/faculty/perfered_block_course">Choose Block and Course</a>
                     </li>
-                      
-<%--                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/faculty/preferedcourseblock') ?'active':'')}">
-                       <a  href="${pageContext.request.contextPath}/faculty/preferedcourseblock">Course And Block</a>
-                    </li>                   
- --%>
-                     <li class="${(not empty view and fn:containsIgnoreCase(view, '/faculty/perferedBlockCourse') ?'active':'')}">
-                       <a  href="${pageContext.request.contextPath}/faculty/perfered_block_course">Preferred Block and Course</a>
-                    </li>                    
-                </sec:authorize>
+               </sec:authorize>
                 <li><a href="${pageContext.request.contextPath}/welcome">About US</a></li>
                 </ul>
       <!-- right menu  -->     

@@ -36,7 +36,6 @@ public class User implements Serializable {
 	@Email
 	@NotEmpty
 	private String email;
-	@Size(min=10)
 	private String phoneNo;
 	private String address;
 	private Boolean enabled;
