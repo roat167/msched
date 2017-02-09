@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -38,7 +38,7 @@ public class Block {
 	private Set<String> targetElectives = new HashSet<String>(); // might have
 																	// to change
 																	// type
-	@OneToMany(mappedBy = "block")
+	@OneToMany(mappedBy = "block", cascade = CascadeType.ALL)
 	private Set<Section> sections = new HashSet<Section>();
 
 
