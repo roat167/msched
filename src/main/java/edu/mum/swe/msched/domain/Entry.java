@@ -1,8 +1,10 @@
 package edu.mum.swe.msched.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,27 +14,32 @@ import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import edu.mum.swe.msched.util.CustomDateFormatter;
-
-import java.util.ArrayList;
-import javax.persistence.CascadeType;
 
 @Entity
 public class Entry {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long entryId;
-	private String name;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="entry")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "entry")
 	@OrderBy(value = "startDate")
 	private List<Block> blocks = new ArrayList<Block>();
+	@NotNull
+	@Range(min = 1, max = 1000)
 	private int mppStudentNum;
+	@NotNull
+	@Range(min = 1, max = 1000)
 	private int fppStudentNum;
 	private double percentOfCPT;
 	private double percentOfOPT;
 	private int localStudentNum;
-	@Temporal(TemporalType.TIMESTAMP)	
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date entryDate;
 	@Transient
 	private String displayEntryDate;
@@ -43,14 +50,6 @@ public class Entry {
 
 	public void setEntryId(Long entryId) {
 		this.entryId = entryId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public List<Block> getBlocks() {
@@ -108,7 +107,7 @@ public class Entry {
 	public void setEntryDate(Date entryDate) {
 		this.entryDate = entryDate;
 	}
-	
+
 	public String getDisplayEntryDate() {
 		return CustomDateFormatter.displayDateFormat(entryDate);
 	}
@@ -116,6 +115,5 @@ public class Entry {
 	public void setDisplayEntryDate(String displayEntryDate) {
 		this.displayEntryDate = displayEntryDate;
 	}
-
 
 }

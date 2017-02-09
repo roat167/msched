@@ -20,26 +20,26 @@
 	<div class="listing Box">
 		<table class="sortable" id='tblList'>
 		<tr>		
-			<th>Entry</th>
-			<th>Block</th>
-			<th>Course</th>
-			<th>Start Date</th>
+			
+			<th width='100px'>Block</th>
+			<th width=100px'>Course</th>
+			<th width='90px'>Start Date</th>
 			<th>End Date</th>
 			
 		</tr>
 		
 		<c:forEach var="section" items="${faculty.sections}">
 		<tr>
-			<td>${section.block.entry.name}</td>
+			
 			<td>${section.block.name}</td>
 			<td>${section.course.courseName}</td>
 			
 			<fmt:formatDate value="${section.block.startDate}" var="startDate" pattern="MMM/dd/yyyy" />
 			<td>${startDate}</td>			
-			<td> &nbsp;
+			<td> 
 			<fmt:formatDate value="${section.block.endDate}" var="endDate" pattern="MMM/dd/yyyy" />
 			<td>${endDate}</td>			
-			<td> &nbsp;
+			<td> 
 		</td>
 		</tr>
 		</c:forEach>	

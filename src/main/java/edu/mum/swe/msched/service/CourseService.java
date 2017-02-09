@@ -11,9 +11,7 @@ import edu.mum.swe.msched.domain.Course;
 public interface CourseService {
 	List<Course> getAllCourses();
 
-	List<Course> findByCourseName(String name);
-
-	List<Course> findByCourseCode(String code);
+	Course findByCourseName(String name);
 
 	public void updateCourse(Course course);
 
@@ -22,4 +20,6 @@ public interface CourseService {
 	public Course saveCourse(Course course);
 
 	public void deleteCourse(Long id);
+
+	Course findByCourseCode(int code);
 }

@@ -3,10 +3,12 @@ package edu.mum.swe.msched.web;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.PropertiesEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,12 +50,27 @@ public class CourseController extends GenericController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-
 	public String save(@ModelAttribute(MODEL_ATTRIBUTE) @Valid Course course, BindingResult result,Model model) {
 
 		if (result.hasErrors()) {
-			return "dashboard";
+			return getView(model, VIEW_FORM);
 		}
+		
+		if (course.mEquals(courseService.findByCourseCode(course.getCourseCode()))) {
+			setMessage(model, "Duplicate couse!");
+			return getView(model, VIEW_FORM);
+		}
+		
+		if (course.mEquals(courseService.findByCourseName(course.getCourseName()))) {
+			setMessage(model, "Duplicate couse!");
+			return getView(model, VIEW_FORM);			
+		}
+		
+		if (course.getId() != null && course.mEquals(courseService.findByCourseId(course.getId()))) {
+			setMessage(model, "Duplicate course!");
+			return getView(model, VIEW_FORM);
+		}
+		
 		System.out.println("calling add Post");
 		courseService.updateCourse(course);
 		model.addAttribute("course", course);
@@ -71,4 +88,24 @@ public class CourseController extends GenericController {
 		model.addAttribute("courses", courseService.getAllCourses());
 		return new ModelAndView(getView(model, VIEW_LIST), "command", new Course());
 	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(Course.class, "preReqiusite", new PropertiesEditor(){
+			@Override
+			public void setAsText(String id) throws IllegalArgumentException {
+				Course pre = courseService.findByCourseId(Long.parseLong(id));
+				setValue(pre);
+			}
+			@Override
+			public String getAsText() {
+			Course pre = (Course) getValue();
+			if (pre == null) return null;
+			return (pre.getId() == null) ? null : String.valueOf(pre.getId());
+			}
+		});
+		
+		
+	}
+	
 }

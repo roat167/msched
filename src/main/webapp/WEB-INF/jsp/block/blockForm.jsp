@@ -13,29 +13,48 @@
 	<form:form modelAttribute="block" action="/block/add" method="post">
 		<input name="id" type="hidden" value="${block.id}">
 
-
-
-		<form:errors path="name" cssStyle="color:red" />
-		<br>
-		<spring:message code="message.name" text="Block Name" />
-		<form:input class="form-control" placeholder="Block Name"
-			required="required" path="name" type="text" />
-
+		<br>			
+Entry:
+<form:select class="form-control" path="entry" items="${entries}"
+			itemValue="entryId" itemLabel="entryDate" required ="required"/>
 		<br>
 
+		<form:errors path="entry" cssStyle="color:red" />
+		<br>	
+
+	
+Block Name:
+		
+		<form:select class="form-control" path="name">
+			<option value="">--Please Select Block Name--</option>
+			<option value="January">January</option>
+			<option value="February">February</option>
+			<option value="March">March</option>
+			<option value="April">April</option>
+			<option value="May">May</option>
+			<option value="June">June</option>
+			<option value="July">July</option>
+			<option value="August">August</option>
+			<option value="September">September</option>
+			<option value="October">October</option>
+			<option value="November">November</option>
+			<option value="December">December</option>
+
+		</form:select>
+		<br>
 		<form:errors path="startDate" cssStyle="color:red" />
 		<br>
 		<spring:message code="message.startDate" text="Start Date" />
 		<form:input class="form-control" placeholder="Start Date"
-			required="required" path="startDate" type="text" />
+			path="startDate" type="text" />
 
 		<br>
 
 		<form:errors path="endDate" cssStyle="color:red" />
 		<br>
 		<spring:message code="message.endDate" text="End Date" />
-		<form:input class="form-control" placeholder="End Date"
-			required="required" path="endDate" type="text" />
+		<form:input class="form-control" placeholder="End Date" path="endDate"
+			type="text" />
 		<br>
 
 

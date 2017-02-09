@@ -11,8 +11,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 public class Course {
@@ -21,8 +23,9 @@ public class Course {
 	private Long id;
 	@NotEmpty
 	private String courseName;
-	@NotEmpty
-	private String courseCode;
+	@NotNull
+	@Range(min=300,max=599)
+	private int courseCode;
 	@NotEmpty
 	private String description;
 	@OneToOne
@@ -47,7 +50,7 @@ public class Course {
 		this.preReqiusite = preReqiusite;
 	}
 
-	public String getCourseCode() {
+	public int getCourseCode() {
 		return courseCode;
 	}
 
@@ -59,11 +62,9 @@ public class Course {
 		this.id = id;
 	}
 
-	public String getgetCourseCode() {
-		return courseCode;
-	}
 
-	public void setCourseCode(String courseCode) {
+
+	public void setCourseCode(int courseCode) {
 		this.courseCode = courseCode;
 	}
 
@@ -83,4 +84,15 @@ public class Course {
 		this.targetBlocks = targetBlocks;
 	}
 
+	public boolean mEquals(Course course) {
+		if (course  == null) {
+			return false;
+		}
+		if ((this.getId() == null || this.getId() != course.getId()) && 
+				(this.getCourseName().equals(course.getCourseName()) || this.getCourseCode() == course.getCourseCode())) {
+			return true;
+		}
+		return false;
+	}
+	
 }

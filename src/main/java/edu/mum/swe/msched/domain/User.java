@@ -33,10 +33,9 @@ public class User implements Serializable {
 	private String username;
 	@NotEmpty
 	private String password;
-	@NotEmpty
 	@Email
+	@NotEmpty
 	private String email;
-	@Size(min=10)
 	private String phoneNo;
 	private String address;
 	private Boolean enabled;

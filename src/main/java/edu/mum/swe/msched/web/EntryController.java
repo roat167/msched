@@ -1,8 +1,11 @@
 package edu.mum.swe.msched.web;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,7 +45,10 @@ public class EntryController extends GenericController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String save(@ModelAttribute(MODEL_ATTRIBUTE) Entry entry, Model model) {
+	public String save(@Valid @ModelAttribute(MODEL_ATTRIBUTE) Entry entry, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return getView(model, VIEW_FORM);
+		}
 		entryService.updateEntry(entry);
 		model.addAttribute("entry", entry);
 		setMessage(model, "save successfully");

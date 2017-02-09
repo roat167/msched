@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
 <head>
@@ -18,6 +18,7 @@
 	<div class="listing Box">
 		<table class="sortable" id='tblList'>
 			<tr>
+				<th>Entry</th>
 				<th>Block Name</th>
 				<th>Start Date</th>
 				<th>End Date</th>
@@ -25,10 +26,15 @@
 			</tr>
 			<c:forEach var="block" items="${blocks}">
 				<tr>
+					<fmt:formatDate value="${block.entry.entryDate}" var="entryDate"
+						pattern="MMM/dd/yyyy" />
+					<td>${entryDate}</td>
 					<td>${block.name}</td>
-					<fmt:formatDate value="${block.startDate}" var="startDate" pattern="MMM/dd/yyyy" />
-					<fmt:formatDate value="${block.endDate}" var="endDate" pattern="MMM/dd/yyyy" />
-					<td>${startDate} &nbsp;</td>
+					<fmt:formatDate value="${block.startDate}" var="startDate"
+						pattern="MMM/dd/yyyy" />
+					<fmt:formatDate value="${block.endDate}" var="endDate"
+						pattern="MMM/dd/yyyy" />
+					<td>${startDate}&nbsp;</td>
 					<td>${endDate}</td>
 
 					<td>&nbsp; <a
@@ -60,10 +66,10 @@
 			//this script is important So, don't remove it
 			var table = document.getElementById('tblList');
 			if (table != null) {/*
-							        var pager = new Pager('tblList', 10); 
-							        pager.init(); 
-							        pager.showPageNav('pager', 'pageNavPosition'); 
-							        pager.showPage(1);
+													        var pager = new Pager('tblList', 10); 
+													        pager.init(); 
+													        pager.showPageNav('pager', 'pageNavPosition'); 
+													        pager.showPage(1);
 			 */
 			}
 		</script>

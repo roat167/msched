@@ -57,9 +57,15 @@ insert into msched.section(section_id, max_capacity, min_capacity, block_id, cou
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (7, 25, 15, 2, 2, 3);
 insert into msched.section(section_id, max_capacity, min_capacity, block_id, course_id, faculty_id) values (8, 25, 15, 2, 1, 4);
 
---Table student_section
-
---insert into msched.student_section(section_id, section_id) values (8, 25, 15, 2, 1, 4);
+--Table faculty_course
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs301','DBMS', 'Database Management', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs472','WAP', 'Web programming', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs435','Algorithm', 'algorithm', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs425','SWE', 'Software Engineering', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs544','EA', 'Enterprise Architecture', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs565','WAA', 'web programming architecture', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs402','MPP', 'Modern programming', null);
+insert into msched.course(id, course_code, course_name, description, pre_reqiusite_id) values (3, 'cs401','FPP', 'Fundamental programming', null);
 
 
 --faculty prefered block

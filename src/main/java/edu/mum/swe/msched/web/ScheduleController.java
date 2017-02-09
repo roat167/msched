@@ -148,14 +148,14 @@ public class ScheduleController extends GenericController {
         if(blockNo==1)
         {
             section = new Section();
-            Course mppCourse = courseService.findByCourseCode("cs401").get(0);
+            Course mppCourse = courseService.findByCourseCode(401);
             for(int k=0; k<(int)Math.ceil((double)block.getEntry().getMppStudentNum()/Constants.STUDENT_PER_SECTION);k++){
                 section = new Section();
                 section.setCourse(mppCourse);
                 section.setBlock(block);
                 block.getSections().add(section);
             }
-                Course  fppCourse= courseService.findByCourseCode("cs390").get(0);
+                Course  fppCourse= courseService.findByCourseCode(390);
             for(int i=0; i<(int)Math.ceil((double)block.getEntry().getFppStudentNum()/Constants.STUDENT_PER_SECTION);i++){
                 section = new Section();
                 section.setCourse(fppCourse);

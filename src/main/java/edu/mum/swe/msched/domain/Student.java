@@ -18,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import edu.mum.swe.msched.enumeration.GENDER;
 import edu.mum.swe.msched.enumeration.STUDENT_TYPE;
 
@@ -30,7 +32,9 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long studentId;
+	@NotEmpty
 	private String firstName;
+	@NotEmpty
 	private String lastName;
 	@Enumerated(EnumType.ORDINAL)
 	private GENDER gender;

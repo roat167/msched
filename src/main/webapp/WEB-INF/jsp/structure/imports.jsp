@@ -7,10 +7,14 @@
   
     <!-- Custom CSS -->
 <!-- data table style and scripts -->
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/dataTable/pagination.css" />
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/dataTable/pagination.css" />  
+  <script type="text/javascript" src="${pageContext.request.contextPath}/js/dataTable/paginator.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/dataTable/paginator.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/dataTable/sortable.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/dataTable/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/dataTable/jquery-pagination.js"></script>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/bootstrap-datepicker.min.css" />
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-datepicker.min.js"></script> 
+  	<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.ui.datepicker.js"></script> --%>	
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/scripts.js"></script>
 		       
