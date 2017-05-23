@@ -18,14 +18,14 @@
 		<br>
 Min Capacity: 
   <form:input class="form-control" placeholder="" path="minCapacity"
-			type="number" />
+			type="number" required = "required" value="15"/>
 		<br>
 
 		<form:errors path="maxCapacity" cssStyle="color:red"></form:errors>
 		<br>
 Max Capacity:
 <form:input class="form-control" placeholder="" path="maxCapacity"
-			type="number" />
+			type="number" required = "required" value = "25"/>
 		<br>
 
  		<form:errors path="block" cssStyle="color:red" />
