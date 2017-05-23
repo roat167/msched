@@ -60,7 +60,7 @@
                        <a  href="${pageContext.request.contextPath}/faculty/perfered_block_course">Choose Block and Course</a>
                     </li>
                </sec:authorize>
-                <li><a href="${pageContext.request.contextPath}/welcome">About US</a></li>
+                <li><a href="${pageContext.request.contextPath}/aboutus">About US</a></li>
                 </ul>
       <!-- right menu  -->     
       <ul class="nav navbar-nav navbar-right">		

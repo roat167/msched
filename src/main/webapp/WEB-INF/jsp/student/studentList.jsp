@@ -35,7 +35,7 @@
 			<td>${student.firstName}</td>
 			<td>${student.lastName}</td>
 			<td>${student.gender}</td>
-			<td>${student.user.email}</td>
+			<td>${student.account.email}</td>
 			<td>${student.snn}</td>
 			<td>${student.studentType}</td>
 			<fmt:formatDate value="${student.entry.entryDate}" var="entryDate" pattern="MMM/dd/yyyy" />		

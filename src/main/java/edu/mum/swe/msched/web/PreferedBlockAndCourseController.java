@@ -29,7 +29,7 @@ public class PreferedBlockAndCourseController extends GenericController {
     @RequestMapping(value = "/faculty/perfered_block_course", method = RequestMethod.GET)
     public String getPreferedBlockAndCourse(Model model) {
         String facultyName = getCurrentUsername(); 
-        System.out.println("User name " + facultyName);
+        System.out.println("Account name " + facultyName);
         Faculty faculty = facultyService.findFacultyByUserName(facultyName);
         //System.out.println("Faculty = " + faculty.toString());
         System.out.println("Blocks = [ " + faculty.getPreferedBlocks().toString() + "]");

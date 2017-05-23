@@ -13,8 +13,4 @@ import edu.mum.swe.msched.domain.Faculty;
 @Repository
 public interface EntryDao extends JpaRepository<Entry, Long> {	
 	Entry findOneByEntryDate(Date entryDate);
-
-    @Query("select distinct f from Faculty f inner join f.user u where u.username=:username")
-    Faculty findFacultyByUsername(@Param(value="username") String username);
-
 }

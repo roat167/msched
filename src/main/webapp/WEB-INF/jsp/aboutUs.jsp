@@ -4,9 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>About US</title>
 </head>
 <body>
-hello admin
+	<h3>Team Member</h3>
+	<u>
+		<li><strong>Khemroat Loem</strong>   khemroat@gmail.com</li>
+		<li><strong>Dora Kheiv</strong>      Khievdora@gmail.com</li>
+		<li><strong>Pukar Mainali</strong>   mainalipukar@gmail.com</li>
+		<li><strong>Feven Embaye</strong>    feveney16@gmail.com</li>
+		<li><strong>Fitsum</strong>          fitsum.admassu@gmail.com</li>
+	</u>
 </body>
 </html>

@@ -17,18 +17,19 @@
 			<c:forEach items="${blockList}" var="b" varStatus="i">
 				<c:if test="${not empty b.sections}">
 					<tr class="clsBlocks">
-						<td rowSpan="${fn:length(b.sections) + 1}"><c:out value="${b.name}" /></td>
-						<td colSpan="5"></td>						
-					</tr>
-					<c:forEach items="${b.sections}" var="sect" varStatus="j">
+						<td colspan="5"><c:out value="${b.name}"/></td>
+						<!-- <td class="clsRowblock" colspan="4"></td> -->						
+					</tr>	
+					<c:forEach items="${b.sections}" var="sect" varStatus="j">					
 					<!--Checking availableSeat  -->
-					<c:if test="${(sect.maxCapacity - sect.totalStudent) > 0}">
+					<c:if test="${(sect.maxCapacity - sect.totalStudent) >= 0 && (sect.course.courseName != 'MPP') && (sect.course.courseName != 'FPP')}">					
+					<tr class="clsSections">
 						<c:set var="isExists" value="false" />
 						<c:if test="${fn:contains(student.sections, sect)}">
 							<!-- set isExists true if section is selected -->
 							<c:set var="isExists" value="true" />
 						</c:if>
-						<tr class="clsSections">
+						<td></td>						
 							<td><span> 
 							<fmt:formatDate pattern="MMM-dd-yyyy" value="${sect.block.startDate}" var="startDate" /> 
 							<c:choose>
@@ -50,11 +51,12 @@
 							<c:out value="${sect.course.courseName}" />
 							</td>							
 							<td><c:out value="${startDate}" /></td>
-							<td><c:out value="${sect.faculty.firstName}" /></td>
+							<c:set var ="faculty" value="${sect.faculty==null ? 'UNSTAFF' : sect.faculty.firstName}"/>
+							<td><c:out value="${faculty}" /></td>
 							<td><c:out value="${sect.maxCapacity - sect.totalStudent}" /></td>
-						</tr>
-					</c:if>
-					</c:forEach>
+					</tr>						
+					</c:if>									
+					</c:forEach>									
 				</c:if>
 			</c:forEach>
 		</table>		

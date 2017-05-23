@@ -13,7 +13,7 @@ public interface FacultyDao extends JpaRepository<Faculty, Long>{
 
 	List<Faculty> findByPreferedBlocks(PREFERED_BLOCK preferedBlock);
 	
-	@Query("select distinct f from Faculty f inner join f.user u where u.username=:username")
+	@Query("select distinct f from Faculty f inner join f.account u where u.username=:username")
 	Faculty findFacultyByUsername(@Param(value="username") String username);
 
 }

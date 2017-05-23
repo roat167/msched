@@ -18,15 +18,15 @@ public class Admin {
 	private String lastName;
 	private String email;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "account_id")
+	private Account account;
 
-	public User getUser() {
-		return user;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public Long getAdminId() {

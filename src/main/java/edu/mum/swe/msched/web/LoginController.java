@@ -3,6 +3,7 @@ package edu.mum.swe.msched.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.mum.swe.msched.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,13 +14,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edu.mum.swe.msched.service.impl.UserServiceImpl;
-
-
 @Controller
 public class LoginController extends GenericController {
 	@Autowired
-	UserServiceImpl userService;
+	AccountService userService;
 
 	//@PreAuthorize(name=""{})
 	@RequestMapping(value="/login", method= RequestMethod.GET)

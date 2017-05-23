@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import edu.mum.swe.msched.domain.Faculty;
-import edu.mum.swe.msched.domain.User;
+import edu.mum.swe.msched.domain.Account;
 import edu.mum.swe.msched.enumeration.ROLE;
 import edu.mum.swe.msched.service.FacultyService;
 
@@ -43,15 +43,15 @@ public class FacultyController extends GenericController {
 	public String addOrUpdateFaculty(@ModelAttribute(MODEL_ATTRIBUTE) Faculty faculty, Model model) {
 		if (faculty.getFacultyId() == null) {
 			/**
-			 * Since faculty has property user; therefore, every time we register new faculty we need to create 
-			 * user as well. 
+			 * Since faculty has property account; therefore, every time we register new faculty we need to create
+			 * account as well.
 			 */
-			// Set default value to user that attached to faculty
-			User user = faculty.getUser();
-			user.setRole(ROLE.FACULTY);
-			user.setUsername(faculty.getFirstName().substring(0,1) + faculty.getLastName());
-			user.setPassword("password");
-			user.setEnabled(true);
+			// Set default value to account that attached to faculty
+			User account = faculty.getUser();
+			account.setRole(ROLE.FACULTY);
+			account.setUsername(faculty.getFirstName().substring(0,1) + faculty.getLastName());
+			account.setPassword("password");
+			account.setEnabled(true);
 			//Save faculty into DB
 			facultyService.saveFaculty(faculty);
 			

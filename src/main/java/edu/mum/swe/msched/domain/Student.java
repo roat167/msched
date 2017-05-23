@@ -45,8 +45,8 @@ public class Student {
 	@Enumerated(EnumType.ORDINAL)
 	private STUDENT_TYPE studentType;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "account_id")
+	private Account account;
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "STUDENT_SECTION", joinColumns = {
@@ -110,12 +110,12 @@ public class Student {
 		this.studentType = studentType;
 	}
 
-	public User getUser() {
-		return user;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public List<Section> getSections() {
@@ -134,7 +134,7 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
-				+ gender + ", snn=" + snn + ", entry=" + entry + ", studentType=" + studentType + ", user=" + user.toString()
+				+ gender + ", snn=" + snn + ", entry=" + entry + ", studentType=" + studentType + ", account=" + account.toString()
 				+ ", sections=" + sections + "]";
 	}
 

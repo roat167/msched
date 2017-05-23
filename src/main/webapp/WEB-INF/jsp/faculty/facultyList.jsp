@@ -35,8 +35,8 @@
 			<td>${faculty.firstName}</td>
 			<td>${faculty.lastName}</td>
 			<td>${faculty.gender}</td>
-			<td>${faculty.user.email}</td>
-			<td>${faculty.user.phoneNo}</td>
+			<td>${faculty.account.email}</td>
+			<td>${faculty.account.phoneNo}</td>
 			<td>${faculty.snn}</td>
 			<fmt:formatDate value="${faculty.startWorkDate}" var="startWorkDate" pattern="MMM/dd/yyyy" />
 			<td>${startWorkDate}</td>			

@@ -45,8 +45,8 @@ public class Faculty {
 	private String snn;
 	private Date startWorkDate;
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "account_id")
+	private Account account;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "FACULTY_COURSES", joinColumns = {
@@ -107,12 +107,12 @@ public class Faculty {
 		this.startWorkDate = startWorkDate;
 	}
 
-	public User getUser() {
-		return user;
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public List<Course> getCourses() {
@@ -147,7 +147,7 @@ public class Faculty {
 	@Override
 	public String toString() {
 		return "Faculty [facultyId=" + facultyId + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
-				+ gender + ", snn=" + snn + ", startWorkDate=" + startWorkDate + ", user=" + user + ", courses="
+				+ gender + ", snn=" + snn + ", startWorkDate=" + startWorkDate + ", account=" + account + ", courses="
 				+ courses + ", preferedBlocks=" + preferedBlocks + ", sections=" + sections + "]";
 	}
 	

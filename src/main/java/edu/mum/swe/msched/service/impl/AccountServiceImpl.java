@@ -4,32 +4,32 @@ import java.util.List;
 
 import edu.mum.swe.msched.dao.AccountDao;
 import edu.mum.swe.msched.domain.Account;
+import edu.mum.swe.msched.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import edu.mum.swe.msched.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class AccountServiceImpl implements AccountService {
 	@Autowired
-	AccountDao userDao;
+	AccountDao accountDao;
 
 	@Override
 	public void remove(Long id) {
-		userDao.delete(id);
+		accountDao.delete(id);
 	}
 
 	@Override
 	public void save(Account account) {
-		userDao.save(account);
+		accountDao.save(account);
 	}
 
 	@Override
 	public Account findUserById(Long id) {
-		return userDao.findOne(id);
+		return accountDao.findOne(id);
 	}
 
 	@Override
@@ -37,23 +37,23 @@ public class UserServiceImpl implements UserService {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(account.getPassword());
 		account.setPassword(hashedPassword);
-		userDao.save(account);
+		accountDao.save(account);
 	}
 
 	@Override
 	public Account findByUsername(String username) {
-		return userDao.findByUsername(username);
+		return accountDao.findByUsername(username);
 	}
 
 	@Override
 	public List<Account> getAllUsers() {
-		return userDao.findAll();
+		return accountDao.findAll();
 	}
 
 	@Override
 	public Account getCurrentUser() {
 		Authentication auth=SecurityContextHolder.getContext().getAuthentication();		
-		return userDao.findByUsername(auth.getName());
+		return accountDao.findByUsername(auth.getName());
 	}
 
 }

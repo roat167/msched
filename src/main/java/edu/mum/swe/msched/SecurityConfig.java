@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 			.authorizeRequests()			
-			.antMatchers("/css/**", "/js/**", "/themes/**", "/welcome" , "/").permitAll()
+			.antMatchers("/css/**", "/js/**", "/themes/**", "/welcome" , "/", "/aboutus").permitAll()
 				.anyRequest().authenticated()
 			.and()
 				.formLogin().loginPage("/login").permitAll()
@@ -48,13 +48,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 		StringBuilder qAuthorities = new StringBuilder();		
-		qAuthorities.append("select u.username, u.role from user u ");
+		qAuthorities.append("select u.username, u.role from account u ");
 		qAuthorities.append("where u.username = ?");
-		
 		auth.jdbcAuthentication()
          .dataSource(dataSource)
          .usersByUsernameQuery(
-                 "select username, password, enabled from user where username=?")
+                 "select username, password, enabled from account where username=?")
          .authoritiesByUsernameQuery(qAuthorities.toString());
 	}
 

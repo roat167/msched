@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import edu.mum.swe.msched.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,13 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.mum.swe.msched.domain.Entry;
 import edu.mum.swe.msched.domain.Student;
-import edu.mum.swe.msched.domain.User;
 import edu.mum.swe.msched.enumeration.ROLE;
 import edu.mum.swe.msched.service.EntryService;
 import edu.mum.swe.msched.service.StudentService;
-import edu.mum.swe.msched.service.impl.StudentServiceImpl;
 
 @Controller
 @RequestMapping(value = "/student")
@@ -56,12 +54,12 @@ public class StudentController extends GenericController {
 		
 		if (student.getStudentId() == null) {
 	
-			// Create a user
-			User user = student.getUser();
-			user.setRole(ROLE.STUDENT);
-			user.setPassword("password");
-			user.setUsername(student.getFirstName().substring(0, 1) + student.getLastName());
-			user.setEnabled(true);
+			// Create a account
+			Account account = student.getAccount();
+			account.setRole(ROLE.STUDENT);
+			account.setPassword("password");
+			account.setUsername(student.getFirstName().substring(0, 1) + student.getLastName());
+			account.setEnabled(true);
 			
 			studentService.saveStudent(student);
 		} else {

@@ -18,10 +18,9 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import edu.mum.swe.msched.domain.Faculty;
 import edu.mum.swe.msched.domain.Section;
-import edu.mum.swe.msched.domain.User;
+import edu.mum.swe.msched.domain.Account;
 import edu.mum.swe.msched.enumeration.MONTH;
 import edu.mum.swe.msched.enumeration.ROLE;
-import edu.mum.swe.msched.helper.PreferedBlockHelper;
 import edu.mum.swe.msched.service.CourseService;
 import edu.mum.swe.msched.service.FacultyService;
 import edu.mum.swe.msched.service.SectionService;
@@ -75,15 +74,15 @@ public class FacultyController extends GenericController {
 		
 		if (faculty.getFacultyId() == null) {
 			/**
-			 * Since faculty has property user; therefore, every time we register new faculty we need to create 
-			 * user as well. 
+			 * Since faculty has property account; therefore, every time we register new faculty we need to create
+			 * account as well.
 			 */
-			// Set default value to user that attached to faculty
-			User user = faculty.getUser();
-			user.setRole(ROLE.FACULTY);
-			user.setUsername(faculty.getFirstName().substring(0,1) + faculty.getLastName());
-			user.setPassword("password");
-			user.setEnabled(true);
+			// Set default value to account that attached to faculty
+			Account account = faculty.getAccount();
+			account.setRole(ROLE.FACULTY);
+			account.setUsername(faculty.getFirstName().substring(0,1) + faculty.getLastName());
+			account.setPassword("password");
+			account.setEnabled(true);
 			//Save faculty into DB
 			facultyService.saveFaculty(faculty);
 			

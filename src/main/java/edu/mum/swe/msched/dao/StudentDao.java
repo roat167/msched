@@ -12,7 +12,7 @@ public interface StudentDao extends JpaRepository<Student, Long> {
 
 	List<Student> findStudentByFirstName(String firstName);
 	List<Student> findStudentByLastName(String lastName);
-	@Query("select distinct s from Student s inner join s.user u where u.username=:username")
+	@Query("select distinct s from Student s inner join s.account u where u.username=:username")
 	Student findStudentByUsername(@Param(value="username") String username);
 	
 }

@@ -1,7 +1,5 @@
 package edu.mum.swe.msched.helper;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.mum.swe.msched.util.SectionDao;

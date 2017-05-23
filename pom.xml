@@ -6,7 +6,7 @@
 	<groupId>edu.mum.swe</groupId>
 	<artifactId>msched</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>msched</name>
 	<description>MUM Course Schedule</description>
 
@@ -51,9 +51,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.3-1100-jdbc41</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
