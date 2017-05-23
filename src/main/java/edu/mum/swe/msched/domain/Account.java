@@ -1,7 +1,5 @@
 package edu.mum.swe.msched.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,25 +7,18 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import edu.mum.swe.msched.enumeration.ROLE;
 
-/**
- * 
- * @author kloem
- *
- */
 @Entity
-public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Account {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long userId;
+	private Long accountId;
 	@Column(name = "username", unique = true)
 	@NotEmpty	
 	private String username;
@@ -42,12 +33,12 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private ROLE role;
 
-	public Long getUserId() {
-		return userId;
+	public Long getAccountId() {
+		return accountId;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 
 	public String getUsername() {
@@ -108,7 +99,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
+		return "Account [accountId=" + accountId + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", phoneNo=" + phoneNo + ", address=" + address + ", enabled=" + enabled + ", role=" + role + "]";
 	}
 		
