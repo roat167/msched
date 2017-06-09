@@ -6,7 +6,7 @@
 	<groupId>edu.mum.swe</groupId>
 	<artifactId>msched</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>msched</name>
 	<description>MUM Course Schedule</description>
 
