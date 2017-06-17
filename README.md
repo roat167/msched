@@ -11,7 +11,10 @@
 - SQL (PostgreSQL)
 - JSP
 - Boostrap, HTML, CSS, jQuery
-  
+### Requirement
+- make sure your machine have PostgreSQL 9.6 installed
+- open pgAdmin and create database name: msched 
+- you can modify the configuration for database in [application.properties]( https://github.com/roat167/msched/blob/master/src/main/resources/application.properties)
 ## Build and Deploy
 - Open a command prompt and navigate to the root directory of the project
 - Type the following command: 
